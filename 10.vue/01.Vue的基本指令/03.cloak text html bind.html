@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <p v-cloak>{{msg}}</p>
+        <!-- 这种方法在渲染的时候 如果网速过慢，那么用户会看到{{msg}}的字样-->
+        <!-- 所以使用v-clock来达到消除闪烁的功能，只需要在css中设定display：none就行-->
+
+
+        <p v-text="msg"></p>
+        <!--v-test属性是没有闪烁的，因为标签内并没有任何东西-->
+        <!--但是这个方法有个特点就是，v-text里面是什么，页面就渲染什么-->
+        <!--就算本来标签里面有文本，还是会替换掉-->
+        <!--如果是第一种方法，那么相对于v-text就灵活的多，可以在文本上再添加一些其他的文本-->
+
+
+        <p v-html="msg2"></p>
+        <!-- v-html属性可以将标签也读取出来-->
+        <!--如果使用前两个方法标签就会被当成字符串渲染出来，标签将失去意义-->
+
+
+        <input type="button" value="按钮">
+        <input type="button" v-bind:value="msg3">
+        <input type="button" :value="msg3">
+        <!--当属性值想使用data中属性值的时候，如果直接把msg放在里面只会让标签的这个属性值变成msg-->
+        <!--当我们需要绑定属性的时候，我们可以使用v-bind来绑定属性，让vue认得该标签-->
+        <!--所以需要在需要绑定的属性值写上v-bind-->
+        <!--但在实际运用中我们常常使用"："来简写v-bind-->
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                msg:'我是一个段落',
+                msg2: '<h2>我是一个标题</h2>',
+                msg3:'按钮'
+            }
+        })
+    </script>
+</body>
+</html>

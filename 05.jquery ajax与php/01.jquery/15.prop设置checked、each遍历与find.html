@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <td><input type="checkbox" name="checkbox"></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><input type="checkbox" name="checkbox"></td>
+        <td>唱</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="checkbox"></td>
+        <td>跳</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="checkbox"></td>
+        <td>rap</td>
+    </tr>
+    <tr>
+        <td><input type="checkbox" name="checkbox"></td>
+        <td>唱</td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<input type="button" value="全选" class="all">
+<input type="button" value="全不选" class="notAll">
+<input type="button" value="反选" class="opposite">
+<script>
+    console.log($('input:eq(0)').attr('checked')); //使用attr获取不到input的checked属性
+
+    $('.all').click(function () {
+        $('tbody input:checkbox').prop({checked: true})
+    })
+    $('.notAll').click(function () {
+        $('tbody input:checkbox').prop({checked: false})
+    })
+
+
+    // $('.opposite').click(function () {
+    //     for (var i=0;i<$('input:checkbox').length;i++){
+    //         if ($('input:checkbox:eq('+i+')').prop('checked')==true) {
+    //             $('input:checkbox:eq('+i+')').prop({checked:false})
+    //         }else{
+    //             $('input:checkbox:eq('+i+')').prop({checked:true})
+    //         }
+    //
+    //     }
+    // })
+
+
+    // 使用原生for循环已经繁琐了，使用each()遍历，遍历的当前元素就可以使用this
+
+    $('.opposite').click(function () {
+        $('tbody input:checkbox').each(function () {
+            $(this).prop('checked') ? $(this).prop('checked', false) : $(this).prop('checked', true)
+        })
+    })
+
+    // 在thead中的复选框 如果全部选中他要选中，有一个没选中他就要没选中，也可以充当全选和全不选
+    // 使用find 这个方法可以找到子元素与之匹配的元素，用这个方法也可以实时绑定事件
+
+
+    $('thead input:checkbox').click(function () {
+        // 首先获取头部中复选框的状态
+        var oHeadChecked = $('thead input:checkbox').prop('checked')
+        // 然后让身体里的复选框同步头部复选框就可以了
+        $('tbody input:checkbox').prop('checked', oHeadChecked)
+    })
+
+    // 在点击身体里的复选框时要执行一次判定，看是否全部选上或者有未选中的
+    $('tbody input:checkbox').click(function () {
+        // 原理是使用find查找复选框被勾选的元素，看有几个，如果与总数相等就让头部勾选
+        $('tbody').find('input:checked').length == $('tbody').find('input:checkbox').length ? $('thead input:checkbox').prop('checked', true) : $('thead input:checkbox').prop('checked', false)
+        // 根据实验不能使用$('tbody input[checked=true]').lenght来获取数量，这样获取出来的为0
+        // 应该和attr的原理一样，是不能获取checked的值的
+    })
+
+
+</script>
+</body>
+</html>

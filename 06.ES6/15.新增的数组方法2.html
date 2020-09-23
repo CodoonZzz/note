@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var arr = [1,2,3,4,5,6]
+    // 遍历方法：要求：遍历到4就停止遍历
+    // 1.foreach是一个可以简单遍历数组的方法，使每次遍历可以执行一个函数
+    arr.forEach((item,index)=>{
+        console.log('第' + index + '个索引为' + item);
+        if(item>4){
+            return
+        }
+    })
+    // forEach虽然可以简便的实现遍历 但是不能停止，return完全没用
+
+    console.log('------------------------------------------------');
+
+    // 2.every是一个可控遍历，他每轮会返回一个布尔值来判断是否执行下一轮 true为执行，false为停止，默认为false
+
+    arr.every((item,index)=>{
+        console.log('第' + index + '个索引为' + item)
+        // 根据every的特性 我们需要在4以内设置return true
+        // 这样可以在循环到4时，告诉函数可以不执行下一轮了
+        if (item<4){
+            return true
+        }
+    })
+    // every在循环中 如果都满足条件则会返回一个true 如果有一个不满足 返回false
+
+    console.log('------------------------------------------------');
+
+
+    // 3.some也是一个可控遍历，与every相比 some与every的跳出与继续的指令正好相反 return true为跳出循环
+    arr.some((item,index)=>{
+        if (item>4){
+            return true
+        }
+        console.log('第' + index + '个索引为' + item)
+    })
+
+    // 4.findindex虽然也可以遍历数组，但是他的作用在于返回循环停止时的索引
+    var oIndex = arr.findIndex(item=>{
+        if (item==4){
+            return true
+        }
+    })
+    console.log(oIndex); // 返回4所在的索引3
+</script>
+</body>
+</html>

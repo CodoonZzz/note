@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+    </div>
+    <script>
+        // 通过off来解绑与on相反
+        $('div').on('click mouseover',function () {
+            console.log(111);
+        }).on('click',function () {
+            $(this).off('click')
+        }).on('mouseover',function () {
+            $(this).off('mouseover')
+        })
+        // 而off还有一些特殊的写法
+        // ！！  元素.off('事件'，'**')    这样的固有写法，是将元素的子元素所有绑定事件清除
+        // ！！  元素.off()    而若括号中什么都不写，则是把元素所有的事件解除
+
+
+
+        // 绑定事件有bind、delegate方法
+        // 对应的解绑是需要unbind与undelegate方法解绑
+        // 用成其他的解绑方式一般不会出错
+        // 但是如果绑定使用delegate，解绑使用off
+        // 那么off在解绑元素的时候会跟着把父级元素的相同事件也跟着解绑
+        //
+        // 在高等级的jq中 bind与delegate已经废弃，还是使用on与off更好一些，不会发生一些BUG
+
+
+
+    </script>
+</body>
+</html>

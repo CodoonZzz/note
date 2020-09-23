@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="box">
+        <input type="text" v-model="msg1">
+        <select v-model="open">
+            <option>+</option>
+            <option>-</option>
+            <option>*</option>
+            <option>/</option>
+        </select>
+        <input type="text" v-model="msg2">
+        <input type="button" value="=" @click="fun">
+        <input type="text" v-model="msg3">
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                msg1:0,
+                msg2:0,
+                msg3:0,
+                open:'+',
+            },
+            methods:{
+                fun(){
+                    // switch (this.open) {
+                    //    case "+":
+                    //        this.msg3 = parseFloat(this.msg1)+parseFloat(this.msg2)
+                    //         break
+                    //    case "-":
+                    //        this.msg3 = parseFloat(this.msg1)-parseFloat(this.msg2)
+                    //         break
+                    //    case "*":
+                    //        this.msg3 = parseFloat(this.msg1)*parseFloat(this.msg2)
+                    //         break
+                    //    case "/":
+                    //        this.msg3 = parseFloat(this.msg1)/parseFloat(this.msg2)
+                    //         break
+                    // }
+                    var string = 'parseFloat(this.msg1)'+ this.open+'parseFloat(this.msg2)'
+                    this.msg3 =  eval(string)
+                    // eval可以将字符串解析成js代码来执行
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 2000px;
+            border: 1px solid black;
+            margin: 0 auto
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        //event是事件对象，事件的默认参数就是event
+        var oDiv = document.getElementsByTagName('div')[0]
+        oDiv.onclick = function(event){
+            console.log(event.clientX,event.clientY)//client为浏览器显示区域的位置
+            console.log(event.pageX,event.pageY)//page为整个页面中的位置
+            console.log(event.offsetX,event.offsetY)//offset为源元素中的位置
+        }
+
+
+
+    </script>
+</body>
+</html>

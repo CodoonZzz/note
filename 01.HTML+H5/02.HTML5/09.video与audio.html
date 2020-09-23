@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		音乐：
+		<audio src="MP3.mp3" controls="controls" loop="loop">对不起 您的浏览器版本过低不支持播放</audio>
+		<video src="video.mp4" controls="controls" poster="picture.jpg">对不起 您的浏览器版本过低不支持播放</video>
+		<!--标签内文字为浏览器不支持audio标签时显示的文字
+		contrls为控制组件，autoplay为是否在加载页面后自动播放
+		preload为是否预加载 默认为auto为预加载 none为不预加载 metadata为只加载元数据
+		loop为是否循环播放 也可以输入数字 设置循环几次
+		error属性为报错 视频无法播放会返回一个media Error对象
+		networkstate为返回音频/视频的网络状态 -->
+		<!--poster（video独有）是在视频不能播放的时候向用户展示一张图片代替视频 poster的值为图片路径-->
+		
+<!--		除了audio与video 加入媒体元素可以直接写入embed标签 通过src属性直接插入媒体元素-->
+		<embed src="video.mp4" type="" width="400">
+	</body>
+</html>

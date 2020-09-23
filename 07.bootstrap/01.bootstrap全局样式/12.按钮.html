@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+<!--            按钮类可以追加到a input button上 需要在加上btn类名后再加入各个不一样的按钮-->
+            <label>基本标签</label>
+            <input type="button" value="按钮" class="btn">
+<!--            如果 <a> 元素被作为按钮使用; 并用于在当前页面触发某些功能; -->
+<!--            而不是用于链接其他页面或链接当前页面中的其他部分，那么，务必为其设置 role="button" 属性。-->
+            <a class="btn btn-default" href="#" role="button">我是一个a</a>
+            <button class="btn btn-default" type="button">我是一个Button</button>
+            <input class="btn btn-default" type="button" value="我是Input">
+            <input class="btn btn-default" type="submit" value="我是Submit">
+        </div>
+<!--        在boot官方文档中 强烈建议在使用的时候使用button标签-->
+        <div class="row">
+<!--            boot为我们设置了7种预设样式-->
+            <label >7中预设样式</label>
+            <button class="btn btn-default" type="button">普通</button>
+            <button class="btn btn-primary" type="button">首选项</button>
+            <button class="btn btn-success" type="button">成功</button>
+            <button class="btn btn-info" type="button">一般信息</button>
+            <button class="btn btn-warning" type="button">警告</button>
+            <button class="btn btn-danger" type="button">危险</button>
+            <button class="btn btn-link" type="button">链接</button>
+        </div>
+
+        <div class="row">
+            <!--            boot为我们设置了7种预设样式-->
+            <label>按钮的尺寸</label>
+            <button type="button" class="btn btn-primary btn-lg">大型按钮</button>
+            <button type="button" class="btn btn-primary">默认按钮</button>
+            <button type="button" class="btn btn-primary btn-sm">小型按钮</button>
+            <button type="button" class="btn btn-primary btn-xs">超小按钮</button>
+        </div>
+
+        <div class="row">
+<!--            我们可以为某个标签设置btn-block的样式让他占满父元素的宽度 并且成为块级元素-->
+            <div class="col-md-1">
+                <label class="control-label">btn-block</label>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-default btn-block">占满4格</button>
+            </div>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-default btn-block">占满2格</button>
+            </div>
+        </div>
+
+        <div class="row">
+<!--            如果你想让某个按钮处于激活状态 加上.active-->
+            <label class="control-label">激活状态：</label>
+            <button type="button" class="btn btn-default">未激活</button>
+            <button type="button" class="btn btn-default active">激活</button>
+        </div>
+
+        <div class="row">
+            <label class="control-label">禁用状态：</label>
+<!--            禁用可以添加到属性上 也可以添加的类上-->
+            <button type="button" class="btn btn-default" disabled="disabled">按钮</button>
+            <button type="button" class="btn btn-default disabled">按钮</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="">
+<!--    使用input的list属性来指定候选datalist的id-->
+<!--    可以让输入时出现我们事先定义好的候选列表-->
+    <input type="text" list="singer">
+    <datalist id="singer">
+        <option>刘德华</option>
+        <option>刘若英</option>
+        <option>林宥嘉</option>
+        <option>林俊杰</option>
+        <option>周杰伦</option>
+    </datalist>
+    <br>
+
+<!--    此外 H5在input中加入了更多的type-->
+    邮箱<input type="email">
+    手机<input type="tel">
+    网址 <input type="url">
+    数字<input type="number">
+    搜索<input type="search">
+<!--   一般会在移动端使用 应为会出现一些对于移动端的提示或者其他操作-->
+    <br>
+    区域 <input type="range">
+    时间 <input type="time">
+    日期 <input type="date">
+    年月 <input type="month">
+    星期 <input type="week">
+    颜色 <input type="color">
+</form>
+
+</body>
+</html>

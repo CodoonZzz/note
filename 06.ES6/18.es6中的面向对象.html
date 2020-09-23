@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        // 在之前所学的面向对象中 写构造器时时这样：
+        // var fn = function (name,age) {
+        //     this.name = name
+        //     this.age = age
+        // }
+        // fn.prototype.foo1 = function () {
+        //     alert(this.name)
+        // }
+        // fn.prototype.foo2 = function () {
+        //     alert(this.age)
+        // }
+        // 这样的写法需要先写出构造器函数，再写出原型对象中的函数
+        // 在es6中建立了类的概念
+
+        class fn {
+            // 构造器：
+            constructor(name,age){
+                this.name = name
+                this.age = age
+            }
+            // 原型直接写出来
+            foo1(){
+                alert(this.name)
+            }
+            foo2(){
+                alert(this.age)
+            }
+        }
+
+
+        var obj = new fn('sxy',22)
+        obj.foo1()
+        obj.foo2()
+    </script>
+</body>
+</html>

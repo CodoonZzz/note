@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-1.12.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container">
+<!--        这个与导航有着区别 这不属于导航栏 是属于一个小组件-->
+<!--        所以并不是nav系列的类名 -->
+        <h3>路径导航</h3>
+        <ul class="breadcrumb">
+            <li><a href="">首页</a></li>
+            <li><a href="">新闻</a></li>
+            <li><a href="">国内新闻</a></li>
+<!--            激活的li需要加上active并去掉a标签-->
+            <li class="active">高考新闻</li>
+        </ul>
+
+        <hr>
+
+        <h3>分页</h3>
+<!--        分页直接加上pagination就OK了-->
+<!--        也可以使用激活与禁用-->
+        <ul class="pagination">
+            <li><a href=""><</a></li>
+            <li class="active"><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+            <li><a href="">4</a></li>
+            <li><a href="">5</a></li>
+            <li class="disabled"><a href="">6</a></li>
+            <li><a href="">7</a></li>
+            <li><a href="">></a></li>
+        </ul>
+
+        <hr>
+
+
+        <h3>尺寸</h3>
+<!--        如果你需要更大的或者小的分页 那就加上控制大小的pagination-lg或pagination-sm吧-->
+        <ul class="pagination pagination-lg">
+            <li><a href=""><</a></li>
+            <li class="active"><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">></a></li>
+        </ul>
+        <ul class="pagination">
+            <li><a href=""><</a></li>
+            <li class="active"><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">></a></li>
+        </ul>
+        <ul class="pagination pagination-sm">
+            <li><a href=""><</a></li>
+            <li class="active"><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">></a></li>
+        </ul>
+
+        <hr>
+
+
+        <h3>翻页</h3>
+        <ul class="pager">
+            <li><a href="">上一页</a></li>
+            <li><a href="">下一页</a></li>
+        </ul>
+    </div>
+</body>
+</html>

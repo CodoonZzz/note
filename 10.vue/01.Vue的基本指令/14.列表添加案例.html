@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+    <style>
+        input{
+            border: #00FFFF 1px solid;
+            outline: none;
+            height: 20px;
+            margin: 20px 10px;
+        }
+        input[type="button"]{
+            background: #00FFFF;
+            color: white;
+            width: 50px;
+            height: 30px;
+            border-radius: 10%;
+        }
+        table,td{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        table{
+            width: 100%;
+        }
+        td{
+            padding: 6px ;
+        }
+        a{
+            color: red;
+            text-decoration: none;
+        }
+        tbody tr:nth-child(odd){
+            background: #e4e4e4;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        Id：<input type="text" v-model="id">
+        Name:<input type="text" v-model="name">
+        <input type="button" value="添加" @click="plus">
+        搜索关键字：<input type="text" v-model="keyword">
+        <table>
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Name</td>
+                    <td>时间</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+<!--                一开始v-for遍历的是一个固定的list，为了实现搜索我们不应该遍历固定的list-->
+<!--                我们应该根据搜索框的内容将符合搜索框内容的元素放在一个新数组，从而遍历这个新数组-->
+<!--                    所以我们可以添加一个search方法 让这个方法返回一个新数组 我们在这里遍历这个新数组-->
+                <tr v-for="item in search(keyword)" :key="item.name">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.time | changeTime()}}</td>
+                    <td><a href="" @click.prevent="del(item.id)">删除</a></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+    <script>
+        // 设置一个过滤器 让时间变得更可读
+        Vue.filter('changeTime',(time)=>{
+            var date = new Date(time)
+            var Y = date.getFullYear()
+            var Mou = (date.getMonth()+1).toString().padStart(2,'0')
+            var D = date.getDate().toString().padStart(2,'0')
+            var H = date.getHours().toString().padStart(2,'0')
+            var Min = date.getMinutes().toString().padStart(2,'0')
+            var S = date.getSeconds().toString().padStart(2,'0')
+            return `${Y}-${Mou}-${D} ${H}:${Min}:${S}`
+        })
+
+        new Vue({
+            el:'#box',
+            data:{
+                id:'',
+                name:'',
+                keyword:'',
+                list:[
+                    {id:1,name:'林俊杰',time:new Date()},
+                    {id:2,name:'周杰伦',time:new Date()},
+                ]
+            },
+            methods:{
+                plus(){
+                    // 添加函数比较简单，只需要为list添加新的数组成员就行，利用vue的动态监听会直接渲染再页面上
+                    this.list.push({id:this.id,name:this.name,time:new Date()})
+                },
+                del(id){
+                    // 在页面上执行函数传入实参item.id
+                    this.list.some((item,index)=>{
+                        if (item.id == id){
+                            this.list.splice(index,1)
+                            return true
+                        }
+                    })
+                    // 在这里也有一个方法可以使用就是findindex 他可以帮助我们查找索引
+                    // var index = this.list.findIndex((item)=>{
+                    //     if (item.id == id){
+                    //         return true
+                    //     }
+                    // })
+                    // this.list.splice(index,1)
+                },
+                search(keyword){
+                    // 首先建立一个空数组
+                    var NewList = []
+                    // 然后遍历list 然后根据搜索框的内容与之对比，含有搜索内容的扔进新数组，最后返回出这个数组
+                    this.list.forEach(item=>{
+                        if (item.name.includes(keyword)){
+                            NewList.push(item)
+                        }
+                    })
+                    return NewList
+                }
+            }
+        })
+    </script>
+</body>
+</html>

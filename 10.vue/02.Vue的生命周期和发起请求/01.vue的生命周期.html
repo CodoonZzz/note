@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="box" @click="msg='no'">{{msg}}</div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                msg:'ok'
+            },
+            methods:{
+
+            },
+            beforeCreate(){ // 这是Vue经历的第一个生命周期函数，Vue在完全被实例化之前会执行他
+                console.log(this.msg) // undefined
+            },
+            created(){ // 这是第二个生命周期函数，data，methods已经被创建好了
+                       // 如果需要对data或methods做操作，最早可以在这里操作
+                console.log(this.msg);
+            },
+            beforeMount(){ // 这是第三个生命周期函数，这里表示模板已经创建完成，但是未渲染在页面上
+                console.log(document.getElementById('box').innerText);
+            },
+            mounted(){  // 这是第四个生命周期函数，他表示模板在页面已经渲染完成，实例已经完全被创建完成
+                        // 如果此时没有其他新的操作，那么这个实例就会在内存中静待
+                console.log(document.getElementById('box').innerText)
+            },
+
+            // 执行完成mounted之后，就表示整个Vue实例初始化已经完成了
+            // 此时 组件就已经脱离了创建阶段，开始运行阶段
+            // beforeUpdate与updated是组件运行阶段的生命周期函数
+            // 这两个函数会在data发生改变时，有选择性的触发0次或者多次
+            beforeUpdate(){ // 这个时候界面还没有被更新，但数据已经被更新
+                console.log('beforeupdate函数的页面信息'+document.getElementById('box').innerText) // no
+                console.log('beforeupdate函数的date信息'+this.msg) // ok
+                // 当数据发生改变时 先触发beforeupdate函数，此时data数据已经被更新，尚未更新页面
+            },
+            updated(){
+                console.log('beforeupdate函数的页面信息'+document.getElementById('box').innerText) // np
+                console.log('beforeupdate函数的date信息'+this.msg) // no
+                // updated函数执行时，页面数据已和data保持同步
+                // 注意 updated这里是不对数据做出改变的 因为这个钩子函数对数据做出改变 将会变成死循环
+            },
+
+            beforeDestroy(){
+                // 当beforeDestroy函数执行时 此时Vue就已经从运行阶段到了销毁阶段
+                // 此时Vue中的data，methods，自定义指令，过滤器都还可以继续使用 还未真正执行销毁过程
+            },
+            destroyed(){
+                // 当destroyed函数执行时，Vue就已经完全被销毁 所有数据函数指令过滤器等将不能使用
+            }
+        })
+    </script>
+</body>
+</html>

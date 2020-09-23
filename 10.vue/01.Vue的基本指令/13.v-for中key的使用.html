@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="box">
+        id:<input type="text" v-model="id">
+        歌手:<input type="text" v-model="name">
+        <input type="button" value="添加" @click="fun">
+<!--        如果是这样 就会出现bug 我们在数组一开始添加的话 那么checkbox只会记录当前位置-->
+<!--        那么在上面添加一个 就会导致checkbox不会跟随自己的主人走-->
+<!--        我们可以使用key来指定自己的主人-->
+<!--        注意：key在指定的过程中只能指定数字或者字符串，不能指定对象数组-->
+<!--        key属性必须使用bind来绑定属性-->
+<!--        所以，在使用v-for的时候尽量指定key-->
+        <p v-for="i in obj" :key="i.id"><input type="checkbox">{{i.id}},{{i.name}}</p>
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                id:'',
+                name:'',
+                obj:[
+                    {id:1,name:'林俊杰'},
+                    {id:2,name:'张杰'},
+                    {id:3,name:'周杰伦'},
+                    {id:4,name:'许嵩'},
+                    {id:5,name:'薛之谦'},
+                ]
+            },
+            methods:{
+                fun(){
+                    this.obj.unshift({id:this.id,name:this.name})
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>

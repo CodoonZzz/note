@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-1.12.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container">
+<!--        首先是轮播图的容器.carousel 需要再加入一个.slide使每次轮播时有动画效果-->
+<!--        再加入一个属性data-ride="carousel"使之自动轮播-->
+<!--        再命名一个id属性后边使用-->
+        <div class="carousel slide" id="myCarousel" data-ride="carousel" data-interval="1000">
+<!--            容器写好之后我们先放入图片  那么首先是图片容器-->
+            <div class="carousel-inner">
+<!--                每一个图片都需要一个.item的div包裹起来-->
+<!--                我们需要先指定一个让他激活 不然在自动轮播之前 轮播图上没有任何图片-->
+                <div class="item active">
+                    <img src="img/156706916215873170.jpg" width="100%">
+                </div>
+                <div class="item">
+                    <img src="img/156707034431181952.jpg" width="100%">
+                </div>
+                <div class="item">
+                    <img src="img/156707827816083535.jpg" width="100%">
+                </div>
+<!--                这时轮播图已经可以开始轮播了 只是没办法去操纵-->
+            </div>
+<!--            下面加入两个按钮 我们需要两个按钮来操纵轮播图的上一张与下一张-->
+<!--            但是在这里我们如果使用按钮的话 按钮的激活样式会不好看 所以在这里我们使用a标签-->
+<!--            类名使用.carousel-control 左边就再加上left 右边同理-->
+<!--            href填写上轮播图容器的id 也可以使用data-target-->
+<!--            再使用data-slide="prev"来表示效果是向下一张移动-->
+<!--            左边同理-->
+<!--            而里面我们使用图标来表示左箭头和右箭头 图标有自动居中的效果-->
+<!--            使用字符串不能垂直居中-->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left">  </span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right">  </span>
+            </a>
+
+<!--            这里我们已经可以控制轮播图了 -->
+<!--            接下来我们需要加上焦点列表了-->
+<!--            首先放入焦点容器ul.carousel-indicators-->
+            <ul class="carousel-indicators">
+<!--                每个li都必须加上data-target="轮播图容器名"-->
+<!--                并且需要设置点击这个焦点我们要到那张图去 值为索引 data-slide-to-->
+<!--                最后我们为第一个加上激活-->
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ul>
+        </div>
+
+<!--        更多的属性：-->
+<!--        data-interval设置轮播时间-->
+<!--        data-pause="hover" 设置暂停条件-->
+<!--        data-wrap="true"是否循环-->
+<!--        更多的参考文档-->
+<!--        js的事件触发也可以参考文档-->
+
+
+
+    </div>
+</body>
+</html>

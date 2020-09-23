@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div{
+      width: 590px;
+      height: 470px;
+      border: 5px solid #8A2BE2;
+      margin: 0 auto;
+      position: relative;
+    }
+    img{
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+    }
+
+    img:first-child{
+      opacity: 1;
+    }
+    input{
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: 48%;
+      z-index: 9;
+      background: #ADFF2F;
+      border: none;
+    }
+    .left{
+      left: 2%;
+    }
+    .right{
+      right: 2%;
+    }
+    ul{
+      position: absolute;
+      bottom: 2%;
+      left: 34%;
+    }
+    li{
+      background: #ADFF2F;
+      opacity: 0.8;
+      list-style: none;
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border: 1px solid #ADFF2F;
+      border-radius: 100%;
+      margin-left: 5px;
+    }
+    .red{
+      background: red;
+    }
+  </style>
+</head>
+<body>
+  <div>
+
+    <img src="img/c5f8ff41.jpg">
+    <img src="img/83f09614c35a937e.jpg!q90!cc_590x470.webp">
+    <img src="img/a2b61720d8dca910.jpg!q90!cc_590x470.webp">
+    <img src="img/bf4bc9f43013cbc8.jpg!q90!cc_590x470.webp">
+    <img src="img/d801fb5a42356652.jpg!q90!cc_590x470.webp">
+    <input type="button" value="<" class="left">
+    <input type="button" value=">" class="right">
+    <ul>
+      <li class="red"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <script type="text/javascript">
+    //将上一个HTML中封装好的动画函数拿过来使用
+    function animation(obj, property, target) {
+      clearInterval(obj.timer)
+      //给目标设置一个属性，使每次执行函数，清楚上个目标的定时器
+      obj.timer = setInterval(function () {
+        // 判断是否为透明度
+        if (property == 'opacity') {
+          // 由于parseInt的效果会将小于1大于0的小数直接取成0
+          // 所以如果属性为透明度 我们将透明度*100处理
+          var oStyle = parseInt(getComputedStyle(obj)[property] * 100)
+          target *= 100
+        } else {
+          //如果不是透明度就直接获取样式就好
+          var oStyle = parseInt(getComputedStyle(obj)[property])
+        }
+
+
+        // 设置速度：使得每帧的速率都是目标减去现在样式的三十分之一
+        // 使得这个变化速率会逐渐变小
+        var speed = (target - oStyle) / 30
+        //小BUG：速度可能小于1 这样在计算时会忽略小数点后的数字导致整体不变
+        if (speed>0){
+          speed = Math.ceil(speed)
+        } else{
+          speed =  Math.floor(speed)
+        }
+        // 再次判断是否为透明度
+        if (property == 'opacity') {
+          // 如果是，把数值全部除以100以便下次使用或设置属性
+          target /= 100
+          obj.style[property] = (oStyle + speed) / 100
+          // 最后再判断是否达到目标
+          //如果达到目标，就让计时器停止
+          if(getComputedStyle(obj)[property]  == target){
+            clearInterval(obj.timer)
+          }
+        } else {
+          // 如果不是，直接增加就好
+          obj.style[property] = oStyle + speed + 'px'
+          //这个IF与上边相同
+          if (parseInt(getComputedStyle(obj)[property])  == target){
+            clearInterval(obj.timer)
+          }
+        }
+      }, 30)
+    }
+
+//-----------------------------------------------------------------------------------------------------
+//    以下为轮播js
+
+    var oImg = document.getElementsByTagName('img')
+    var num_prev,num_next = 0
+    var oLis = document.getElementsByTagName('li')
+
+    //首先是轮播核心函数
+    function carousel(x,y){
+      // 再每次执行该函数的时候让上一个图片透明度回到0
+      animation(oImg[x],'opacity',0)
+      // 再让下个图片透明度变为1
+      animation(oImg[y],'opacity',1)
+      //下放小圆点永远和图片保持一致
+      oLis[x].className = ''
+      oLis[y].className = 'red'
+    }
+
+
+    // 然后设置定时器自动执行核心函数使之自动轮播
+    var idd
+    function auto() {
+      clearInterval(idd)
+      idd = setInterval(function () {
+        //先使num_prev等于当前数字，再让num_next等于下一个需要变化的
+        num_prev = num_next
+        num_next++
+        if (num_next==oImg.length){
+          num_next = 0
+        }
+        carousel(num_prev,num_next)
+      },3000)
+    }
+
+
+    //按钮实现跳转
+    var button_left = document.getElementsByClassName('left')[0]
+    var button_right = document.getElementsByClassName('right')[0]
+    button_right.onclick = function () {
+      num_prev = num_next
+      num_next++
+      if (num_next==oImg.length){
+        num_next = 0
+      }
+      carousel(num_prev,num_next)
+    }
+    button_left.onclick = function () {
+      num_prev = num_next
+      num_next--
+      if (num_next<0){
+        num_next = oImg.length-1
+      }
+      carousel(num_prev,num_next)
+    }
+
+
+    //下方小圆点实现跳转
+    for (var i=0;i<oLis.length;i++){
+      // 循环与事件异步，我们将数据保存起来
+      oLis[i].index = i
+      oLis[i].onmouseover = function () {
+        num_prev = num_next
+        num_next = this.index
+        carousel(num_prev,num_next)
+      }
+    }
+
+    //最后当鼠标停在整个轮播图上的时候停止轮播
+    //当鼠标移出的时候，又开始轮播
+    var oDiv = document.getElementsByTagName('div')[0]
+    oDiv.onmouseover = function () {
+      clearInterval(idd)
+    }
+    oDiv.onmouseout = function () {
+      auto()
+    }
+  </script>
+</body>
+</html>

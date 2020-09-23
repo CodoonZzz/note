@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+    // []表示出现的范围
+    console.log(/[0-9]/.test('xxx'))
+    console.log(/[a-z]/.test('222'))
+
+
+    //\w表示所有字母(包括大写字母)数字下划线
+    //\W与\w相反为非字母数字下划线
+    console.log(/\w/.test('sib21hi4'));
+    console.log(/\W/.test('sib21hi4'));
+
+    //\d表示数字等同于[0-9]
+    //\D与之相反，表示非数字
+    console.log(/\d/.test('222'));
+    console.log(/\D/.test('222'));
+
+    //\s表示空格
+    console.log(/\s/.test('s ss'));
+    console.log(/\s/.test('sss'));
+
+    //{m,n}表示至少匹配m次，至多匹配n次
+
+  </script>
+</body>
+</html>

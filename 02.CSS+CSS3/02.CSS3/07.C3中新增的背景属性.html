@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 500px;
+				height: 200px;
+				/*background: goldenrod;*/
+		 		background: url(2016_01_11_18_41_16_九阴真经_燕子坞_一定要坚强.JPG);
+				/*background-size: 50px; */
+				border: 20px dashed #000000;
+				padding: 10px;
+				margin: 20px;
+			}
+			.box1{
+				background-clip: border-box;
+			}
+			.box2{
+				background-clip: padding-box;
+			}
+			.box3{
+				background-clip: content-box;
+			}
+			/* background-clip为背景裁剪 不同的属性值裁剪方式不一样 默认为border-box */
+			/* 裁剪会让图片显示不完全 可以使用background-origin*/
+			/* background-origin是将背景图片从某个地方开始绘制 也有border/padding/content三个属性值 */
+			/* 在C3中 background-image可以设置多个img图片 浏览器会渲染方式是将第一个图片文件放在最上面 最后一个图片放在最下面 */
+		</style>
+	</head>
+	<body>
+		<div class="box1">
+			
+		</div>
+		<div class="box2">
+			
+		</div>
+		<div class="box3">
+			
+		</div>
+	</body>
+</html>

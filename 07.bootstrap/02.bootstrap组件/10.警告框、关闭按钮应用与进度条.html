@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-1.12.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+<!--            如果你需要一个警告框 你可以加入alert基础类名 与常用的那几种颜色 比如alert-danger-->
+            <div class="alert alert-warning">
+<!--                我们可以在这里加入一个前面的关闭按钮-->
+<!--                关闭按钮一定要写在前面 不然会显示不正确-->
+<!--                加入一个属性data-dismiss="alert" 使得点击按钮关闭警告框-->
+                <button type="button" class="close" data-dismiss="alert">&times</button>
+                <p>警告</p>
+            </div>
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert">&times</button>
+<!--                如果你需要添加一个链接 你可以在a标签上添加一个alert-link的类名 会让链接更好的显示-->
+<!--                在不同的alert下 链接会显示不一样的效果-->
+                <p>警告 <a href="" class="alert-link">链接</a></p>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <h3>进度条</h3>
+            <div class="progress">
+<!--                原理就是在一个长条的div里面再套一个进度div-->
+<!--                进度条的是由width控制的-->
+                <div class="progress-bar" style="width: 60%">
+<!--                    也可以在里面加入数值-->
+                    60%
+                </div>
+            </div>
+
+<!--            如果需要在低百分比的进度条依旧让数值清晰可见 可以设置min-width-->
+            <div class="progress">
+                <div class="progress-bar" style="min-width: 2em">
+                    0%
+                </div>
+            </div>
+            <div class="progress">
+                <div class="progress-bar" style="min-width: 2em;width: 2%">
+                    2%
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="progress">
+<!--                可以根据长度不同设置不同的颜色 颜色与之前类同-->
+                <div class="progress-bar  progress-bar-warning" style="width: 60%;">
+                    60%
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <h3>条纹效果</h3>
+        <div class="row">
+            <div class="progress">
+                <div class="progress-bar  progress-bar-info progress-bar-striped" style="width: 60%;">
+                    60%
+                </div>
+            </div>
+        </div>
+
+
+        <hr>
+
+        <h3>动画效果</h3>
+        <div class="row">
+            <div class="progress">
+<!--                为progress-bar-stripedn加上active可以使条纹动起来-->
+                <div class="progress-bar  progress-bar-danger progress-bar-striped active" style="width: 60%;">
+                    60%
+                </div>
+            </div>
+        </div>
+
+
+        <hr>
+
+        <h3>堆叠进度条</h3>
+        <div class="row">
+            <div class="progress">
+<!--                可以为progress添加多个进度 会堆叠在一起-->
+                <div class="progress-bar" style="width: 20%;">
+                    20%
+                </div>
+                <div class="progress-bar  progress-bar-info" style="width: 40%;">
+                    40%
+                </div>
+                <div class="progress-bar  progress-bar-warning" style="width: 20%;">
+                    20%
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

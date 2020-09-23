@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    li {
+      background: rgb(142, 40, 57);
+      margin: 20px
+    }
+  </style>
+</head>
+
+<body>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+  <script type="text/javascript">
+    var oUl = document.getElementsByTagName('ul')[0]
+    var oLi = document.getElementsByTagName('li')
+    // for (var i = 0; i < oLi.length; i++) {
+    //   oLi[i].onclick = function () {
+    //     console.log(this.innerHTML)
+    //   }
+    // }
+    //如果我们此时在JS中新添加一些li进去,点击事件就不起作用了
+    for (var i = 0; i < 5; i++) {
+      var aLi = document.createElement('li')
+      aLi.innerHTML = i
+      oUl.appendChild(aLi)
+    }
+    //所以要将事件委托给他的父级，甚至爷级
+    oUl.onmouseover = function(event) {
+      //再判断下事件是不是li触发的就完成了
+      if (event.target.nodeName.toUpperCase() == 'LI') {
+        console.log('aaa')
+      }
+
+    }
+
+  </script>
+</body>
+
+</html>

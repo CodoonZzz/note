@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+    <script src="vue-router-3.0.1.js"></script>
+</head>
+<body>
+<div id="app">
+    <router-view></router-view>
+</div>
+<script>
+
+
+    var com = {
+        template:`
+            <div>
+                <h1>{{msg}}</h1>
+                <router-link to="/login">登录</router-link>
+                <router-link to="/register">注册</router-link>
+                <router-view></router-view>
+            </div>
+        `,
+        data(){
+            return {
+                msg:'用户界面'
+            }
+        },
+        watch:{
+            // watch只用于监听文本框确实显得繁琐不如两个文本框绑定一个事件来的快
+            // 但是watch的优势在于可以监听其他非DOM元素的东西
+            // 比如监听路由，如果路由发生指定的改变，那么就执行相应的函数
+            '$route.path':function (newVal) {
+                if (newVal=='/login'){
+                    this.msg = '欢迎登录'
+                }else if(newVal=='/register'){
+                    this.msg = '欢迎注册'
+                }
+            }
+        }
+    }
+    var login = {
+        template: '<h3>登录组件</h3>'
+    }
+    var register = {
+        template: '<h3>注册组件</h3>'
+    }
+
+    var router = new VueRouter({
+        routes:[
+            {
+                path:'/',
+                component:com,
+                children:[
+                    {path:'login',component:login},
+                    {path:'register',component: register}
+                ]
+            }
+        ]
+    })
+
+    var vm = new Vue({
+        el:'#app',
+        router:router,
+        component:com
+    })
+</script>
+</body>
+</html>

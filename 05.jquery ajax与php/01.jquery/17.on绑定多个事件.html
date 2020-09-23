@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+    </div>
+    <script>
+        // 使用on来为元素绑定事件
+
+        $('div').on({'mouseover':function () {
+                $(this).css({background:'red'})
+            },'mouseout':function () {
+                $(this).css({background:''})
+            }})
+
+        //bind，delegate已经废弃，更多的使用on
+
+        var i = 1
+        $('div').on('mouseover mouseout',function () {
+            console.log(i)
+            i++
+        })
+
+        // on为两个参数的时候，第一个参数为事件触发条件，第二个为函数
+        // on若为三个函数，第一个是时间触发条件，第二个是触发元素，第三个为函数，而这样写这就是on前面的元素调用
+        $('div').on('click',function () {
+            $('<p>我是一个p</p>').appendTo($(this))
+            $(this).on('click','p',function () {
+                alert('p被点了')
+            })
+        })
+
+    </script>
+</body>
+</html>

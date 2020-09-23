@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 300px;
+				height: 300px;
+				background: orange;
+				margin: 0 auto;
+				
+				transform-origin: left;
+			}
+			@keyframes action{
+				25%{
+					background: #0000FF;
+					transform: scaleX(1.5);
+				}
+				50%{
+					background: #008000;
+					transform: scaleX(2.5);
+				}
+				75%{
+					background: #808080;
+					transform: scaleX(0.5);
+				}
+				100%{
+					background: orange;
+					transform: scaleX(1);
+				}
+			}
+			.box1:hover{
+				animation: action 5s linear infinite;
+			}
+			/* 
+			第一个为动画名
+			第二个值为动画时间
+			第三个为过度方式（参考transition的过度方式）
+			第四个为循环次数 可以为具体数值 也可为infinite无限循环 */ 
+		</style>
+	</head>
+	<body>
+		<div class="box1"></div>
+	</body>
+</html>

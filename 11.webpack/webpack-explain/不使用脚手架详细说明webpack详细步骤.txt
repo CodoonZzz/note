@@ -1,0 +1,44 @@
+(npm可以使用cnpm)
+###打包js文件
+1.生成初始化文件
+    npm init -y
+    此时出现一个初始化文件package.json
+2.开发依赖：
+    npm i webpack webpack-cli -D
+    此时出现node_modules与package-lock.json
+3.创建src文件夹放入生产文件：
+    这里可以创建index.html等
+4.在src中的index.js中写入需要使用的模块以备打包使用
+    导入需要使用inport 名 from 路径
+    如果导入文件有导出部分 可以使用导入的名直接调用
+    导出使用export default
+    具体参考index.js与foo.js
+5.在根目录创建webpack配置文件 webpack.config.js
+    文件内容参考webpack.config.js中说明
+6.在package.json中的scripts中配置命令
+    "build":"webpack --config webpack.config.js"
+7.此时可以输入指令打包js文件了
+    npm run build
+8.在index.html中外联打包后的文件即可使用
+
+###打包css文件
+1.打包非js模块 我们需要安装loader 对于css需要安装两个loader 
+style-loader与css-loader
+    npm i style-loader css-loader -D
+2.配置webpack.config.js文件：
+    详情webpack.config.js文件
+3.入口js文件导入css文件
+4.npm run build打包
+
+##打包less文件
+依照上面的方式 1.安装依赖2.配置webpack配置文件3.导入4.打包
+less需要的依赖：less less-loader style-loader css-loader
+less-loader把less文件转译为css文件
+css-loader把css文件转化为js模块文件
+style-loader把样式添加入dom中
+{
+    test:/\.less$/,
+    use:["style-loader","css-loader","less.loader"]
+}
+
+...打包更多文件可以参考webpack中文文档 有更详细的说明

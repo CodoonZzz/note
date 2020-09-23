@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        // 比较简单的创建对象的方法就是用花括号
+        var obj = {
+            //里面键值对，可以使函数可以使数据也可以再是一个对象组成级联
+            username:'sxy',
+            age:22,
+            adress:{
+                home:'home',
+                office:'office',
+            },
+            f1:function () {
+                return 333
+            }
+        }
+
+        //访问常见的两种方法就是使用.和[]
+        console.log(obj.username)
+        console.log(obj['age'])
+        console.log(obj.adress.home)
+        console.log(obj.f1())
+
+
+        console.log('----------------------------------分割线------------------------')
+
+
+
+
+
+        //使用object构造器创建对象
+        //对于系统为我们已经建立好了一个默认的构造器
+        //形同：function Object(){
+        //     return {}
+        // }
+        //每次以Object为模板new一个新的
+        //也可以自己创建一个模板，方法类同，实例在08有写
+        //所以其实方法不一样，创建的对象都是一个花括号，只是上面的方法直接创建花括号，而这个是用模板
+        //其实也就是说，我们定义的函数，语法上，都称为函数对象，看我们如何去使用。
+        //如果我们单纯的把它当成一个函数使用，那么它就是函数
+        //如果我们通过他来实例化出对象来使用，那么它就可以当成一个函数对象来使用
+        //在面向对象的范畴里面，函数对象类似于类的概念。
+        var arr = new Object()
+        //也可以使用.与[]创建属性值
+        //但还有一些方法创建与修改
+        //Object.defineProperty(obj,prop,desc)
+        // obj为需要定义属性的对象
+        // prop为需要定义的属性名
+        // desc为属性描述
+        // 一般desc使用花括号，里面有几个属性：
+        // value：undefined(默认)             //值
+        // get：undefined(默认)               //给对象提供一个getter方法
+        // set：undefined(默认)               //给对象提供一个setter方法
+        // writable：false(默认)              //描述属性是否可写
+        // enumerable：false(默认)            //描述属性是否会出现在for in或者Object.keys()遍历中
+        // configurable：false(默认)          //描述属性是否可删除,可获取其他特性
+        Object.defineProperty(arr,'username',{value:'hxy'})
+        arr.username = "sxy"
+        console.log(arr.username)
+
+
+        console.log('----------------------------------分割线------------------------')
+
+
+        //还有一个Object.defineProperties()与上面的方法类同
+        //写法为Object.defineProperties(obj,{
+        //      prop:{
+        //          value:
+        //          ........
+        //      }
+        // })
+        //此方法适用多个属性的修改与创建
+        Object.defineProperties(arr,{
+            age:{
+                // writable:true,
+                // writable不能和get与set同时设置
+                get:function () {
+                    return 23
+                },
+                // 一旦数据发生改变 改变后的数据就会被传参
+                set:function (val) {
+                    if (val<0){
+                        throw new Error('不能设置不正常年龄')
+                    }
+                }
+            }
+        })
+        console.log(arr.age)
+        arr.age = -1
+
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //之前写了深拷贝拷贝父对象中的属性，还写了继承原型的方法
+        //这里就封装一个函数，使之可以继承父对象中所有的属性
+        function creatEx(Child,Person) {
+            child.prototype = Object.create(Person.prototype)
+            child.prototype.constructor = Child
+        }
+        function person(name,age) {
+            this.name = name
+            this.age = age
+            this.adress = {
+                home:'homg'
+            }
+        }
+        person.prototype.school = 'school'
+        person.prototype.work = function () {
+            console.log('eat...')
+        }
+        function child(name,age,tittle) {
+            person.call(this,name,age)//继承父函数中的属性
+            this.tittle = tittle
+        }
+        creatEx(person,child)
+        var p = new person('sxy',22)
+        var c = new child('sxy',22,'tittle')
+        console.log(c)
+
+
+    </script>
+</body>
+</html>

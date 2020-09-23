@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- border:表示外边框宽度
+		cellspacing：单元格之间的间距
+		cellpadding：单元格与内容的间距
+		align控制表格的位置
+		frame：控制表格最外层边框
+		rules：控制单元格之间的分割线
+		colspan：控制单元格所占列数 
+		rowspan：控制单元格所占行数
+		width与height不解释-->
+
+<!--		表格CSS样式中 border-collapse: collapse 为表格设置合并边框模型-->
+		
+		<table width="500" height="300" border="30px" cellspacing="10px" cellpadding="10px" align="center" frame="hsides" rules="rows">
+			<caption>title</caption>
+<!--			完整的表格是需要写入thead与tbody的-->
+<!--			就算不写 浏览器也会自动加上去 -->
+<!--			在真正的开发中数据是从数据库获取 我们需要市容thead与tbody来将头部与身体分开-->
+<!--			这样数据不会错乱 不会发生数据放在了头部的情况-->
+			<thead>
+				<tr align="left" valign="top" bgcolor="#FF0000">
+					<th colspan="2">Header</th>
+					<th>Header</th>
+					<th>Header</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td rowspan="2">Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+				<tr>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+					<td>Data</td>
+				</tr>
+			</tbody>
+<!--			完整的表格除了常见的thead与tbody还有caption tfoot-->
+			<tfoot>
+				<tr>
+					<td>总</td>
+					<td>总</td>
+					<td>总</td>
+					<td>总</td>
+				</tr>
+			</tfoot>
+		</table>
+		
+		
+		
+	</body>
+</html>

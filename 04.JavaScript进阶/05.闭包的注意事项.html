@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+    <script>
+        function f() {
+            var m = 1
+            return function () {
+                m++
+                console.log(m)
+            }
+        }
+        var aaa = f()
+        aaa()
+        aaa()
+        var bbb = f()
+        bbb()
+        bbb()
+        //由此可以看出，每调用一次父函数就会创建一个新的闭包
+        
+        var oDiv = document.getElementsByTagName('div')
+        // for (var i=0;i<oDiv.length;i++){
+        //     oDiv[i].onclick = function () {
+        //         alert(i)
+        //     }
+        // }
+        //普通的这种写法点击事件是在for循环之后才运行的 到那个时候i已经达到最大值
+        //可以用闭包解决
+
+        for (var i=0;i<oDiv.length;i++){
+            oDiv[i].onclick = (function (id) {
+                return function () {
+                    alert(id)
+                }
+            })(i)
+        }
+        
+    </script>
+</body>
+</html>

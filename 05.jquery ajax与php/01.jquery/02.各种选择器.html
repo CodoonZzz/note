@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li class="red">2</li>
+    <li>3</li>
+    <li class="red">4</li>
+    <li id="yellow">5</li>
+</ul>
+<ul class="gehang">
+    <li>隔行变色</li>
+    <li>隔行变色</li>
+    <li>隔行变色</li>
+    <li>隔行变色</li>
+    <li>隔行变色</li>
+    <li>隔行变色</li>
+    <li>隔行变色</li>
+    <li>隔行变色</li>
+    <li>隔行变色</li>
+    <li>隔行变色</li>
+</ul>
+<ul class="suoyin">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+</ul>
+    <script>
+        //在jq中的基本选择器不再阐述，标签，ID，类选择器，还有*所有选择器
+        //也可以选择多条件选择器$('li,.cls,#dd')不再举例
+
+
+        //常用的选择器之标签+类选择器
+        $('li.red').css('background','red')
+        //常用选择器之多条件选择器
+        $('#yellow,.red').css({color:'yellow',fontSize:20})
+
+
+
+        //还有许多层级选择器与css中选择器差不多
+        // 比如：或者$(div span)或$(ul>li)
+        // 前者是代表在给定的祖先元素下匹配所有的后代元素，可以是子也可以是孙
+        // 而后者是能是父子关系
+
+
+
+        //奇偶选择器
+        $('.gehang li:even').css('background','yellow') //even是奇数
+        $('.gehang li:odd').css('background','blue')    //odd是偶数
+
+        //索引选择器
+        $('.suoyin li:eq(7)').text('我是第8个')         //eq是获取索引元素
+        $('.suoyin li:gt(8)').text('我是最后两个')      //gt是获取大于索引元素
+        $('.suoyin li:lt(4)').text('我是前4个')         //lt是获取小于索引元素
+
+        //对于选择器常用的就这些，还有很多很多不常用的在api文档可查询
+    </script>
+</body>
+</html>

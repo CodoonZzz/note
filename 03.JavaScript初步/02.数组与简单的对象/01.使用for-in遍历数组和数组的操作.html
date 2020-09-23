@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript">
+    	var arr = [0,0,0,0,0,0,0,0,0,0]
+		for (var i in arr) {
+			arr[i] = i*i
+		}
+		document.write(arr)
+		document.write("<hr/>")
+		
+		arr.push(666)//在末尾添加N个数组(参数中间用逗号隔开) 返回值:添加的数组
+		
+		document.write(arr)
+		document.write("<hr/>")
+		
+		arr.pop()//在末尾去除一个元素 返回值:去除的元素
+		
+		document.write(arr)
+		document.write("<hr/>")
+		
+		arr.shift()//从数组的头部去除一个元素 返回值:去除的元素
+		
+		document.write(arr)
+		document.write("<hr/>")
+		
+		arr.unshift(999,988)//从数组的头部添加N个数组(参数中间用逗号隔开) 返回值:添加的数组
+		
+		document.write(arr)
+		document.write("<hr/>")
+    </script>
+</body>
+</html>

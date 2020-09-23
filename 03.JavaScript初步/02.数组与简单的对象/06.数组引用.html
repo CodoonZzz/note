@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var x = 5
+			function num(a){
+				return a = 10
+			}
+			console.log(x) //5
+			console.log(num(x)) //10
+			console.log(x) //5
+			//在函数进行传参时 第一步是将执行函数括号中的值赋值给参数并未对原数值进行改变
+			//而函数执行完后整体被释放 所以在传参后的函数整体不会对源数据进行改变
+			
+			var arr = [1,2]
+			function add(ass){
+				ass.push(5,4)
+				return ass
+			}
+			console.log(arr) //[1,2]
+			console.log(add(arr)) //[1,2,5,4]
+			console.log(arr) //[1,2,5,4]
+			//而若形参为一个复合数据类型时,则是引用
+			//比如形参为一个数组,则传参时只是将数组名传进去,访问的还是源数据
+			//所以函数执行完成后会对源数据进行改变
+		</script>
+	</body>
+</html>

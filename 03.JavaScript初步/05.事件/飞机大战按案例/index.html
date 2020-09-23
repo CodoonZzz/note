@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .bg {
+      width: 300px;
+      height: 600px;
+      background: url(img/bg.png);
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .plane {
+      width: 34px;
+      height: 24px;
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg">
+    <div class="plane"><img src="img/me.png" alt=""></div>
+  </div>
+  <script>
+    var oPlane = document.getElementsByClassName('plane')[0]
+    var oBg = document.getElementsByClassName('bg')[0]
+    // 获取背景图的宽高
+    var oBgWidth = parseInt(getComputedStyle(oBg)['width'])
+    var oBgHeight = parseInt(getComputedStyle(oBg)['height'])
+    // 获取飞机的宽高
+    var oPlaneWidth = parseInt(getComputedStyle(oPlane)['width'])
+    var oPlaneHeight = parseInt(getComputedStyle(oPlane)['height'])
+
+    // 声明子弹速度
+    var bulletSpeed = 5
+    // 声明生成子弹的间隔
+    var bulletTime = 300
+    // 声明敌机的速度
+    var foeSpeed = 3
+    // 声明生成敌机的间隔
+    var foeTime = 300
+
+
+    // 让飞机动起来
+    oBg.onmousemove = function (e) {
+      e = e || window.event
+      // 获取鼠标位置
+      var x = e.pageX - oBg.offsetLeft
+      var y = e.pageY - oBg.offsetTop
+      // 判断鼠标是否出背景div并让飞机跟随鼠标移动
+      if (x > oPlaneWidth / 2 &&
+        x < oBgWidth - oPlaneWidth / 2 &&
+        y < oBgHeight - oPlaneHeight / 2 &&
+        y > oPlaneHeight / 2) {
+        oPlane.style.top = y - oPlaneHeight / 2 + 'px'
+        oPlane.style.left = x - oPlaneWidth / 2 + 'px'
+      }
+      var oFoe = document.getElementsByClassName(foe)
+    }
+
+    //生成子弹
+    var creatBullet = setInterval(() => {
+      var bullet = document.createElement('div')
+      bullet.className = 'bullet'
+      bullet.innerHTML = '<img src="img/b.png">'
+      bullet.style.position = 'absolute'
+      bullet.style.top = parseInt(getComputedStyle(oPlane)['top']) - oPlaneHeight / 2 + 'px'
+      bullet.style.left = parseInt(getComputedStyle(oPlane)['left']) + oPlaneWidth / 2 + 'px'
+      oBg.appendChild(bullet)
+
+    }, bulletTime);
+
+    // 生成敌机
+    var creatFoe = setInterval(() => {
+      var foe = document.createElement('div')
+      foe.className = 'foe'
+      foe.innerHTML = '<img src="img/foe.png">'
+      foe.style.position = 'absolute'
+      foe.style.top = '0px'
+      foe.style.left = Math.random() * (oBgWidth - oPlaneWidth) + 'px'
+      oBg.appendChild(foe)
+
+    }, foeTime);
+
+    
+
+    // 让子弹动起来
+    var autoBullet = setInterval(() => {
+      var oBullet = document.getElementsByClassName('bullet')
+      for (var i = 0; i < oBullet.length; i++) {
+        oBullet[i].style.top = parseInt(getComputedStyle(oBullet[i])['top']) - bulletSpeed + 'px'
+        if (parseInt(getComputedStyle(oBullet[i])['top']) <= 0) {
+          oBullet[i].remove();
+        }
+        var oFoe = document.getElementsByClassName('foe')
+        for (var j = 0; j < oFoe.length; j++) {
+          var checkTop = parseInt(getComputedStyle(oBullet[i])['top']) < parseInt(getComputedStyle(oFoe[j])['top']) + oPlaneHeight
+          var checkLeft = parseInt(getComputedStyle(oBullet[i])['left']) > parseInt(getComputedStyle(oFoe[j])['left']) && parseInt(getComputedStyle(oBullet[i])['left']) < parseInt(getComputedStyle(oFoe[j])['left']) + oPlaneWidth
+          if (checkTop && checkLeft) {
+            oBullet[i].remove();
+            oFoe[j].remove()
+          }
+        }
+      }
+    }, 30);
+
+    // 让敌机动起来
+    var autoFoe = setInterval(() => {
+      var oFoe = document.getElementsByClassName('foe')
+      for (var i = 0; i < oFoe.length; i++) {
+        oFoe[i].style.top = parseInt(getComputedStyle(oFoe[i])['top']) + foeSpeed + 'px'
+        if (parseInt(getComputedStyle(oFoe[i])['top']) > oBgHeight - oPlaneHeight) {
+          oFoe[i].remove();
+        }
+      }
+    }, 30);
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			document.write(Number("111"))//可以转换为数字
+			document.write("<br/>")
+			document.write(String(1234596))//可以转换为字符串
+			document.write("<br/>")
+			document.write(Boolean(125.36))  //返回布尔
+			document.write("<br/>")
+			document.write(parseInt(125.36))  //返回整数
+			document.write("<br/>")
+			document.write(parseFloat("123.56")) //若第一个数字是数字,则从第一个数字开始解析到不是数字为止,返回一个浮点数
+			document.write("<br/>")
+			document.write(isNaN(0/0))//检测一个数字是否为NaN
+			document.write("<br/>")
+			document.write(isFinite(5/3))//检测是否为无穷值
+			document.write("<br/>")
+			document.write(encodeURI("http://act.mxd.sdo.com/project/v162/02. html#n1"))//将字符串编码(空格会编码)
+			document.write("<br/>")
+			document.write(decodeURI("http://act.mxd.sdo.com/project/v162/02.%20html#n1"))//与上面相反为解码
+			document.write("<br/>")
+			document.write(encodeURIComponent("http://act.mxd.sdo.com/project/v162/02. html#n1"))//将字符串编码uri组件(会将符号编码，不会讲数字字母编码)
+			document.write("<br/>")
+			document.write(decodeURIComponent("http%3A%2F%2Fact.mxd.sdo.com%2Fproject%2Fv162%2F02.%20html%23n1"))//与上一个相反为解码
+			document.write("<br/>")
+		</script>
+	</body>
+</html>

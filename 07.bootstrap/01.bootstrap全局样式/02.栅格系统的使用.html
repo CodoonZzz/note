@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        .row,.row div{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        列偏移：
+        <div class="row">
+<!--            列偏移：-->
+<!--            如果我们想让当前格的前面想空几格 那么就可以使用列偏移-->
+            <div class="col-md-2 col-md-offset-3">col-md-2</div>
+            <div class="col-md-3 col-md-offset-4">col-md-3</div>
+        </div>
+
+        <br>
+
+        列嵌套：
+        <div class="row">
+<!--             列嵌套-->
+<!--             顾名思义就是我们在某一列中再嵌套一行 然后再设置占格比-->
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4">4</div>
+                    <div class="col-md-6">6</div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        列排序：
+        <div class="row">
+<!--            列排序-->
+<!--            使用push向右推 pull向左拉-->
+<!--            在使用列排序的过程中自己不会被其他元素的列排序影响-->
+<!--            自己只按照之前的位置进行移动 可以与其他元素重叠-->
+<!--            后面的元素会重叠在之前的元素之上-->
+            <div class="col-md-3 col-md-push-2" style="background: #ADFF2F">2</div>
+            <div class="col-md-3 col-md-pull-3" style="background: #00FFFF">3</div>
+        </div>
+
+        <br>
+
+        清除浮动：
+        <div class="row">
+<!--            如果我们有多个占格 而且大于12格那么他会排列到第二行去-->
+            <div class="col-md-4 col-xs-4">
+                1<br>4
+            </div>
+<!--            如果有这样的情况 第一个单元格占了2行-->
+<!--            由于第一格的后面能再放两行单元格-->
+<!--            所以2和3依次排在1后面-->
+<!--            这可能不是我们想要的 bootstrap也提供了专门清除浮动的方法-->
+<!--            如果想要某些元素清除浮动 就在某些元素之前加上类名为clearfix的盒子-->
+            <div class="col-md-6 col-xs-6">2</div>
+<!--            在这里清除浮动放在了3和4后面 所以只有3和4清除浮动了-->
+<!--            而2还保留了浮动 所以还是紧跟在1后面-->
+<!--            如果想在特定的屏幕下清除浮动-->
+<!--            则只需要在清除浮动的盒子上加上visible-屏幕的类名-->
+<!--            原理是只让该元素在某个屏幕下显示-->
+            <div class="clearfix visible-xs"></div>
+            <div class="col-md-6 col-xs-6">3</div>
+            <div class="col-md-6 col-xs-6">4</div>
+        </div>
+
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>点我</div>
+    <script>
+        //首先，this指向的只能是对象
+        //而在全局的时候，this就指的是Window对象，也就是全局
+        var a = 333
+        console.log(this.a)
+
+        console.log('----------------------------------分割线------------------------')
+
+
+        //其次，this可以在函数中存在
+        //而又分几种情况：首先是最简单的：
+        var oDiv = document.getElementsByTagName("div")[0]
+        oDiv.addEventListener('click',function () {
+            alert(this.innerHTML)
+        })
+        //这种情况下，this永远指向被绑定事件的元素
+
+        console.log('----------------------------------分割线------------------------')
+
+        //下来是第二种情况：
+        var obj = {
+            username:'sxy',
+            age:'22',
+            f1:function () {
+                console.log(this.username)
+            }
+        }
+        //我们做两个测试
+        //首先直接调用对象中的函数
+        obj.f1() //输出'sxy'
+        //下来我们把f1赋值给一个变量并执行
+        var a = obj.f1
+        a() //输出undefined
+        //所以，这两个测试出现的原因在于this有两个特性
+        //第一：this只在运行时确定，不会在编写代码时确定
+        //第二：谁调用的this，this就指向谁，通俗点就是调用函数那个点之前是谁，就指向谁
+        //比如obj.f1()指向的就是obj，而a()是全局执行，其实应该为window.a()，所以此时this指向window全局
+        this.username = 'hxy'
+        a()
+        //在这里全局定义一个username，再执行a()，就会输出'hxy'
+
+        console.log('----------------------------------分割线------------------------')
+
+        // 第三种情况
+        function func(a) {
+            console.log(this,a)
+
+        }
+        var arr = [func,4,7,5]
+        arr[0](0)
+
+        // 在这种情况下 函数存在于数组中 那么this 就指向于该数组
+
+
+        console.log('----------------------------------分割线------------------------')
+        //对于this，我们也有方法可以强行修改指向
+        function f(val) {
+            console.log(this[val])
+        }
+        f.call(obj,'username')//这里强行使this指向obj，后面参数若多个，则用逗号隔开
+
+
+    </script>
+</body>
+</html>

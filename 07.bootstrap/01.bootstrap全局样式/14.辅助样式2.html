@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<div class="container">
+<!--    关闭按钮 button的类名写入close就行 里面填入×的符号 其他的也行 都会正常显示-->
+    <button type="button" class="close">×</button>
+<!--    如果你想使用向下的箭头 那么直接可以使用span标签即可-->
+    <span class="caret"></span>
+
+<!--    如果你想快速居中 左浮动有浮动 可以直接加上以下类名-->
+    <div class="row">
+        <div class="center-block" style="width: 100px;border: 1px solid black">居中</div>
+    </div>
+    <div class="row">
+        <div class="pull-left">左浮动</div>
+        <div class="pull-right">右浮动</div>
+<!--        在浮动后 记得清除浮动-->
+        <div class="clearfix"></div>
+        <div>清除浮动我不会乱跑</div>
+    </div>
+
+    <br>
+
+    <div class="row">
+<!--        如果你想让某个元素隐藏于显示可以使用show与hidden-->
+        <div class="hidden">我被隐藏了</div>
+        <div class="show">我显示了</div>
+<!--        如果你想在特定的屏幕大小上显示与隐藏需要在规定的屏幕缩写前加上visible或hidden-->
+        <div class="visible-md">我是visible-md 我在md下才显示</div>
+        <div class="hidden-md">我是hidden-md 我在md下才隐藏</div>
+<!--        除此之外 还有sr-only类也可以让标签消失-->
+        <a class="sr-only" href="#content">Skip to main content</a>
+    </div>
+</div>
+
+</body>
+</html>

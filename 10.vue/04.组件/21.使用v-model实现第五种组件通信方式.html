@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- v-model默认是绑定了input事件又绑定了value属性
+        所以 v-model="expression"等同于
+        :value = "expression" @input = "expression = $event.target.value"
+        所以要想可以使用v-model实现父子组件的双向数据传输就要先在子组件的props中注册value
+        然后在函数中使用this,$emit("input",数据操作) -->
+        <com v-model="expression">
+            
+        </com>
+        
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            components: {
+                com:{
+                    template:`
+                        <div>
+                            <button type="button" @click="fun">+1</button>
+                        </div>
+                    `,
+                    props: {
+                        value:{
+                            type:Number,
+                            default:0
+                        }
+                    },
+                    methods: {
+                        fun(){
+                            console.log(this.value)
+                            this.$emit("input",this.value+1)
+                        }
+                    }
+                },
+            },
+            data:{
+                expression:123
+            },
+            updated() {
+                console.log(this.expression)
+            },
+            
+        })
+    </script>
+</body>
+</html>

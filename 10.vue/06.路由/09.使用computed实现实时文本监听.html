@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="firstName"> +
+    <input type="text" v-model="secondName"> =
+    <h3 v-text="name"></h3>
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            firstName:'',
+            secondName:''
+        },
+        computed:{
+            // 在computed中可以设置一些属性，这些属性叫做‘计算属性’
+            // 这些属性本质是一个方法 我们直接把这些属性名当做函数名来执行
+            // 在计算属性内部使用的data中 任何数据发生改变 就会重新计算这个计算属性的值
+            name(){
+                console.log('ok')
+                // 如果页面中调用了多次同一个计算属性
+                // 计算属性会将第一次调用后的数据做缓存
+                // 让后面调用的地方直接使用当前缓存
+                // 所以如果有多个调用计算属性，ok只会打印一次
+                return this.firstName+this.secondName
+            }
+        }
+    })
+</script>
+</body>
+</html>

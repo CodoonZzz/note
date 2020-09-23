@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var arr = [0,0,0,0,0,0,0,0,0,0,0]
+			// 正序
+			for (var i in arr) {
+				arr[i] = i
+			}
+			document.write(arr)
+			document.write("<hr/>")
+			// 倒序
+			var arr1 = arr
+			for (var i in arr1) {
+				arr1[i] = arr.length-i-1
+			}
+			document.write(arr1)
+			document.write("<hr/>")
+			
+			//使用concat()获取两个数组中的元素并创建一个新数组,源数组不改变 返回值:合并的新数组
+			var arr2 = arr.concat(arr1)
+			document.write(arr2)
+			document.write("<hr/>")
+
+
+			//使用slice(start,end)获取指定区域的的元素并创建一个新数组,源数组不改变(end下标不获取) 返回值:截取的数组
+			// 第一个参数为开始 第二个参数为位数 截取
+			var arr3 = arr2.slice(2,5)
+			document.write(arr3)
+			document.write("<hr/>")
+
+
+			// 使用splice()可以完成删除,插入,替换的功能
+			// arrayObject.splice(index,howmany,item1,.....,itemX)
+			// 参数1:必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置
+			// 参数2:必需。要删除的项目数量。如果设置为 0，则不会删除项目。
+			// 参数3:可选。向数组添加的新项目。
+
+			var arr4 = [1,2,3,4,5,6,7]
+			arr4.splice(2,4)	//删除
+			document.write(arr4)
+			document.write("<br/>")
+
+			arr4.splice(2,4,'s','x','z') 	// 删除并替换
+			document.write(arr4)
+			document.write("<br/>")
+
+			arr4.splice(2,0,'s','x','z')	// 添加
+			document.write(arr4)
+			document.write("<hr/>")
+			
+
+			
+			//使用join()拼接数组中的元素 返回值:返回一个拼接后的字符串
+			var arr4 = arr2.join("*")
+			
+			document.write(arr4)
+			document.write("<hr/>")
+
+
+			// 过滤器filter
+			// 写法：数组.filter(function(item){
+ 			// 	item表达式	
+			// })
+			// 此方法可以在检查每一项item是否符合item表达式
+			// 如果符合就会将数组放入一个新数组中
+			// 最后遍历结束返回这个新数组
+
+		</script>
+	</body>
+</html>

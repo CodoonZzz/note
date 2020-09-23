@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+
+<body>
+	<div>
+		<em>斜体</em>
+		文本
+		<strong>粗体</strong>
+		<span>行内标签</span>
+	</div>
+
+	<script src="封装好几个常用的函数.js"></script>
+	
+	<script type="text/javascript">
+
+		var oStrong = $("strong")[0]
+		var oDiv = $('div')[0]
+
+		//先清除一下div下的所有空白节点
+		removeSpaceNodes(oDiv)
+		
+		//childNodes会获取当前节点的子节点 包括元素节点和文本节点
+		console.log(oDiv.childNodes)
+			
+		//firstChild与lastChild分别是获取到该节点下的第一个节点与最后一个节点
+		console.log(oDiv.firstChild)
+			
+		console.log(oDiv.lastChild)
+
+
+		console.log(oStrong.parentNode)//获取该节点的父节点
+
+		console.log(oStrong.previousSibling)//获取该节点的上一个兄弟节点
+
+		console.log(oStrong.nextSibling)//获取该节点的下一个兄弟节点
+		
+	</script>
+</body>
+
+</html>

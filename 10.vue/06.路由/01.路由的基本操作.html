@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+    <script src="vue-router-3.0.1.js"></script>
+    <style>
+        a{
+            text-decoration: none;
+        }
+
+        /*我们在自己设置了linkActiveClass后 */
+        /*就可以使用更改后的类名来控制被激活的组件样式了*/
+        .router-link-active,.mark{
+            color: red;
+            font-weight: 800;
+        }
+
+
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform: translateX(150px);
+        }
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+<!--    使用a标签跳转当前页面并加上#/-->
+<!--    <a href="#/login">登录</a>-->
+<!--    <a href="#/register">注册</a>-->
+
+<!--    除了a标签 推荐使用vue提供的标签-->
+<!--    router-link标签默认是渲染成a标签的 我们也可以使用tag来指定他渲染的标签-->
+    <router-link to="/login" tag="span">登录</router-link>
+    <!-- to也可以使用对象的绑定 -->
+    <router-link :to="{path:'/login'}">登录</router-link>
+    <router-link to="/register">注册</router-link>
+<!--    我们发现 被激活的某个组件在渲染出时 对应的router-link就会添加上router-link-active的类名-->
+<!--    所以我们需要高亮比如移动端下面的导航条 就可以使用这样的方法加上特殊样式-->
+<!--    我们也可以在对象中添加属性linkActiveClass来改变这个默认类名-->
+
+<!--    使用router-view来渲染使用路由控制的组件-->
+<!--    我们也可以使用动画来切换组件-->
+    <transition mode="out-in" appear>
+        <router-view></router-view>
+    </transition>
+</div>
+<script>
+    var login = {
+        template:`
+                    <div>
+                        <input type="text" placeholder="请输入账号">
+                        <input type="text" placeholder="请输入密码">
+                    </div>
+                `
+    }
+    var register = {
+        template:`
+                    <div>
+                        <input type="text" placeholder="请输入账号">
+                        <input type="text" placeholder="请输入密码">
+                        <input type="text" placeholder="请确认密码">
+                    </div>
+                `
+    }
+    // 引入router之后 系统就有了Router的构造函数
+    var routerObj = new VueRouter({
+        routes:[ // 表示路由的匹配规则
+            // 每一个规则都是一个对象，每个对象都必须有两个属性
+            // 属性1 path 表示监听某个路由链接地址
+            // 属性2 component 表示如果 路由是前面匹配到的path 对应某个组件
+            // 注意在这里的组件必须是var的一个对象名
+            {path:'/login',component:login},
+            {path:'/register',component:register},
+            // 为了使进入页面就渲染我们的默认组件我们需要再指定一个path
+            // 然后使用redirect重定向指定的url
+            {path:'/',redirect:'/login'}
+        ],
+        linkActiveClass:'mark'
+    })
+
+    new Vue({
+        el:'#box',
+        data:{
+            flag: true
+        },
+        methods:{
+
+        },
+        // 在组件路由都写好之后我们在vue实例中注册一下，就可以让vue为我们监听url地址
+        // 一旦url地址发生改变就会进行匹配
+        router:routerObj
+    })
+
+
+</script>
+</body>
+</html>

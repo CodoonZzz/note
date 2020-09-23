@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.oP{
+				font-size: 20px;
+				color: #0000FF;
+				text-shadow: 20px 2px 5px black,-2px 20px 5px green;
+			}
+			/* 
+			第一个参数阴影横方向的距离 
+			第二个为纵方向的距离 
+			第三个为模糊半径 
+			第四个为颜色（若无颜色则自动继承父元素的颜色） 
+			若要设置多个阴影 可用逗号分开*/
+
+
+			div{
+				width: 500px;
+				height: 250px;
+				background: #ccc;
+			}
+			div p{
+				line-height: 250px;
+				text-align: center;
+				font-size: 50px;
+				font-weight: 700;
+				color: #ccc;
+			}
+			div p{
+				text-shadow: 4px 4px 1px black,-1px -1px 1px white;
+			}
+		</style>
+	</head>
+	<body>
+		<p class="oP">这是一段文字</p>
+		<div>
+			<p>我是凸起的文字</p>
+		</div>
+	</body>
+</html>

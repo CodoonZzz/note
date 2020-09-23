@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+    <script src="vue-router-3.0.1.js"></script>
+</head>
+<body>
+<div id="app">
+<!--    2.再在router-link的to属性后直接加入值-->
+    <router-link to="/login/222">登录</router-link>
+    <router-link to="/register/444">注册</router-link>
+    <router-view></router-view>
+</div>
+<script>
+    var login = {
+        template:'<p>登录组件---{{$route.params.id}}</p>',
+        created(){
+            // 3.就可以在this.$route.params中获取到
+            console.log(this.$route);
+        }
+    }
+    var register = {
+        template:'<p>注册组件---{{$route.params.name}}</p>'
+    }
+
+    var router = new VueRouter({
+        routes: [
+            // 1.规定路由规则时path后面使用 /:键名 来设置键名
+            {path:'/login/:id',component:login},
+            {path:'/register/:name',component:register},
+            {path:'/',redirect:'/login'}
+        ]
+    })
+
+    new Vue({
+        el:'#app',
+        router:router
+    })
+</script>
+</body>
+</html>

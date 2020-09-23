@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.box1{
+				width: 500px;
+				height: 500px;
+				background: red;
+			}
+			.box2{
+				width: 300px;
+				background: gold;
+				vertical-align: top;
+			}
+			.box3{
+				width: 200px;
+				background: #00FFFF;
+				vertical-align: top;
+			}
+			.box4{
+				width: 300px;
+				background: green;
+				vertical-align: top;
+			}
+			/* .clear{
+				clear: both;
+			}
+			.box2{
+				float: left;
+			}
+			.box3{
+				float: left;
+			} */
+			/* 在C3之前使用float与clear来制作并排 */
+			.box2{
+				display: inline-block;
+			}
+			.box3{
+				display: inline-block;
+			}
+			.box4{
+				display: inline-block;
+			}
+			/* vertical-align不能作用于块级元素*/
+			/* C3之后是使用display:inline-block与vertical-align: top来制作
+			html中的div需要紧挨着上一个标签结尾才没有空格留白*/
+			/* 但是由于有空格留白 一般并排还是使用浮动 这种方式适用于图片*/
+			/* vertical-align可以消除图片的留白 这个问题在HTML03笔记中提到过 只要设置下对齐方式 即可消除空白*/
+		</style>
+	</head>
+	<body>
+		<div class="box1">
+			<div class="clear"></div>
+			<div class="box2">
+				尊敬的冒险岛玩家：
+				今天更新至V162版本后，收到玩家反馈，进入游戏商城后使用冒险券兑换功能时，无法正常输入账号密码进行登录。
+				官方第一时间跟进核查，发现该问题确实存在。目前已经紧急联系韩国开发方，开始查找问题原因。
+				在问题修复前，建议大家可以使用以下两种方法，兑换获得冒险券：
+			</div>
+			<div class="box3">
+				尊敬的冒险岛玩家：
+				今天更新至V162版本后，收到玩家反馈，进入游戏商城后使用冒险券兑换功能时，无法正常输入账号密码进行登录。
+				在问题修复前，建议大家可以使用以下两种方法，兑换获得冒险券：
+			</div>
+			<div class="box4">
+				尊敬的冒险岛玩家：
+				今天更新至V162版本后，收到玩家反馈，进入游戏商城后使用冒险券兑换功能时，无法正常输入账号密码进行登录。
+				官方第一时间跟进核查，发现该问题确实存在。目前已经紧急联系韩国开发方，开始查找问题原因。
+				在问题修复前，建议大家可以使用以下两种方法，兑换获得冒险券：
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="box">
+        <p>{{time | Time}}</p>
+    </div>
+    <script>
+        Vue.filter('Time',(time)=>{
+            var date = new Date(time)
+            var Y = date.getFullYear()
+            var Mou = date.getMonth()+1
+            var D = date.getDate()
+            var H = date.getHours()
+            var Min = date.getMinutes()
+            var S = date.getSeconds()
+            return `${Y}-${Mou}-${D} ${H}:${Min}:${S}`
+        })
+        new Vue({
+            el:'#box',
+            data:{
+                time: new Date()
+            },
+            // 定义私有过滤器是在vue底下建立一个filters属性
+            filters:{
+                // 如果私有过滤器与全局过滤器重名 则优先私有过滤器
+                Time:(time)=>{
+                    var date = new Date(time)
+                    var Y = date.getFullYear()
+                    var Mou = date.getMonth()+1
+                    var D = date.getDate()
+                    var H = date.getHours()
+                    var Min = date.getMinutes()
+                    var S = date.getSeconds()
+                    return `${Y}-${Mou}-${D} ${H}:${Min}:${S}~~~~~~~~~~~~~~`
+                }
+            }
+        })
+    </script>
+</body>
+</html>

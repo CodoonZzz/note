@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="">
+        用户名<input type="text" placeholder="请输入用户名" id="username">
+        <br>
+        密码<input type="password" placeholder="请输入密码" id="password">
+        <br>
+        <span id="information"></span>
+        <br>
+        <input type="button" id="login_btn" value="登录">
+
+    </form>
+    <script>
+        // 使用php基础语法/06的案例，虽然是可以将前后端分离
+        // 但是有一个特点就是如果后端数据处理多久，前端页面就要等待多久，这就是同步
+        // 而且返回数据的时候会刷新页面，这样很不利于页面
+        // 早期浏览器使用的是iframe，这个标签可以在当前页面再嵌套一个页面
+        // 这样让后台的数据传输过来时 让iframe来接收，所以当前页面不受影响，只需要form中的target值写入创建的iframe中的name值就行
+        // 这就是隐藏帧，虽然iframe解决了页面等待的问题，使页面等待的工作交给嵌套在当前页面的子页面，而且也不会因为传输过来数据会刷新当前页面
+        // 但其实从根本上还是同步的，因为服务器信息处理不完，页面还是不会有反应
+        // 而且放一个无用的子页面，只为了接收数据，所以这个方法还是不够完美
+
+        // 所以就有了ajax的出现
+        // ajax的流程：
+        var oBtn = document.getElementById('login_btn')
+        oBtn.onclick = function () {
+            // 1.创建XMLHttpRequest(
+            var xhr = new XMLHttpRequest()
+            // 2.准备发送
+            var oUsername = document.getElementById('username').value
+            var oPassword = document.getElementById('password').value
+            xhr.open('get','http://localhost/study/03.ajax-php/01.php?username='+oUsername+'&password='+oPassword,true)
+            // 3.发送
+            xhr.send(null)
+            // 4.指定回调函数
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4){
+                    if (xhr.status == 200){
+                        var data = xhr.responseText
+                        var oInformation = document.getElementById('information')
+                        if (data==0){
+                            oInformation.innerText = '登录成功'
+                        }else if(data==1){
+                            oInformation.innerText = '账户密码错误'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

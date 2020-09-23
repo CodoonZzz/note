@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			input[type="text"]:hover{
+				background: red;
+			}
+			input[type="text"]:focus{
+				background: blue;
+			}
+			input[type="text"]:active{
+				background: green;
+			}
+			/* 在focus与active同时存在时,需active权重要高与focus. */
+			input[type="checkbox"]:checked{
+				outline: 1px solid black;
+			}
+			/* checked为选中时的样式 */
+			input[type="checkbox"]:default{
+				outline: 1px solid black;
+			}
+			/* default为默认选中的选项始终的样式 */
+
+			/*我们在写属性的时候也可以使用^来表示一某一字符串开头的*/
+			button[type^=butt]{
+				background: #8A2BE2;
+			}
+			/*此外还有一些类似的选择器*/
+			/*  $=为以该字段结尾*/
+			button[type$=set]{
+				background: yellow;
+			}
+			/*  *=为包含该字段的*/
+			input[type*=tt]{
+				background: #ADFF2F;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" name="" id="" value="" />
+		<input type="password" name="" id="" value="" />
+		<br>
+		<input type="checkbox" name="" id="" value="" checked="checked"/>唱
+		<input type="checkbox" name="" id="" value="" />跳
+		<input type="checkbox" name="" id="" value="" />rap
+		<input type="checkbox" name="" id="" value="" />篮球
+		<br>
+		<button type="button">按钮</button>
+		<input type="button" value="按钮">
+		<button type="reset">按钮</button>
+	</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+</head>
+<body>
+    <div></div>
+    <script>
+        // 使用attr方法来自定义属性值，在原生DOM操作中也有方法，只是把他封装起来了 在04.DOM/04中
+        $('div').attr({'xxx':'yyy','zzz':'eee'})
+        console.log($('div').attr('xxx'));
+        // attr是设置自定义属性，而如果需要获取，只需要填写属性名就行
+        // 移除也很简单
+        $('div').removeAttr('zzz')
+        console.log($('div:eq(0)'));
+    </script>
+</body>
+</html>

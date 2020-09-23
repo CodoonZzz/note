@@ -1,0 +1,11 @@
+###基本步骤
+1.安装好项目后需要安装router的依赖
+    npm i vue-router
+2.src目录下创建目录router并在其创建index.js 内容查看index.js内说明
+3.第三步在main.js中导入并注册 详细查看main.js文件
+以上三步在脚手架创建时就帮我们已经创建并设置好了 这里是说明
+
+4.如果是视图组件建议在src下创建views文件夹放入视图组件
+5.如果需要安装依赖 就使用npm i ~ 
+    比如安装jq： npm i jquery  安装bootstrap: npm i bootstrap
+    安装后在main.js中导入即可

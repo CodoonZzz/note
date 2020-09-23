@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    </style>
+</head>
+<body>
+
+    <input type="checkbox" name="checkbox">唱
+    <input type="checkbox" name="checkbox">跳
+    <input type="checkbox" name="checkbox">rap
+    <input type="checkbox" name="checkbox">篮球
+    <br>
+    <input type="button" value="全选" class="all">
+    <input type="button" value="全不选" class="notAll">
+    <input type="button" value="反选" class="opposite">
+    <script>
+        var oAll = document.getElementsByClassName('all')[0]
+        var oNotAll = document.getElementsByClassName('notAll')[0]
+        var oOpposite = document.getElementsByClassName('opposite')[0]
+        var oCheckbox = document.getElementsByName('checkbox')
+        
+        oAll.onclick = function () {
+            for (var i=0;i<oCheckbox.length;i++){
+                oCheckbox[i].checked = true
+            }
+
+        }
+        oNotAll.onclick = function () {
+            for (var i=0;i<oCheckbox.length;i++){
+                oCheckbox[i].checked = false
+            }
+
+        }
+        oOpposite.onclick = function () {
+            for (var i=0;i<oCheckbox.length;i++){
+                if (oCheckbox[i].checked == false){
+                    oCheckbox[i].checked = true
+                } else {
+                    oCheckbox[i].checked = false
+                }
+            }
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-1.12.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+<!--    第一步首先是基本导航条-->
+    <nav class="nav navbar-inverse">
+        <div class="navbar-header">
+<!--            第二步是在header中加入一个按钮-->
+<!--            这个按钮需要加入一个类名navbar-toggle 这个类名设置了屏幕宽度小于768时才显示并且在最右边-->
+<!--            data-toggle="collapse"这个设置了点击他会出现菜单-->
+<!--            data-target设置了出现哪个菜单 类名随意 但需要在对应的菜单上也添加相同的类名-->
+<!--            具体可操作可以查看js中的09折叠中的详细说明-->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-dropdown">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="" class="navbar-brand">导航</a>
+        </div>
+<!--        第三步 与之前不同的是菜单列表需要用一个div包起来-->
+<!--        并且需要三个类名-->
+<!--        collapse设置了屏幕在小于768时菜单隐藏 但会在点击按钮后出现-->
+<!--        navbar-collapse设置了如果屏幕大于768 那么菜单正常显示在导航条内-->
+<!--        第三个则是与上面data-target相对应-->
+        <div class="collapse navbar-collapse navbar-dropdown">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="">首页</a></li>
+                <li><a href="">首页</a></li>
+                <li><a href="">首页</a></li>
+                <li><a href="">首页</a></li>
+            </ul>
+        </div>
+
+    </nav>
+</body>
+</html>

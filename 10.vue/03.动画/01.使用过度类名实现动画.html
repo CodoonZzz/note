@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+    <style>
+        /*对于vue中的动画分为两个阶段*/
+        /*第一个阶段为v-enter-active 代表动画进入时间段*/
+        /*第二个阶段为v-leave-active 代表动画离开时间段*/
+
+        /*第一个时间段有两个时间点*/
+        /*第一个为v-entert 表示动画进入之前的状态*/
+        /*第二个为v-enter-to 表示动画进入结束时状态*/
+
+        /*第二个时间段也有两个时间点*/
+        /*第二个为v-leave 表示动画离开之前的状态*/
+        /*第二个为v-leave-to 表示动画离开之后的状态*/
+
+        /*例如一个元素在从透明度为1变为0再从0变回1*/
+        /*那么1-0就是v-enter-active 其中 1为v-enter 0为v-enter-to*/
+        /*而后0-1位v-leave-active 其中0位v-leave 1为v-leave-to*/
+
+        /*对于现在已经有了一个效果 就是显示与隐藏*/
+        /*我们为此加上动画效果 所以我们要设置这两个时间段的值与这两个时间段的动画效果*/
+
+
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform: translateX(150px);
+        }
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 1s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="按钮" @click="flag=!flag">
+<!--        要把需要设置动画的元素放入transition标签内-->
+<!--        transition是vue官方给出的标签-->
+        <transition>
+            <p v-if="flag">我是一个段落</p>
+        </transition>
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                flag:false,
+            }
+        })
+    </script>
+</body>
+</html>

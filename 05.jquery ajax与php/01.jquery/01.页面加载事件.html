@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+</head>
+<body>
+    <script>
+        //页面加载事件原生写法长不说，也只能执行一个
+        //下面两个代码只会执行第二个页面加载事件
+        // window.onload = function () {
+        //     console.log('hello1')
+        // }
+        // window.onload = function () {
+        //     console.log('hello2')
+        // }
+    </script>
+    <script>
+        // jq的优势在这体现于可以执行多个页面加载事件：
+        // 这种写法是在页面中标签图片文字全部加载完毕时执行
+        $(window).load(function () {
+            console.log('hello3')
+        })
+        $(window).load(function () {
+            console.log('hello4')
+        })
+        //用下面这几种方法都是在页面加载完标签之后就执行的，所以会比上面的写法执行早点
+        $(document).ready(function () {
+            console.log('hello5')
+        })
+        jQuery(function () {
+            console.log('hello6')
+        })
+        $(function () {
+            console.log('hello7')
+        })
+        // 最后两种方法是相同的，只是把jQuery换成了$，在jq中这两者是等价的，以后不再说明
+    </script>
+</body>
+</html>

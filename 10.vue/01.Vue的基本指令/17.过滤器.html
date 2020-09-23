@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="box">
+<!--        过滤器使用 | 来表示 前面是需要过滤的文本，后面则是过滤器方法名-->
+<!--        过滤器可使用多个-->
+        <p>{{msg | change('！段落！') | add()}}</p>
+    </div>
+    <script>
+        // 定义一个vue全局过滤器
+        // filter第一个参数为过滤器方法名，第二个参数为过滤器函数
+        // 而过滤器函数的的第一个参数为需要过滤的文本，固定为第一个不可更改
+        // 过滤器一定要使用return来返回 | 后面会根据函数的返回值来过滤前面的数据
+        Vue.filter('change',(value,text)=>{
+            return value.replace(/段落 /g,text)
+        })
+        Vue.filter('add',(value)=>{
+            return value+'==========='
+        })
+        new Vue({
+            el:'#box',
+            data:{
+                msg:'这是一个段落 这是一个段落 这是一个段落'
+            }
+        })
+    </script>
+</body>
+</html>

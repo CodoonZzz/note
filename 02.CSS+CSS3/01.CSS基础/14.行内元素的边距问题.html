@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        span{
+            background: #00FFFF;
+            color: white;
+            border: 1px solid black;
+        }
+        span:first-child{
+            padding: 40px;
+        }
+        span:last-child{
+            margin: 40px;
+        }
+        /*从这个实例看来 行内标签并不是不没有内外边距*/
+        /*而是没有上内边距和上下外边距*/
+        /*但还是不能设置宽高的*/
+    </style>
+</head>
+<body>
+    <span>这是一个span</span>
+    <span>这是一个span</span>
+</body>
+</html>

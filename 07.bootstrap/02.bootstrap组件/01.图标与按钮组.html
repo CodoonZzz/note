@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+<!--            在之前大概已经用过图标了-->
+<!--            步骤则是创建span标签 然后在boot中文文档找到需要的图标把图标对应的类复制下来-->
+<!--            粘贴在span的class上就ok-->
+<!--            图标也经常与按钮一起使用-->
+            <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+            <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+            <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-home"></span> 注册</button>
+
+        </div>
+
+
+        <br>
+
+
+
+<!--        如果你需要建立一个按钮组 就得使用两个类名-->
+        <div class="btn-toolbar">
+            <div class="btn-group">
+<!--                按钮的大小可以用btn-大小来设置-->
+                <button type="button" class="btn btn-primary btn-lg">
+                    <span class="glyphicon glyphicon-align-left"></span>
+                </button>
+                <button type="button" class="btn btn-primary ">
+                    <span class="glyphicon glyphicon-align-center"></span>
+                </button>
+                <button type="button" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-align-right"></span>
+                </button>
+                <button type="button" class="btn btn-primary btn-xs">
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </button>
+            </div>
+        </div>
+
+
+
+        <br>
+
+
+
+
+        <div class="btn-toolbar">
+<!--            按钮组也有控制大小的类名 直接控制一组的大小-->
+<!--            按钮组设置了大小 里面的按钮设置大小无效-->
+            <div class="btn-group btn-group-lg">
+                <button type="button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-align-left"></span>
+                </button>
+                <button type="button" class="btn btn-primary ">
+                    <span class="glyphicon glyphicon-align-center"></span>
+                </button>
+                <button type="button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-align-right"></span>
+                </button>
+                <button type="button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </button>
+            </div>
+        </div>
+        <div class="btn-toolbar">
+            <div class="btn-group btn-group-sm">
+                <button type="button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-align-left"></span>
+                </button>
+                <button type="button" class="btn btn-primary ">
+                    <span class="glyphicon glyphicon-align-center"></span>
+                </button>
+                <button type="button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-align-right"></span>
+                </button>
+                <button type="button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </button>
+            </div>
+        </div>
+        <div class="btn-toolbar">
+            <div class="btn-group btn-group-xs">
+                <button type="button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-align-left"></span>
+                </button>
+                <button type="button" class="btn btn-primary ">
+                    <span class="glyphicon glyphicon-align-center"></span>
+                </button>
+                <button type="button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-align-right"></span>
+                </button>
+                <button type="button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </button>
+            </div>
+        </div>
+<!--        按钮组只有三种大小-->
+
+
+        <br>
+
+
+        垂直排列按钮组
+        <div class="btn-toolbar">
+            <div class="btn-group-vertical">
+                <button type="button" class="btn btn-default">1</button>
+                <button type="button" class="btn btn-default">2</button>
+                <button type="button" class="btn btn-default">3</button>
+                <button type="button" class="btn btn-default">4</button>
+            </div>
+        </div>
+
+
+
+    </div>
+</body>
+</html>

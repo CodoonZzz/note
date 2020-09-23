@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        // 对于一个构造函数会有一个__proto__属性指向构造器的prototype
+        // 而只有函数才会有prototype
+        function f() {
+
+        }
+        var obj = new f()
+        // 在这里 obj的__proto===f的原型
+        console.log(obj.__proto__===f.prototype)//输入true
+        // 而obj在创建时，也会再生成一个属性为constructor指向构造器函数
+        // 在构造器函数中也有一个__proto__指向Object的prototype，这个则为原型链的终点，再向后就是null
+        // 所以在使用时会将共享的数据放在构造器的prototype中
+        // 这样构造出来的函数都会有一个__proto__指向构造函数的prototype
+        // 这样就是08中解决问题的原理
+        
+        
+        // 举例：
+        var p = {name:'sxy'}
+        function fun(p) {
+            function F() {
+                this.age=22
+            }
+            F.prototype = p
+            var ins = new F()
+            return ins
+        }
+        console.log(fun(p))
+        // 所以这个例子中的原型链是：
+        // 首先ins是一个被构造出来的对象，
+        // 他除了本身有一个age属性，还会有一个__proto__指向F.prototype
+        // 而F.prototype=p，所以有
+        console.log(fun(p).__proto__===p)//输true
+        //而p也会有一个__proto__指向Object的原型prototype
+
+    </script>
+</body>
+</html>

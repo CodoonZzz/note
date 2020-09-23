@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<!--    在boot中设置了许多表单的状态样式-->
+<div class="container">
+    <form action="" class="form-horizontal">
+        <div class="form-group">
+<!--            直接给fieldset加上disabled会让里面的所有表单全部禁用-->
+            <fieldset disabled>
+                <div class="col-md-8">
+                    <legend>禁用状态</legend>
+                    <input type="text">
+                    <input type="button" value="按钮">
+                    <input type="checkbox">
+                    <input type="radio">
+                </div>
+            </fieldset>
+        </div>
+        <div class="form-group">
+            <fieldset>
+                <div class="col-md-8">
+                    <legend>默认聚焦状态</legend>
+<!--                    为input加上autofocus会让他默认聚焦-->
+                    <input type="text" autofocus class="form-control">
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="form-group">
+            <fieldset>
+                <div class="col-md-8">
+                    <legend>只读状态</legend>
+<!--                    为input加上readonly让input只读 boot为他-->
+<!--                    处于只读状态的输入框颜色更浅（就像被禁用的输入框一样），但是仍然保留标准的鼠标状态。-->
+                    <input type="text" readonly class="form-control" placeholder="只读">
+                </div>
+            </fieldset>
+        </div>
+
+        <fieldset>
+            <legend>校验状态</legend>
+<!--            Bootstrap 对表单控件的校验状态，如 error、warning 和 success 状态，都定义了样式。-->
+<!--            使用时，添加 .has-warning、.has-error 或 .has-success 类到这些控件的父元素即可。-->
+<!--            任何包含在此元素之内的 .control-label、.form-control 和 .help-block 元素都将接受这些校验状态的样式。-->
+
+<!--            在输入框内可以加入小图标 具体图标可以在中文文档复制过来-->
+<!--            大体的操作步骤是在需要加入图标的input标签后面写入一个span标签-->
+<!--            将找到的图标名复制到该span的类名上去 再加入form-control-feedback的类名-->
+<!--            再给父元素加入has-feedback的类名就OK了-->
+<!--            例如下：-->
+            <div class="form-group has-success has-feedback">
+                <div class="col-md-8">
+                    <label class="control-label">成功</label>
+                    <input type="text" class="form-control">
+                    <span class="form-control-feedback glyphicon glyphicon-ok"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group has-warning  has-feedback">
+                <div class="col-md-8">
+                    <label class="control-label">警告</label>
+                    <input type="text" class="form-control">
+                    <span class="form-control-feedback glyphicon glyphicon-warning-sign"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group has-error has-feedback">
+                <div class="col-md-8">
+                    <label class="control-label">错误</label>
+                    <input type="text" class="form-control">
+                    <span class="form-control-feedback glyphicon glyphicon-remove"></span>
+                </div>
+            </div>
+
+
+<!--            也可以在前面符号 这部分可以直接在中文文档复制粘贴-->
+            <div class="form-group has-success has-feedback">
+                <div class="col-md-8">
+                    <label class="control-label">邮箱正确</label>
+<!--                    在input前面加符号需要使用一个input-group来将前图标和input包裹起来-->
+<!--                    再让后边的标签跟在这个input-group之后-->
+<!--                    被添加的前图标需要加入input-group-addon类名-->
+                    <div class="input-group">
+                        <span class="input-group-addon">@</span>
+                        <input type="text" class="form-control">
+                    </div>
+                    <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group has-feedback">
+                <div class="col-md-8">
+                    <label class="control-label">举例</label>
+                    <div class="input-group">
+                        <span class="input-group-addon glyphicon glyphicon-console"></span>
+                        <input type="text" class="form-control">
+                    </div>
+                    <span class="form-control-feedback">+++</span>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+</body>
+</html>

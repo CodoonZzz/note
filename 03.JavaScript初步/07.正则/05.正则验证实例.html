@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  用户名:<input type="text" name="" value="">
+  <span>请输入6-14位以字母数字下划线的用户名，且不能以数字开头</span>
+  <script type="text/javascript">
+    var oInput = document.getElementsByTagName('input')[0]
+    oInput.onblur = function(){
+      if (/^[a-zA-z_]\w{5,13}$/.test(this.value)) {
+        alert('格式正确')
+      }else{
+        alert('格式不正确')
+      }
+    }
+  </script>
+</body>
+</html>

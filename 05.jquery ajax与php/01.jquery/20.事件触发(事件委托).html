@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <script>
+        $('.box1').on('click',function () {
+            alert('我是box1')
+        })
+
+        // 事件触发有三种方式：
+        $('.box2').on('click',function () {
+            // 1：
+            // $('.box1').click()
+
+            // 2:
+            // $('.box1').trigger('click')
+
+            //3：
+            $('.box1').triggerHandler('click')
+
+
+
+        })
+    </script>
+</body>
+</html>

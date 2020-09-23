@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+    <style>
+        div{
+            background: red;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div>我是div</div>
+<input type="button" value="append" id="appendbtn">
+<input type="button" value="prepend" id="prependbtn">
+<input type="button" value="after" id="afterbtn">
+<input type="button" value="before" id="beforebtn">
+<script>
+    var op = $('<p>我是一个p</p>')
+    // 创建一个标签是直接将里面的东西需要创建的标签与内容一起写出来
+    // 创建标签也可以使用html 这样创建会让父元素的整个html变成括号里的东西
+    // $('div').html('<p>我是一个p</p>')
+
+    // 添加元素：
+    // 这种方法属于！移动！，所以再点击按钮是不能重复添加的，若要重复添加，需要每次点击都创建一个新的内容
+    // 如果不创建新的元素，会出现页面上的效果
+    // 这种方法也可以不创建元素， 把现有的元素进行移动
+    $('#appendbtn').click(function () {
+        $('div').append(op)
+        // append方法可以在元素末尾追加括号里的内容
+        // 这些方法都是被动的 添加还有一个主动的：
+        // op.appendTo($('div'))
+    })
+
+    $('#prependbtn').click(function () {
+        $('div').prepend(op)
+        // append方法可以在元素末尾追加括号里的内容
+    })
+
+    $('#afterbtn').click(function () {
+        $('div').after(op)
+        // append方法可以在元素末尾追加括号里的内容
+    })
+
+    $('#beforebtn').click(function () {
+        $('div').before(op)
+        // append方法可以在元素末尾追加括号里的内容
+    })
+</script>
+</body>
+</html>

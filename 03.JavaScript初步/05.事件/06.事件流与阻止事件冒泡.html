@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+  .box1 {
+    width: 200px;
+    height: 200px;
+    background: rgb(10, 172, 51)
+  }
+
+  .box2 {
+    width: 100px;
+    height: 100px;
+    background: rgb(219, 183, 224)
+  }
+</style>
+
+<body>
+  <div class="box1">
+    <div class="box2"></div>
+  </div>
+  <div>
+    <div class="box">
+
+    </div>
+  </div>
+  <script>
+    var oBox1 = document.getElementsByClassName('box1')[0]
+    var oBox2 = document.getElementsByClassName('box2')[0]
+    // 时间流包括三个阶段：捕获，目标，冒泡
+    // 如果不进行任何操作，点击小div，会触发两个div的点击事件
+    oBox1.onclick = function() {
+      console.log("box_big")
+    }
+    oBox2.onclick = function(event) {
+      console.log('box_small')
+      // 有两种阻止冒泡的方式
+      // event.cancelBubble = true
+      // event.stopPropagation()
+    }
+  </script>
+</body>
+</html>

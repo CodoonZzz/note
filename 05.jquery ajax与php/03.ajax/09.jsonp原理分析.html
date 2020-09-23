@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--    上一个简单说了jsonp的雏形，如果在正常的使用中 是动态创建script的-->
+<input type="button" id="btn" value="按钮" onclick="oNew('sxy',123)">
+<input type="button" id="get" value="获取" onclick="get()">
+    <script>
+        // 利用动态创建script的方法来动态传输数据
+        // 这样解决了刚才只能写死数据的弊端
+        function oNew(username,password) {
+            var oScript = document.createElement('script')
+            var data = 'username='+username+'&password='+password
+            oScript.src = 'http://localhost/study/03.ajax-php/09.php?'+data
+            var oBody = document.getElementsByTagName('body')[0]
+            oBody.appendChild(oScript)
+        }
+        function get(){
+            console.log(username);
+            console.log(password);
+        }
+        // 除了返回一个变量声明其实更方便的可以返回一个方法调用
+        // 在PHP中输出一个方法调用就好
+        // 但这样在PHP中就规定死了这个函数名 在JS编写过程中就只能使用这个函数名 也不是很方便
+        // 所以我们可以在这边传入参数的时候把函数名也传入
+        // 比如callback=abc
+        // 只需要在PHP中用get获取callback然后声明变量等于就好 这样在前端中就可以随意取名了
+        // 其实这样做是把函数名的约定变成了形参的约定，我们的函数名可以不一致了 但是callback必须一致
+
+    </script>
+</body>
+</html>

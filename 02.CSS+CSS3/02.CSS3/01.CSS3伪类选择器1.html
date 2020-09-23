@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*伪类选择器*/
+
+
+			/*一段文字的第一行*/
+			.p1:first-line{
+				color: green;
+			}
+
+			/*一段文字的一个字母或者第一个字*/
+			.p2:first-letter{
+				color: red;
+				font-size: 40px;
+			}
+
+			/*这两个是给一段文字的前面或后面添加一段文字和样式*/
+			 .p3:before{
+				 content: "...";
+				 background: gray;
+			 }
+			.p4:after{
+				content: "+++";
+			}
+
+			/*这个伪类是指选取被选中的文字(只能设置文字颜色与背景颜色)*/
+			.p5::selection{
+				background: pink;
+			}
+
+
+		</style>
+	</head>
+	<body>
+
+		<p class="p1">这是一个段落<br />这是一个段落<br />这是一个段落</p>
+		<p class="p2">这是第二个段落</p>
+		<p class="p3">这是第三个段落</p>
+		<p class="p4">这是第四个段落</p>
+		<p class="p5">这是第五个段落</p>
+	</body>
+</html>

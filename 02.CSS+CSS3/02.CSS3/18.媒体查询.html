@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				height: 500px;
+				margin: 5px;
+			}
+			.box1{
+				margin: 0 auto;
+			}
+			.box2{
+				background: #8A2BE2;
+				float: left;
+			}
+			.box3{
+				background: #00FFFF;
+				float: left;
+			}
+			.box4{
+				background: #ADFF2F;
+				float: left;
+			}
+			@media screen and (min-width: 1000px){
+				.box1{
+					width: 1000px;
+				}
+				.box2{
+					width: 300px;
+				}
+				.box3{
+					width: 400px;
+				}
+				.box4{
+					width: 300px;
+				}
+			}
+			@media screen and (min-width: 600px) and (max-width: 1000px){
+				.box1{
+					width: 600px;
+				}
+				.box2{
+					width: 300px;
+					height: 300px;
+				}
+				.box3{
+					width: 300px;
+					height: 300px;
+				}
+				.box4{
+					width: 600px;
+					height: 200px;
+				}
+			}
+			@media screen and (max-width: 600px){
+				.box1{
+					width: 300px;
+				}
+				.box2{
+					width: 300px;
+					height: 200px;
+				}
+				.box3{
+					width: 300px;
+					height: 200px;
+				}
+				.box4{
+					width: 300px;
+					height: 200px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box1">
+			<div class="box2"></div>
+			<div class="box3"></div>
+			<div class="box4"></div>
+		</div>
+	</body>
+</html>

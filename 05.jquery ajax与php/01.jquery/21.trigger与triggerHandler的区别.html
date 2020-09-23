@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+</head>
+<body>
+    <button value="按钮">按钮</button>
+    <input type="text">
+    <script>
+        $('input').on('focus',function () {
+
+            $(this).after($('<span>获取焦点</span>'))
+        })
+        $('button').on('click',function () {
+            // $('input').trigger('focus')
+            $('input').triggerHandler('focus')
+        })
+        // 关于trigger与triggerHandler的区别
+        // 第一，他不会触发浏览器默认事件。
+        // 第二，只触发jQuery对象集合中第一个元素的事件处理函数。也就是没有冒泡
+        // 第三，这个方法的返回的是事件处理函数的返回值，而不是据有可链性的jQuery对象。
+        // 此外，如果最开始的jQuery对象集合为空，则这个方法返回 undefined 。
+    </script>
+</body>
+</html>

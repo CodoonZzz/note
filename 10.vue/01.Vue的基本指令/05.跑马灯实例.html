@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+
+    <div id="box">
+        <input type="button" value="开始" @click="run">
+        <input type="button" value="停止" @click="stop">
+        <p>{{msg}}</p>
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                msg:'我是一个盒子',
+                beginfun:null
+            },
+            methods:{
+                // 可以直接写函数名然后括号，就会被直接解析为一个函数
+                run(){
+                    clearInterval(this.beginfun)
+                    console.log(this.msg);
+                    // 需要把this指定一下，
+                    var _this = this
+                    this.beginfun = setInterval(function () {
+                        // 分别获取字符串的第一个字符和后面的字符 然后拼接 让每次执行这个方法就让头变成尾
+                        var begin = _this.msg.substring(0,1)
+                        var end = _this.msg.substring(1)
+                        _this.msg = end+begin
+                    },400)
+                },
+                stop(){
+                    clearInterval(this.beginfun)
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>

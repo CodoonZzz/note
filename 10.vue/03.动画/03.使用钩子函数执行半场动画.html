@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+    <style>
+        p{
+            width: 25px;
+            height: 25px;
+            background: red;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="按钮" @click="flag=!flag">
+        <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+            <p v-show="flag"></p>
+        </transition>
+    </div>
+    <script>
+        // 在之前写了动画 但是动画是一整套 有前半场也有后半场
+        // 但是大多时候我们不需要后半场，比如元素位移后 我们不需要再让她位移回来
+        // 但是之前的方法又不能不写后半场，所以我们需要一个可执行半场动画的方法
+
+        // 1.在HTML标签属性中声明钩子函数
+        // <transition
+        // v-on:before-enter="beforeEnter"          // 进入之前的函数
+        // v-on:enter="enter"                       // 进入的函数
+        // v-on:after-enter="afterEnter"            // 进入后的函数
+        // v-on:enter-cancelled="enterCancelled"    // 不常用可忽略
+        //
+        // v-on:before-leave="beforeLeave"          // 离开之前的函数
+        // v-on:leave="leave"                       // 离开的函数
+        // v-on:after-leave="afterLeave"            // 离开后的函数
+        // v-on:leave-cancelled="leaveCancelled"    // 可以忽略
+        //     >
+        //         ...
+        //     </transition>
+        new Vue({
+            el:'#box',
+            data:{
+                flag:false
+            },
+            methods:{
+                // 在这三个半场动画钩子中 第一个参数都为el
+                // 表示动画执行元素，是一个原生的js对象
+
+                // 首先使用beforeenter来设置动画的起始状态
+                beforeEnter(el){
+                    el.style.transform = 'translate(0,0)'
+                },
+
+                // 然后使用enter设置动画函数
+                enter(el,done){
+                    // 规定：
+                    // 必须使用el.offset 可以是width 也可以是top height等等都可
+                    // 如果不写将没有动画效果
+                    // 而在后面也要写上done()
+                    // done是enter的第二个参数
+                    // 需要执行一下，不然会产生动画完成后会有延迟执行afterEnter等BUG
+                    el.offsetHeight
+                    el.style.transform = 'translate(20px,150px)'
+                    el.style.transition = 'all 1s ease'
+                    done()
+                },
+
+                // 最后在动画执行完成后让元素消失
+                afterEnter(el){
+                    this.flag = !this.flag
+                }
+
+            }
+        })
+    </script>
+</body>
+</html>

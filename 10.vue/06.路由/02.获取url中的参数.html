@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+    <script src="vue-router-3.0.1.js"></script>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/login?id=3">登录</router-link>
+        <router-link to="/register?name=444">注册</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+        var login = {
+            template:'<p>登录组件---{{$route.query.id}}</p>',
+            created(){
+                // 若需要获取地址后的参数
+                // 使用$route.query来获取
+                // $route.query会将url地址后的参数使用对象来储存
+                console.log(this.$route.query.id);
+            }
+        }
+        var register = {
+            template:'<p>注册组件---{{$route.query.name}}</p>'
+        }
+
+        var router = new VueRouter({
+            routes: [
+                {path:'/login',component:login},
+                {path:'/register',component:register},
+                {path:'/',redirect:'/login'}
+            ]
+        })
+
+        new Vue({
+            el:'#app',
+            router:router
+        })
+    </script>
+</body>
+</html>

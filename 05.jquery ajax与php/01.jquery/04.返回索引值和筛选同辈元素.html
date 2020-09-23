@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+    <style>
+        .add{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li class="add">1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+</ul>
+<p>第1个亮了</p>
+<script>
+    //我们要实现鼠标指向某一个li就让某个li添加add这个类，然后让p里面写出第几个li亮了
+    //如果要原生代码需要遍历
+    $('ul>li').mouseover(function () {
+        // siblings()为筛选同辈的元素
+        // siblings()中的参数是匹配特征，如果不写则匹配全部同辈元素
+        $(this).siblings('.add').removeClass('add')
+        $(this).addClass('add')
+        // index()输出了在参数里面的索引位置
+        // 如果不写参数，则默认是同辈中的索引位置
+        var index = $(this).index()
+        $('p').text('第'+(index+1)+'个亮了')
+    })
+
+</script>
+</body>
+</html>

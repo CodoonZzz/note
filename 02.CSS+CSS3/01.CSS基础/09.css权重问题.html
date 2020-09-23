@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*一般的，相同权重情况下 系统是从上而下读取 所以下面会覆盖上面*/
+        /*! important	               无穷*/
+        /*行间样式	                   1000*/
+        /*id	                       100*/
+        /*class/属性选择器/伪类:hover  10*/
+        /*标签选择器/伪元素:after	   1*/
+        /*通配符，继承属性	           0*/
+        /*上面表示了各类选择器的权重大小 在有不同的选择器一起出现时相加即可*/
+        /*比如：*/
+        /*.box li > nav div li > div li > li*/
+
+        /*如果是给父元素加入!important 子元素继承的了该属性*/
+        /*权重也为0*/
+        /*比如：*/
+        div p{
+            color: grey;
+        }
+        div{
+            color: white !important;
+        }
+
+
+    </style>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-1.12.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container">
+<!--        缩略图需要使用栅格系统-->
+        <div class="row">
+            <div class="col-md-3 col-xs-6">
+<!--                再在里面写入一个a标签嵌套img 在a标签上加上缩略图的类名-->
+                <a href="" class="thumbnail">
+                    <img src="img/9885883_210838271000_2.jpg" height="949" width="1024"/>
+                </a>
+            </div>
+            <div class="col-md-3 col-xs-6">
+                <a href="" class="thumbnail">
+                    <img src="img/9885883_210838271000_2.jpg" height="949" width="1024"/>
+                </a>
+            </div>
+            <div class="col-md-3 col-xs-6">
+                <a href="" class="thumbnail">
+                    <img src="img/9885883_210838271000_2.jpg" height="949" width="1024"/>
+                </a>
+            </div>
+            <div class="col-md-3 col-xs-6">
+                <a href="" class="thumbnail">
+                    <img src="img/9885883_210838271000_2.jpg" height="949" width="1024"/>
+                </a>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+<!--            在之前图片的样式中有过img-thumbnail 这是图片的样式 在这里将他组件化了-->
+<!--            除了可以让图片有img-thumbnail的样式 还可以在里面a标签内加入一些其他的东西-->
+<!--            例如标题 文字 按钮等-->
+            <div class="col-md-4 col-xs-4">
+                <a href="" class="thumbnail">
+                    <img src="img/9885883_210838271000_2.jpg"alt="">
+<!--                    加上一个caption将附加信息包裹起来 以得到更好的排列-->
+                    <div class="caption text-center">
+                        <h3>Thumbnail label</h3>
+                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida
+                            at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        <button class="btn btn-danger" type="button">按钮</button>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+</head>
+<body>
+    <script>
+        // 学完ajax后虽然我们学会了异步获取数据
+        // 但是异步的代码量也是非常大的 而在jq中我们请求一个ajax就会有一个成功函数和失败函数
+        // 如果有大量的ajax请求嵌套的话 如：
+        // $.ajax({
+        //     url:'http://localhost/study/06.es6/06.promise.php',
+        //     dataType:'jsonp',
+        //     success:function () {
+        //         $.ajax({
+        //             url:'http://localhost/study/06.es6/06.promise.php',
+        //             dataType:'jsonp',
+        //             success:function () {
+        //                 $.ajax({
+        //                     url:'http://localhost/study/06.es6/06.promise.php',
+        //                     dataType:'jsonp',
+        //                     success:function () {
+        //                         // ...
+        //                     }
+        //                 })
+        //             }
+        //         })
+        //     }
+        // })
+        // 如果我们嵌套多个ajax显然不方便
+        // 代码的杂乱是一个很大的缺点
+        // 如果想：
+        // $.ajax()
+        // $.ajax()
+        // $.ajax()
+        // 这样写又不能达到之前的效果，一层成功才能执行另一层的效果，或者多个ajax成功才能执行某个ajax的效果
+
+        // 但在es6中封装了一个方法 promise 使之可以并排写
+        // 首先需要知道Promise最基础的写法：
+        // var p = new Promise(function (resolve,reject) {
+        //     // 两个参数第一个表示成功，第二额表示失败
+        //     $.ajax({
+        //         url:'http://localhost/study/06.es6/06.promise.php',
+        //         dataType:'jsonp',
+        //         success:function (data) {
+        //             // 成功后在让resolve返回一个数据，我们这里就返回data
+        //             resolve(data)
+        //         },
+        //         error:function (err) {
+        //             // 失败了返回一个数据 返回err并赋值为失败了
+        //             err = '失败了'
+        //             reject(err)
+        //         }
+        //     })
+        // })
+        // // 在promise创建好后，使用then来使用他
+        // // then方法中有两个参数 是两个函数
+        // // 第一个是成功函数，第二个是失败函数
+        // p.then((data)=>{
+        //
+        //     alert(data)
+        // },(err)=>{
+        //     alert(err)
+        // })
+
+        // 这就是promise最基础的写法，如果只有一个ajax 那肯定还不如直接使用jq中的ajax
+        // 但是如果有多个ajax请求 那么promise就发挥了强大的作用
+        // Promise中有一个all方法 里面写一个数组，每个数组都可以是一个ajax请求
+        // 只要all里面的所有请求都成功，才会执行then中的第一个函数
+        // 只要有一个失败，就会执行then中的第二个函数
+        Promise.all([
+            $.ajax({
+                url:'http://localhost/study/06.es6/06.promise.php',
+                dataType:'jsonp',
+            }),$.ajax({
+                url:'http://localhost/study/06.es6/06.promise.php',
+                dataType:'jsonp',
+            })
+            // 需要值得一提的是，$.ajax()可以放进去，因为$.ajax()返回的就是一个promise对象
+            // 如果需要其他的，需要new Promise(function () { })来实例化一个Promise对象
+        ]).then(()=>{alert('这三个都成功了')},()=>{alert('至少有一个失败了')})
+        // promise中除了all还有race方法 这个方法不一样
+        // all相当于一个与的逻辑 但是race是请求多个，谁先返回 就用谁，有失败的也没关系
+    </script>
+</body>
+</html>

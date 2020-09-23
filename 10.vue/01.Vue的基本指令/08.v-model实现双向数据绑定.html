@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="box">
+        <p>{{msg}}</p>
+        <!--之前的v-bind或者简写：是单向绑定，vue数据传向html页面，但是HTML页面不能向JS传输数据-->
+        <!--更改了HTML页面上的数据并不能修改msg-->
+        <!--所以就需要使用v-model来实现双向绑定-->
+<!--        一般v-model只加在表单元素上-->
+        <input type="text" v-model="msg">
+<!--        v-model是一个神奇的东西 我们只管加 他会知道双向绑定的表单这边是具体绑定在哪个属性上-->
+<!--        text 和 textarea 元素使用 value 属性和 input 事件；-->
+<!--        checkbox 和 radio 使用 checked 属性和 change 事件；-->
+<!--        select 字段将 value 作为 prop 并将 change 作为事件。-->
+<!--        所以 我们加入输入框 他就为我们绑定了value 以至于我们输入就会和data产生交互-->
+<!--        再有复选框和单选框 为我们绑定了checked属性 我们的点击会对data中的true or false产生改变-->
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                msg:'这是一句话'
+            }
+        })
+    </script>
+</body>
+</html>

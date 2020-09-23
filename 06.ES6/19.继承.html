@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 在之前继承官方是没有一套标准的方法的，我们是用各种方法凑出来而达到继承的效果
+    // 之前继承的写法:
+    var fn = function (name,age) {
+        this.name = name
+        this.age = age
+    }
+    fn.prototype.foo1 = function () {
+        alert(this.name)
+    }
+    fn.prototype.foo2 = function () {
+        alert(this.age)
+    }
+
+    // 我们在一个新的构造器中需要继承之前的构造器里我们加入的内容则需要：
+    // 建立子对象的构造函数：
+    var fn1 = function (name,age,tittle) {
+        fn.call(this,name,age)
+        this.tittle = tittle
+    }
+    // 让子对象的原型等于实例化的父对象
+    fn1.prototype = new fn()
+    // 修正构造器：
+    fn1.prototype.constructor = fn1()
+    // 然后儿子为自己的原型添加属性
+    fn1.prototype.work = function () {
+        console.log('eat');
+    }
+    var obj = new fn1('sss',22,33)
+    // console.log(obj.name,obj.age,obj.tittle); // sss 22 33
+    // obj.foo1() // 弹框 sss
+    // obj.foo2() // 弹框 22
+
+
+
+
+    // 使用类的写法：
+    // 使用类的写法先写出父亲的类
+    class person{
+        constructor(name,age){
+            this.name = name
+            this.age = age
+        }
+        head=1
+        work(){
+            alert('我在吃')
+        }
+    }
+
+    // 在写儿子时，后面加上exteds 父亲 就可以直接继承
+    class child extends person{
+        // 在写儿子的构造器时可以选择父亲构造器中的东西
+        constructor(name,age,adress){
+            // 使用super选择父类的参数
+            super(name,age)// 选择父构造器中的name与age继承
+            // 再添上自己的：
+            this.adress = adress
+        }
+    }
+
+    var oobj = new child('sss',22,'陕西汉中')
+    console.log(oobj.name,oobj.age,oobj.adress) // sss 22 陕西汉中
+    console.log(oobj.head); // 1
+    oobj.work() // 弹窗 我在吃
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+        var oDiv = document.getElementsByTagName('div')[0]
+        //需要给整个window绑定事件，如果绑定给DIV，那么脱离DIV则事件会失效
+        window.onmousemove = function (event) {
+            //使用page防止滚动条会使之出现BUG
+            oDiv.style.left = event.pageX+'px'
+            oDiv.style.top = event.pageY+'px'
+        }
+    </script>
+</body>
+</html>

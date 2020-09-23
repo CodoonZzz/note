@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <form action="">
+<!--        经常也会使用到placeholder这个是H5新加入的-->
+<!--        如果需要载入页面就获取焦点不再使用js了 使用autofocus就可以了-->
+<!--        H5还提供了一些属性方便我们 比如：autocomplete="on" -->
+<!--        这个属性可以出现候选 记住我们之前提交后所输入的内容-->
+<!--        在下一次输入时出现候选-->
+<!--        还有required 这个属性为必填 如果在提交时当前input未输入 则不会提交完成 并出现提示-->
+<!--        sccesskey快速使用快捷键使当前input获取焦点 快捷键为alt+属性值-->
+        <input type="text" placeholder="请输入文字" autofocus autocomplete="on" required >
+        <input type="text" accesskey="s">
+        <button type="submit">提交</button>
+
+    </form>
+<!--        在之前的上传文件只能一次上传一个-->
+<!--        但是在H5中加入了multiple属性可以使用ctrl键选取多个文件上传-->
+        <input type="file" multiple>
+</body>
+</html>

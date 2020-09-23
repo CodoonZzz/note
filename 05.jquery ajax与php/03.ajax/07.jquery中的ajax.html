@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+</head>
+<body>
+    <form action="">
+        用户名<input type="text" placeholder="请输入用户名" id="username" name="username">
+        <br>
+        密码<input type="password" placeholder="请输入密码" id="password" name="password">
+        <br>
+        <span id="information"></span>
+        <br>
+        <input type="button" id="login_btn" value="登录">
+
+    </form>
+    <script>
+
+        $('#login_btn').on('click',function () {
+            var oUsername = $('#username').val()
+            var oPasswrod = $('#password').val()
+            $.ajax({
+                type:'get',
+                url:'http://localhost/study/03.ajax-php/05.php',
+                // 对于jquery更方便的功能，我们不再需要拼接字符串
+                // 我们只需要把想传的参数使用data属性就好
+                // 如果是post请求直接写入url地址就行
+                data:{username:oUsername,password:oPasswrod},
+                success:function (data) {
+                    // 这里的data是指成功后输出的东西
+                    console.log(data);
+                }
+            })
+        })
+
+    </script>
+</body>
+</html>

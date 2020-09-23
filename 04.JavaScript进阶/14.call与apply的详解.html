@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        // 在13中 使用了call让在拷贝时的原构造函数中的this指向新的构造函数 从而达到了深拷贝的效果
+        // 其实 call就是调用函数的方法 举例：
+        function fn(name,age) {
+            console.log(this)
+            console.log(name,age)
+        }
+        var obj = {
+            a:123,
+            b:456
+        }
+        // 普通函数调用：
+        fn("sxy","22") // 输出 window对象，"sxy","22"
+        fn.call(obj,"sxy","22") // 输出 obj对象，"sxy","22"
+        // 在调用方法的时候加上call 与普通相比 就是多了一个参数放在第一位上
+        // 可以指定this的指向
+        // 而除了call还有一个方法是apply 他与call方法使用基本相同 只不过后面的参数是以数组的方式传递的
+        fn.apply(obj,["sxy","22"]) // 输出 obj对象，"sxy","22"
+
+        // 关于apply的妙用：
+        var arr = [0,2,4,5,1,3]
+        // 选出最小值
+        // 通过一般方法如果去遍历就显得繁琐
+        // 我们可以使用Math对象下的min方法
+        // 可以直接找出里面的最小值 但是这里min()的参数只能填入数字
+        // 如果直接把数组放进去就会返回一个NaN
+        console.log(Math.min(arr)); // NaN
+
+        // 这里可以使用es6的方法：
+        console.log(Math.min(...arr)); // 0
+        // 详细看ES6 函数的扩展
+
+        // 如果不使用es6 我们可以使用apply来达到目的
+        // 因为apply就是可以在调用函数时使用
+        // 而他的特点就是参数可以使用数组放入 这个方法会把数组转化为一个一个的参数传入函数
+        console.log(Math.min.apply(window, arr)); // 而this的指向问题 直接写window即可
+    </script>
+</body>
+</html>

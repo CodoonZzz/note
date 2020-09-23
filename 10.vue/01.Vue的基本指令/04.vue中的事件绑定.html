@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="box">
+        <input type="button" :value="msg" v-on:click="show">
+        <input type="button" :value="msg" @click="show">
+        <!--对于vue中，时间绑定使用 v-on:事件="函数名" 来绑定事件-->
+        <!--v-on也是有缩写的，使用@来表达v-on-->
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                msg:'按钮'
+            },
+            methods:{
+                // methods属性中定义了vue中实例出来的方法
+                show:function () {
+                    console.log('我出来了');
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //js在执行代码时会先预处理部分代码，再一行一行执行，例如以下例子：
+        //js在执行过程中，会先将var声明的变量进行记录，还有使用函数格式直接创建的函数会直接记录
+        //此时在window对象中会先创建这几个属性：
+        // {
+        //     a: undefind
+        //     f：function f() {
+        //        return f
+        //      }
+        //     g: undefind
+        // }
+        //在进行预处理之后，才会执行代码
+
+
+        console.log(a)  //当需要输出a时，会根据预处理的结果输入undefined
+
+        /*console.log(b)*/ //在预处理中，没有用var声明则不会记录，所以此时会报错，因为b不存在
+                           // 由于报错会影响后边的代码所以注释掉
+
+
+        console.log(f)   //f使用函数体已经在预处理中记录下来，所以现在输入则是f指向的函数
+
+        console.log(g)   //在预处理中 已经f这个变量进行记录，但并没有值 所以同样是undefined
+
+        var a = 3;
+        console.log(a)   //此时a已经被赋值为3，所以输出3
+
+        b = 7;
+        console.log(b)   //而在这里JS执行会将记录和执行一步到位，记录b，并赋值为7，所以输出7
+
+        function f() {
+            return f
+        }
+
+        var g = function () {
+            return g
+        }
+        console.log(g)  //此时g会赋值一个函数，所以输出该函数
+
+
+
+
+
+
+        //变量名相同的覆盖效应：
+        //在预处理阶段同名变量，函数优先，同级别则后者会覆盖前者
+
+
+        console.log(f)
+        var f = 2
+        var f = 3
+        function f() {
+            return f
+        }
+        function f() {
+            return g
+        }
+        var f = 4
+
+
+
+
+    </script>
+</body>
+</html>

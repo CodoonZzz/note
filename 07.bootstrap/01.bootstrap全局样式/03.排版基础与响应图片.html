@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+
+    </style>
+</head>
+<body>
+<!--    bootstrap为HTML页面上的很多元素都设置了默认的样式-->
+<!--    比如body背景为白色，mrgin:0，将字体改为14px-- 字体颜色改为接近黑色的灰色 并不是黑色>
+<!--    还有hr变为了一条灰色的线 原版是黑色的-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+<!--                .img-responsive可以让图片也成为响应式 随着屏幕的变化而变化-->
+                <img src="img/9885883_210838271000_2.jpg" class="img-responsive"/>
+            </div>
+            <div class="col-md-4">
+<!--                a标签被设置了hover与默认的样式 不再是带下划线的a标签原本的默认样式了-->
+                <a href="#">hello</a>
+
+<!--                而标题标签与原本的也做了默认的改变-->
+<!--                比如marin的改变 字体加粗逐渐减小等-->
+<!--                我们可以为这些标题标签加入副标题 标签为small-->
+<!--                这是一个H5标签 bootstrap加入了些默认的样式-->
+<!--                在h1-h3 副标题占大标题65% h4-h6占75%-->
+                <h1>这是h1标签<small>我是一个副标题</small></h1>
+                <h2>这是h2标签<small>我是一个副标题</small></h2>
+                <h3>这是h3标签<small>我是一个副标题</small></h3>
+                <h4>这是h4标签<small>我是一个副标题</small></h4>
+                <h5>这是h5标签<small>我是一个副标题</small></h5>
+                <h6>这是h6标签<small>我是一个副标题</small></h6>
+<!--                除了标题标签本身 也可以加入.h来代替标题标签实现标题的样式-->
+<!--                副标题也可以成为一个类名 让其他的标签来代替-->
+                <p class="h1">这是一个段落标签<span class="small">我是一个span副标题</span></p>
+                <p class="h2">这是一个段落标签<span class="small">我是一个span副标题</span></p>
+                <p class="h3">这是一个段落标签<span class="small">我是一个span副标题</span></p>
+                <p class="h4">这是一个段落标签<span class="small">我是一个span副标题</span></p>
+                <p class="h5">这是一个段落标签<span class="small">我是一个span副标题</span></p>
+                <p class="h6">这是一个段落标签<span class="small">我是一个span副标题</span></p>
+<!--                除此之外 还有p标签设置了10px的marin-bottom-->
+                <p>我是一个正常的P标签</p>
+<!--                如果你想强调某个标签内的内容 则可以加入.lead来使标签内容变大等来实现强调的感觉-->
+                <p class="lead">我是被强调后的P标签</p>
+<!--                如果你想设置对齐方式可以加上.text-left .text-center 或 .text-right-->
+                <p class="text-right">我是一个P标签我是一个P标签我是一个P标签我是一个P标签我是一个P标签</p>
+                <p class="text-center">我是一个P标签我是一个P标签我是一个P标签我是一个P标签我是一个P标签</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

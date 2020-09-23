@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="box">
+    <my-com1></my-com1>
+</div>
+    <script>
+        // 1.先使用extend来创建全局组件
+        var com1 =  Vue.extend({
+            // template属性确定了需要展示的html结构
+            // 注意：tamplate属性确定展示的html标签时 有且只能有一个根元素
+            // 如果存在多个元素 必须使用大标签包裹起来
+            template: '<div><h1>我是extend创造出来的组件</h1><span>不能和h1直接写出 必须在外面加上div</span></div>'
+        })
+        // 2.使用component方法为组件对象命名
+        // 这里值得要说的是 如果命名是驼峰命名 那么在html页面写入的时候
+        // 需要把大写字母换成小写字母并且在这个字母前加上-
+        // 因为在html中 是对大小写不敏感的 如果直接写myCom1 在html中会被认为是mycom1 而这个组件又不存在 就会报错
+        // 进过测试 只有属性名与标签名遇到驼峰命名要修改为-为连接 其他不用修改
+        Vue.component('myCom1',com1)
+
+        new Vue({
+            el:'#box',
+            data:{
+                msg:''
+            }
+        })
+    </script>
+</body>
+</html>

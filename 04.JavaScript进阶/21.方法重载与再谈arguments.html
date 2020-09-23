@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>我是一个段落</p>
+    <script>
+        // 对于之前基础JS中有arguments的使用
+        // argument是实参组成的一个类似数组的一个对象
+        function f(a,b) {
+            console.log(f.length)//这里输出的是形参的个数
+            console.log(arguments.length)//这里输出的是实参的个数
+            console.log(arguments[1])
+        }
+        f(3,1,4,2)
+
+        function set() {
+            var op = document.getElementsByTagName('p')[0]
+            if (typeof arguments[0]==="object"){
+                for (var i in arguments[0]){
+                    op.style[i] = arguments[0][i]
+                }
+            }
+        }
+        set({fontSize:'40px',background:'red'})
+
+    </script>
+</body>
+</html>

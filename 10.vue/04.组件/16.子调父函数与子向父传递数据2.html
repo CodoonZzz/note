@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="box">
+<!--        上一个案例我们知道其实子传父是通过子访问到父亲的函数 利用参数来传递的-->
+<!--        而访问的方式就是通过在组件上使用v-on绑定一个属性 而既然是绑定一个属性 自然属性名不一定是click-->
+        <com @fun="show"></com>
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                msg: null,
+            },
+            methods:{
+                show(data){
+                    console.log('父元素被调用并传来了信息：'+data);
+                    this.msg = data
+                }
+            },
+            components:{
+                com:{
+                    // 在这里我们也可以这样写：使用一个函数把之前的$listeners.属性名 包裹起来
+                    template:`
+                        <div>
+                            <input type="button" value="按钮" @click="showParent">
+                        </div>
+                    `,
+                    data:()=>{
+                        return {name:'小东西'}
+                    },
+                    methods: {
+                        showParent(){
+                            // this.$listeners.fun(this.name)
+                            // 除了$listeners 我们还有一个方法 $emit
+                            this.$emit('fun',this.name)
+                            // 这里写函数参数的方法就是把参数放在第一个参数后面即可
+                            // 当然如果要写在标签上应为：
+                            // <input type="button" value="按钮" @click="$emit('fun',name)">
+                            // 在使用中 会以$emit为主
+                        }
+                    }
+                },
+
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function f(name) {
+            var age = 22
+            function pm() {
+                console.log(this.name)
+            }
+            //对于以上两个，他是函数体私有的，当这个f函数形成构造器的时候
+            //上面两个不会进入对象
+            this.name = name
+            this.test = function(){
+                console.log('hello')
+                pm()
+            }
+            //而下面两个会在对象中出现，是公有的
+        }
+        var obj = new f('sxy')
+        obj.test()
+    </script>
+</body>
+</html>

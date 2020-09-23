@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="Mycanvas" width="500" height="500"></canvas>
+		<script type="text/javascript">
+				var ocanvas = document.getElementById('Mycanvas')
+				var ocontext = ocanvas.getContext("2d")
+				ocontext.fillStyle = 'violet'
+				ocontext.fillRect(0,0,500,500)
+				ocontext.strokeStyle = 'black'
+				for (var i=0;i<10;i++) {
+					ocontext.beginPath()
+				    ocontext.arc(30*i,30*i,10*i,0,2*Math.PI,true)
+					ocontext.stroke()
+				}
+				
+		</script>
+	</body>
+</html>

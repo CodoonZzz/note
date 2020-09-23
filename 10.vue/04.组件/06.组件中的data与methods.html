@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="box">
+        <com></com>
+        <hr>
+        <com></com>
+        <hr>
+        <com></com>
+    </div>
+    <script>
+        // 我们在创建一个全局组件的时候如果需要创建一个data与methods则需要如下操作：
+        Vue.component('com',{
+            template:`
+                <div>
+                    <input type="button" value="+1" @click="plus">
+                    <p>{{num}}</p>
+                </div>
+            `,
+            // 在组件中的data和vue实例中的data不一样
+            // 不同于实例的是data必须是一个方法 第二必须返回一个对象
+            // 以这种方法来写对象
+            data:()=>{
+                return {
+                    num: 1
+                }
+            },
+            methods:{
+                plus(){
+                    this.num++
+                }
+            }
+            // 这样一个组件 在页面上 创建一个 就是独立的 不共享data与methods
+            // 这样如果有多个组件 那么就能做到数据互不干扰
+            // 如果data不是函数的返回值 而直接是一个对象
+            // 那么他们指向就都是同一个对象 一个更改 其他全更改 数据会被干扰
+        })
+
+        new Vue({
+            el:'#box',
+            data:{
+                msg:''
+            }
+        })
+    </script>
+</body>
+</html>

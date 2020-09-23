@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div> 
+			<em>斜体</em>
+			文本 
+			<strong>粗体</strong>
+		</div>
+		<script type="text/javascript">
+			function removeSpaceNodes(node){
+				//首先获取到传入参数的所有子节点
+				var oNode = node.childNodes
+				//遍历整个子节点
+				//要倒着遍历 因为正遍历删除节点后 下个节点就会代替这个位置 而遍历会接着下一个节点去查找 所以会跳过该节点
+				for (var i=oNode.length-1;i>=0;i--) {
+					// 如果发现有nodetype为文本和节点文本为空白,则删除这个节点
+					if(oNode[i].nodeType==3&&/^\s+$/.test(oNode[i].nodeValue)){
+						node.removeChild(oNode[i])
+					}
+				}
+			}
+			var oDiv = document.getElementsByTagName("div")[0]
+			removeSpaceNodes(oDiv)
+			console.log(oDiv.childNodes.length)
+		</script>
+	</body>
+</html>

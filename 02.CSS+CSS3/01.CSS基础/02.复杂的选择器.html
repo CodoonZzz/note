@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*这里就不写html了 直接写css*/
+
+        /*后代选择器 表示只要是该元素的后代不论是儿子还是孙子还是孙子的儿子 都可以被选取*/
+        li div p{
+            color: #00FFFF;
+        }
+
+        /*子代选择器 表示只能是该元素的儿子 其他都不能够被选取*/
+        div>li{
+            color: #0f0f0f;
+        }
+
+        /*交集选择器 表示满足写入的条件时才能够被选取 一般为标签与类名的结合*/
+        /*这个例子选取了所有必须是类名为red的span元素才可被选取*/
+        span.red{
+            color: red;
+        }
+
+        /*并集选择器 表示可以如果满足写入的多个条件之一就可被选中*/
+        span,div,.red{
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+<body>
+</body>
+</html>

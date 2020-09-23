@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    .big_box{
+      width: 400px;
+      height: 400px;
+      background: rgb(61, 85, 32)
+    }
+    .small_box{
+      width: 200px;
+      height: 200px;
+      background: rgb(212, 235, 122)
+    }
+  </style>
+</head>
+<body>
+  <div class="big_box">
+    <div class="small_box">
+
+    </div>
+  </div>
+  <script type="text/javascript">
+    //对于同样一个元素如果想给他设置一个事件，事件执行两个函数
+    //或者在某个时候移除某个函数，那么事件监听就显得舒服很多了
+    var oBig_Box = document.getElementsByTagName('div')[0]
+    var oSmall_Box = document.getElementsByTagName('div')[1]
+    // addEventListener(事件，函数，布尔）
+    // 这里的布尔true为先捕获，false为先冒泡
+    oSmall_Box.addEventListener('click',fun1,true)
+    oBig_Box.addEventListener('click',fun1,true)
+    function fun1(event){
+      console.log(this.className);
+    }
+    //移除事件监听：
+    //移除函数只有两个参数（事件，函数）
+    // oSmall_Box.removeEventListener('click',fun1)
+
+
+    // 事件监听函数在IE中的写法：
+    // 添加事件：
+    // attachEvent('on+事件'，函数)
+    // 移除事件
+    // detachEvent('on+事件'，函数)
+    // oSmall_Box.attachEvent('onclick',fun1)
+    // oBig_Box.detachEvent('onclick',fun1)
+
+
+
+    //所以封装一个函数可以兼容IE写法
+    function fun2(){
+      console.log('实验封装的事件监听函数');
+    }
+    function addEvent(obj,type,fun){
+      if (obj.addEventListener) {
+        obj.addEventListener(type,fun,true)
+      } else {
+        obj.attachEvent("on"+type,fun)
+      }
+    }
+    function removeEvent(obj,type,fun){
+      if (obj.removeEventListener) {
+        obj.removeEventListener(type,fun,true)
+      } else {
+        obj.detachEvent("on"+type,fun)
+      }
+    }
+    addEvent(oBig_Box,'click',fun2)
+    removeEvent(oBig_Box,'click',fun2)
+  </script>
+</body>
+</html>

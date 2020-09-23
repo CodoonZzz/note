@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+    <style>
+        li{
+            width: 100px;
+            height: 100px;
+            list-style: none;
+            float: left;
+            margin-left: 20px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<script>
+    // 在JQ中是给我提供了隐式迭代的 但是我们有需求还是需要一个遍历方法
+    // 在前面有简单用过each，但这里的参数需要了解
+    $('li').each(function (index) {
+        // 这里有两个参数，第一个参数为索引，第二个参数为对象
+        // 所以如需要索引时，加入形参
+        // 至于第二个参数，可以加也可以不加，因为可以使用this来代替
+        $(this).css({opacity:index/10})
+    })
+</script>
+</body>
+</html>

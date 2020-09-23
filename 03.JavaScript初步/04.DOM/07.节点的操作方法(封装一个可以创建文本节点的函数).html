@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <em>斜体</em>
+        文本
+        <strong>粗体</strong>
+        <span>行内标签</span>
+    </div>
+    <script src="封装好几个常用的函数.js"></script>
+    <script>
+        var oDiv = $('div')[0]
+
+        //使用createElement创建一个节点
+        var oNew_P = document.createElement("p")
+
+        //使用appendChild向目标节点的子节点结尾追加一个节点
+        oDiv.appendChild(oNew_P)
+        
+        //可以使用createTextNode创建一个文本节点
+        var oText = document.createTextNode('我是一个文本')
+
+        //然后将文本插入到新创建的P标签内
+        oNew_P.appendChild(oText)
+
+        
+
+        //对于这样的操作显得谈繁琐，所以我们自己封装一个函数可以创建带有文本的节点
+        function createElementWithText(tagName,text) {
+            var oNode = document.createElement(tagName);
+            var oText = document.createTextNode(text)
+            oNode.appendChild(oText)
+            return oNode
+        }
+        
+        var oNew_funwithtext =  createElementWithText("p","我是用封装函数创建的文本")
+        oDiv.appendChild(oNew_funwithtext)
+
+
+
+        //使用inserBefore来在指定的地方插入节点
+        //【格式】父节点.insertBefore(插入的节点，在这个节点之前插入)
+        var oSpan = createElementWithText('span',"我是插在粗体之前的文本")
+        var oStrong = $('strong')[0]
+        oDiv.insertBefore(oSpan,oStrong)
+        
+        
+
+
+		//系统是没有给我们插入到某个节点之后的方法的,我们可以自己封装一个函数
+        function inserAfter(newNode,oldNode) {
+            //先获取他的父节点
+            var oldNodeParentNode = oldNode.parentNode;
+            //再判断下需要插入在的那个节点是不是最后一个节点
+            if (oldNodeParentNode.lastChild==oldNode) {
+                oldNodeParentNode.appendChild(newNode)
+            } else {
+                oldNodeParentNode.insertBefore(newNode,oldNode.nextSibling)
+            }
+        }
+        var oSpan_two = createElementWithText('span','我是插入在粗体之后的文本')
+        inserAfter(oSpan_two,oStrong)
+        
+
+        //使用replaceChild替换子节点的某个节点
+        var oReplaceSpan = createElementWithText('span',' 我把粗体换掉了！ ')
+        oDiv.replaceChild(oReplaceSpan,oStrong)
+
+
+        //克隆节点：
+        //节点.cloneNode()
+        //返回一个克隆的节点
+        //参数默认为false，若填true 则复制文本
+        console.log(oReplaceSpan.cloneNode(true))
+
+
+        //删除节点，可以将某个节点的子节点删去
+        //【格式】 父节点.removeChild(想要删去的子节点)
+        //常用写法如：oDiv.parentNode.removeChild(oDiv)
+    </script>
+</body>
+
+</html>

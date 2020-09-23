@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+</head>
+<body>
+<ul>
+    <li>1</li>
+    <li>2</li>
+    <li class="red">3</li>
+    <li>4</li>
+    <li>5</li>
+    <li class="red">6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+</ul>
+    <script>
+        $('li:eq(0)').nextAll('.red').css({
+            background:'red'
+        })
+        // 这些筛选方法都很简单，所以只列举一些，就不实例了
+        // next() 是获取当前元素的下一个兄弟元素
+        // nextAll() 是获取当前元素的后面所有元素
+        // prev() 是获取当前元素的上一个
+        // prevAll() 是获取当前元素前面的所有元素
+        // 当然还有之前说的siblings() 是获取当前元素的所有兄弟元素
+        // 括号中的参数表示筛选条件，参数不填则表示无筛选条件
+    </script>
+</body>
+</html>

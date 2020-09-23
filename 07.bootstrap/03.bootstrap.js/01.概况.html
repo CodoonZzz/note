@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-1.12.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+<!--    在之前已经有过使用js的demo-->
+<!--    boot建议我们 使用data来解决问题不写一行js代码是我们的第一选择-->
+<!--    在某些情况 我们是需要写js代码的-->
+<!--    最基础的 如果我们需要关闭data属性的功能可以使用这样的代码-->
+    <div class="container">
+<!--        在这里我们写一个下拉菜单-->
+        <div class="dropdown">
+            <button type="button" class="btn btn-default" data-toggle="dropdown">
+                菜单
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="">菜单</a></li>
+                <li><a href="">菜单</a></li>
+                <li><a href="">菜单</a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        // 在这里这个下拉菜单是正常的 是通过data-toggle="dropdown"调用js来控制下拉菜单的
+        //  boot为我们提供了挂你data的方法 如果你不需要全局的data或者某一个功能的data可以使用
+        $(document).off('.data-api')
+        // off是关闭的方法 里面写入.data-api是关闭全局的data
+        // 也可以使用单个 方法是讲需要关闭的插件名放在.data-api前面
+        $(document).off('.dropdown.data-api')
+        // 这样也可以关闭下拉菜单功能
+
+        // 在boot中我们经常会使用到data
+        // data-toggle data-target data-dismiss
+        // 第一个是告诉boot要干什么
+        // 第二个属性时告诉boot要切换的目标是什么
+        // 第一个和第二个经常一起使用
+        // 比如模态框和下拉菜单
+        // 第三个属性是关闭某个元素 比如关闭按钮 第二个第三个都可以加入选择器来筛选元素
+        // 另外还有许多的data属性在后面的demo中都会出现
+
+        // 而在bootstrap.js中我们可以使用单独或者链式的方法来书写js代码并返回其操作的元素集合
+        // 这与jq一样的
+
+        // bootstrap的事件功能
+        // 如果你想阻止某个事件可以使用类似下面的代码来阻止
+        // $('#myModal').on('show.bs.modal', function (e) {
+        //     if (!data) return e.preventDefault() // 阻止模态框的展示
+        // })
+        // 这是一个阻止模态框的代码
+        // 模态框是点击按钮会出现一个框 里面会有一些更多的信息 比如注册登录等等
+        // 后面有专门的写法 这里是举例 表明boot具有事件功能
+
+
+        // 我们也可以使用这里的代码来显示当前boot的版本
+        alert($.fn.tooltip.Constructor.VERSION)
+
+        // 对于boot 它为我们在js中提供了很好的过度效果
+        // 比如模态框的出现等等 如果你想禁用这些过度效果 那么可以在script中写入如下代码就可以禁止所有的过度效果
+        $.support.transition = false
+    </script>
+<!--如果 浏览器禁用了js 那么可以使用noscript标签来向用户说明当前浏览器禁用了js比如：-->
+    <noscript>当前浏览器禁用了js 页面显示不完全 请更换浏览器</noscript>
+</body>
+</html>

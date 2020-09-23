@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-1.12.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+<!--    如果你需要将内容放在一个带有头部的盒子里 可以试试面板-->
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-default">
+<!--                其中包括head与body-->
+                <div class="panel-heading">标题</div>
+                <div class="panel-body">
+                    这里是内容
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">标题</div>
+                <div class="panel-body">
+                    这里是内容
+                </div>
+<!--                如果你需要 可以加入脚注 可以放入一些按钮和不重要的说明-->
+                <div class="panel-footer">
+                    这里是脚注
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <h3>情景面板</h3>
+            <div class="panel panel-success">
+                <div class="panel-heading">标题</div>
+                <div class="panel-body">
+                    这里是内容
+                </div>
+                <div class="panel-footer">
+                    这里是脚注
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <h3>加入其它元素</h3>
+            <div class="panel panel-success">
+                <div class="panel-heading">标题</div>
+<!--                可以在这里加入表格或者列表组-->
+<!--                如果没有body也没关系 head会直接将添加的元素帖在一起没有缝隙-->
+                <ul class="list-group">
+                    <li class="list-group-item">内容<span class="badge">内容</span></li>
+                    <li class="list-group-item">内容<span class="badge">内容</span></li>
+                    <li class="list-group-item">内容<span class="badge">内容</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row">
+            <h3>面板组</h3>
+<!--            面板组需要将多个panel放入panel-group中-->
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">标题</div>
+                    <div class="panel-body">内容</div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">标题</div>
+                    <div class="panel-body">内容</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

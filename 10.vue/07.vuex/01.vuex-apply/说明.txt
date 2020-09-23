@@ -1,0 +1,55 @@
+###Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。
+它采用集中式存储管理应用的所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。
+Vuex 也集成到 Vue 的官方调试工具 devtools extension
+提供了诸如零配置的 time-travel 调试、状态快照导入导出等高级调试功能
+
+如果您不打算开发大型单页应用，使用 Vuex 可能是繁琐冗余的。
+确实是如此——如果您的应用够简单，您最好不要使用 Vuex。
+一个简单的 store 模式就足够您所需了。
+但是，如果您需要构建一个中大型单页应用
+您很可能会考虑如何更好地在组件外部管理状态
+Vuex 将会成为自然而然的选择。
+
+步骤：
+1.安装: npm i vuex
+2.src下创建目录store
+3.分别创建state.js getters.js mutations.js actions.js
+4.再创建一个index.js 将这前4个导入进去 然后再将这4个模块导出 详细查看index.js
+5.与之前路由类似 编写好后在main.js中导入并注册
+至此 vuex就可以使用了
+
+vuex是集中管理的方式来运行的
+1.state就是data中的数据 以后数据就放在state中
+访问使用当前组件下的$store.state
+2.getters则是组件中的计算属性 我们可以把计算属性一并放在这里面存放
+这里面的方法以参数的方式可以获取到state中的数据
+
+如果数据太庞大 全部放在store这个容器中就显得太臃肿
+为了解决上面的问题 vuex可以将store分割成块
+每个模块都拥有自己的state、mutation、action、getter
+在index.js中使用modules来注册子模块 使用的时候数据需要再加一个模块的名字
+比如 $store.state.user.username 而getters不需要 直接在getters就可以使用
+但是如果getters父子有相同名字 那么外层会覆盖内层
+但是一般这样使用名字都特别长 vuex也提供了一个方法供我们使用
+mapGetters辅助函数 我们可以在全局使用对象展开运算符 来让我们可以直接使用这些名字
+但在这之前 我们必须在模块内使用namespaced:true
+这个api可以让模块启动 让我们强制在使用时必须使用模块.属性
+这样getters就不和上面所说的一样了 需要加入模块名 虽然getters比较特殊
+需要 模块/属性 来表达 但是 使用mapGetters都可以解决这个问题
+
+3.mutations是存放方法的地方 但是这里的方法与我们之前methods不同的是
+这里的方法需要我们调用$store中的commit来调用 commit('方法名'，参数)
+所以我们要使用mutations中的方法 我们先使用commit来调用
+如果方法是模块中的方法 方法名需要加上/  形同：commit('模块/方法名'，参数)
+4.actions也是存放方法的地方 与mutations不同的是 actions是异步操作 而mutations是同步的
+actions可以同时多次调用mutations中的函数 而且互不影响 在页面中使用dispatch来调用
+形同：dispatch('模块/方法名'，参数)
+
+方法也可以使用辅助函数 只要在之前的{}中加入mapMutations与mapActions
+再在methods中使用之前的方式即可
+
+vuex推荐修改数据时一定通过方法来修改 使用commit或者dispatch
+虽然我们可以在全局的methods中直接使用$store.state访问到数据
+但是这种方法不推荐 可以在store创建时的js文件中加入strict:true
+使vuex进入严格模式 这样的模式下 这样的模式下 数据的改变只要不是mutations与actions引起的
+就会抛出错误 来提醒开发者

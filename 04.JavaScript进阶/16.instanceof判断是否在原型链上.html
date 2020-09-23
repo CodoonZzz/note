@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function person() {}
+        function child() {}
+        var p = new person()
+        child.prototype = p
+        var c = new child()
+        // 在这里的原型链应该是 c的__proto__属性指向child的prototype
+        // 而child的prototype又等于p，所以c的__proto__指向p
+        // 而p的__proto__指向person的prototype
+        // 当然，再往后就是Object的prototype达到终点
+
+        // 而instanceof就是判断某个对象是否在某个原型链上(前面是对象后面是函数)
+        console.log(c instanceof child) // true
+        console.log(c instanceof person) // true
+        // instanceof的伪代码：
+        // a instanceof b 先看a.__proto__是否等于b.prototype 如果是则返回true
+        // 如果不是，再向后走，看a.__proto__.__proto__是否等于b.点prototype
+        // 以此类推，直到a一直等于Object.prototype，如果再不是，就返回false
+    </script>
+</body>
+</html>

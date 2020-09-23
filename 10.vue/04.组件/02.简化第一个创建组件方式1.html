@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="box">
+    <mycom2></mycom2>
+</div>
+<script>
+    // 使用component创建组件不需要中间变量直接使用第二个参数创建组件对象
+    Vue.component('mycom2',{
+        // 使用es6的方法使用字符串模板
+        template: `
+            <div>
+                <h1>我是extend创造出来的组件</h1>
+                <span>不能和h1直接写出 必须在外面加上div</span>
+            </div>
+        `
+    })
+
+    new Vue({
+        el:'#box',
+        data:{
+            msg:''
+        }
+    })
+</script>
+</body>
+</html>

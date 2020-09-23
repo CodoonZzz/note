@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+    <script src="vue-router-3.0.1.js"></script>
+</head>
+<body>
+<div id="app">
+    <router-link to="/content">用户界面</router-link>
+    <router-view>
+
+    </router-view>
+</div>
+<script>
+    // 将04中的例子拿来使用
+    var content = {
+        template:`
+                <div>
+                    <h1>用户界面</h1>
+                    <router-link to="/content/login">登录</router-link>
+                    <router-link to="/content/register">注册</router-link>
+                    <router-view></router-view>
+                </div>
+            `
+    }
+
+    var login = {
+        template: `
+                <h3>登录组件</h3>
+            `
+    }
+    var register = {
+        template:`
+            <div>
+                <input type="text" placeholder="请输入账号" v-model="username">
+                <br>
+                <input type="text" placeholder="请输入密码" v-model="password">
+            </div>
+        `,
+        data(){
+            return{
+                username:"",
+                password:""
+
+            }
+        },
+        // 路由的钩子函数包括
+        // 钩子函数有三个参数 分别是to去哪 from来自哪 next下一步
+        // next对应的一个函数为 next()
+        // 如果钩子函数内部不调用next()是不能执行下面的操作的
+        // 比如离开函数 如果内部没有next() 那么将不会离开
+        beforeRouteEnter(to,from,next){
+            // 进入组件之前
+
+            console.log("beforeRouteEnter");
+            // to与from都是指向的路由信息对象
+            // 所以可以设置必须从某个地方跳转而来等一些功能
+            // 这个对象中有一个name值 我们可以在对应的路由设置下
+            // 设置这个name 以备我们使用
+            // 对象中还有一个meta的对象 可以在路由中设置
+            // meta为路由元信息 可以设置一些东西
+            // 然后在全局路由钩子函数中判断是否有这些东西 然后根据判断是否做某一件事情
+            // 比如某些组件需要登录 那么就设置需要验证为true
+            // 全局函数在运作时 碰到该属性为true 则会验证用户是否登录
+            next()
+        },
+        beforeRouteUpdate(to,from,next){
+            // 数据改变之前
+            console.log("beforeRouteUpdate");
+            next()
+        },
+        beforeRouteLeave(to,from,next){
+            if (this.username != "" || this.password != ""){
+                var flag = confirm("离开数据被清除 你确定要离开吗")
+                if(flag){
+                    console.log("beforeRouteLeave");
+                    next()
+                }
+            }else {
+                console.log("beforeRouteLeave");
+                next()
+            }
+            // 离开组件之前
+        }
+    }
+
+
+    var router = new VueRouter({
+        routes:[
+            {
+                path:'/content',
+                component:content,
+                children:[
+                    {path:'',redirect: 'login'},
+                    {
+                        path:'login',
+                        component: login,
+                    },
+                    {
+                        path:'register',
+                        component: register,
+                        // 此外 还有在路由上配置的钩子函数
+                        beforeEnter(to,from,next){
+                            console.log("beforeEnter");
+                            next()
+                        }
+                    }
+                ]
+            },
+        ]
+    })
+
+    // 除此之外还有全局的钩子函数
+    // 一旦有路由切换组件 就会触发
+    // 这个是进入组件最先触发的 比私有的路由钩子函数还早
+    router.beforeEach((to,from,next)=>{
+        console.log("beforeEach");
+        next()
+    })
+    // 这个是最后触发的 等组件渲染完毕后触发 比所有钩子函数都晚
+    router.afterEach((to,from,next)=>{
+        console.log("afterEach");
+        // 注意 after是可以不使用next的
+    })
+
+    // 所以 所有钩子函数的顺序为：
+    // beforeEach  进入新的组件
+    // beforeEnter 路由进入切换
+    // beforeRouterEnter   组件进入
+    // beforeRouterLeave   组件离开
+    // beforeResolve   解析完成（也是一个全局函数 不常用所以并未展示）
+    // afterEach   进入完毕
+    // 如果beforeRouterEnter的next()中有回调函数 那么在afterEach之后才会执行
+    new Vue({
+        el:'#app',
+        router
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    div {
+      width: 200px;
+      height: 200px;
+      background: rgb(182, 180, 191);
+      position: absolute;
+      left: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="">
+
+  </div>
+  <script type="text/javascript">
+
+    function animation(obj, property, target) {
+      clearInterval(obj.timer)
+      //给目标设置一个属性，使每次执行函数，清楚上个目标的定时器
+      obj.timer = setInterval(function () {
+        // 判断是否为透明度
+        if (property == 'opacity') {
+          // 由于parseInt的效果会将小于1大于0的小数直接取成0
+          // 所以如果属性为透明度 我们将透明度*100处理
+          var oStyle = parseInt(getComputedStyle(obj)[property] * 100)
+          target *= 100
+        } else {
+          //如果不是透明度就直接获取样式就好
+          var oStyle = parseInt(getComputedStyle(obj)[property])
+        }
+
+
+        // 设置速度：使得每帧的速率都是目标减去现在样式的三十分之一
+        // 使得这个变化速率会逐渐变小
+        var speed = (target - oStyle) / 30
+        //小BUG：速度可能小于1 这样在计算时会忽略小数点后的数字导致整体不变
+        if (speed>0){
+          speed = Math.ceil(speed)
+        } else{
+          speed =  Math.floor(speed)
+        }
+        // 再次判断是否为透明度
+        if (property == 'opacity') {
+          // 如果是，把数值全部除以100以便下次使用或设置属性
+          target /= 100
+          obj.style[property] = (oStyle + speed) / 100
+          // 最后再判断是否达到目标
+          //如果达到目标，就让计时器停止
+          if(getComputedStyle(obj)[property]  == target){
+            clearInterval(obj.timer)
+          }
+        } else {
+          // 如果不是，直接增加就好
+          obj.style[property] = oStyle + speed + 'px'
+          //这个IF与上边相同
+          if (parseInt(getComputedStyle(obj)[property])  == target){
+            clearInterval(obj.timer)
+          }
+        }
+      }, 30)
+    }
+    var oDiv = document.getElementsByTagName('div')[0]
+    animation(oDiv, 'width', 600 )
+  </script>
+</body>
+
+</html>

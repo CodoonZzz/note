@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button type="button" onclick="record()">记录</button>
+		<br/>
+		<button type="button" onclick="back()">←</button>
+		<button type="button" onclick="forward()">→</button>
+		<button type="button" onclick="record()">记录</button>
+		
+		<script type="text/javascript">
+			//history保存着用户的历史记录,在浏览器体现在后退前进箭头
+			
+			//history.length表示记录数
+			function record(){
+				alert(history.length)
+			}
+			
+			//history.back表示向后退一个记录 类似浏览器左上角的后退
+			function back(){
+				history.back()
+			}
+			
+			//history.back表示向前进一个记录 类似浏览器左上角的前进
+			function forward(){
+				history.forward()
+			}
+			
+			function forward(){
+				history.go()
+				/*
+				重点在于后面的参数
+				若为0,则重载当前页面
+				若为正整数,则前进对应数量的记录
+				若为负整数,则后退对应数量的记录*/
+			}
+		</script>
+	</body>
+</html>

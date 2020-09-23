@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 之前的js我们在同时声明多个变量的时候：
+    // var a = 3;
+    // var b = 4
+    // var c = 5
+    // 或：
+    // var x=7,y=8,z=9
+    // 新加入的方法可以使用数组的解构赋值这样：
+    var [a,b,c] = [3,4,5]
+    console.log(a); // 3
+    // 也可以空着 但是需要使用逗号隔开 从而一一对应
+    var [x,y,z] = [,8,]
+    console.log(x); // undefined
+    // 也可在数组中直接赋值，这样赋值属于默认值
+    var [m=9,n] = [,10]
+    console.log(m); // 9
+    console.log(n); // 10
+
+
+
+
+    // 对象的解构赋值：
+    var {j,k} = {j:222,k:333}
+    console.log(j); // 222
+    // 对于对象，可以不用一一对应，只需要将键名输入正确就可以
+    // var {j,k} = {j:222,k:333}与var {j,k} = {k:333,j:222}的效果是相同的
+    // 对象也是可以添加默认值的如：var {j=222,k} = {k:333}
+    // var {j=222,k} = {k:333}
+    // console.log(j,k); // 222 333
+
+    // 而对象的解构赋值有着更好的作用：
+    var {sin,cos} = Math
+    console.log(typeof sin);
+    console.log(typeof cos);
+    // 所以在解构之后 属于Math对象中的方法 我们可以直接拿来使用
+
+
+    //  字符串的解构赋值
+    var [a,b,c,d] = 'hello'
+    // 这样，字符串‘hello’会被解构并赋值给各个变量
+    console.log(a,b,c,d); // h e l l
+    // 如果需要访问字符串长度需要使用对象来解构
+    var {length} = 'hello'
+    console.log(length); // 5
+
+</script>
+</body>
+</html>

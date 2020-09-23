@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <com>
+            <template v-slot:hh>
+                <h3>这是一个h3</h3>
+                <h4>这是一个h4</h4>
+            </template>
+
+        </com>
+    </div>
+    <script>
+        // 定义一个全局组件
+        Vue.component('com',{
+            // 我们在template中写好的架构 会在页面上整个覆盖掉该组件本身的内容
+            // 如果想要保留在页面上写入的一些标签 那么就是用slot标签 vue会把原本有的标签渲染在这个标签内
+            // 默认不加任何属性的slot会把原本存在的标签全部放入
+            // 如果想要让特定的标签放入特定位置的slot中 就需要使用v-slot与name
+            // 那么如果有多个标签 可以使用template标签来包裹起来使用这些属性
+            // 如同这样写即可 因为这是vue2.6中的特性 所以这里暂时展示不出来
+            template:`
+                <div class="box">
+                    <p>这是一段文字</p>
+                    <slot name="hh"></slot>
+                </div>
+            `
+        })
+        new Vue({
+            el:'#app',
+        })
+    </script>
+</body>
+</html>

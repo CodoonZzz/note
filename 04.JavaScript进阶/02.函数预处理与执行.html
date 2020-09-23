@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+
+
+        //对于函数来说也有预处理阶段
+        //函数预处理也会和全局相同，上面的函数会先把a记录下来，但不赋值，而b会直接赋值一个相应的函数
+        function f(a,b) {
+            console.log(a)//此时实参1赋值给a，所以输出1，如果没有实参，那照样是undefind
+            console.log(b)//由于b记录为函数，则输出为对应函数
+            var a = 3
+            console.log(a)//此时被=3覆盖，所以输出3
+            function b() {
+                return b
+            }
+        }
+        f(1,2)
+
+
+
+        //
+        function f1() {
+
+            function f2() {
+                x=100;
+            }
+            f2()
+        }
+        f1()
+
+        console.log(window.x)
+        //此时输出为100，则说明x已经是全局变量了
+        //函数中没有var声明的变量，则会被记录在最外层的内存中
+    </script>
+</body>
+</html>

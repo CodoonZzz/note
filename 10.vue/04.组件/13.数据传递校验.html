@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <com1 a="a" :b="2"></com1>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            components:{
+                com1:{
+
+                    // 我们在传递父亲的数据时可以校验
+                    // 校验方式是props使用对象来表达 若想校验则在对象里写入希望的type
+                    props:{
+                        a:{type:Number},
+                        // 此时 a是一个字符串"a" 但是我们校验希望是一个Number
+                        // 但是这里不会影响页面的正常显示 但是在控制台会有警告
+
+                        // 而我们还有一种校验方式 则是一个函数validator
+                        // 这个函数会将数据放入参数 我们只需要在函数体内对其进行自发的校验
+                        // 最后返回true或false即可 当然 校验失败也不会影响页面 与上面相同会发出警告
+                        b:{
+                            type:Number,
+                            validator(val){
+                                return val<0
+                            }
+                        },
+
+                        // 而对象中也可以设置一个默认值 在当标签中没有的属性 我们也可以在props中注册
+                        c:{type:Number,default:30},
+
+                        arr:{
+                            // 而如果数据类型是一个对象或者一个数组 那么默认值就必须使用函数来返回
+                            type:Array,
+                            default:()=>([1,2])
+                        }
+                    },
+                    template:`
+                        <div>
+                            {{a}}
+                            {{b}}
+                            {{c}}
+                            {{arr}}
+                        </div>
+                    `,
+                }
+            }
+        })
+    </script>
+</body>
+</html>

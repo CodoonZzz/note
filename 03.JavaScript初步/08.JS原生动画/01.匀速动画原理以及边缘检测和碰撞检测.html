@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    div {
+      width: 100px;
+      height: 100px;
+      background: rgb(184, 11, 47);
+      position: absolute;
+    }
+
+    #box1 {
+      top: 0;
+      left: 0;
+    }
+
+    #box2 {
+      top: 50%;
+      left: 70%
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box1"></div>
+  <div id="box2"></div>
+  <script type="text/javascript">
+    var oBox1 = document.getElementById('box1')
+    var oBox2 = document.getElementById('box2')
+    // 有几个div就写几个对象
+    // 使每个div有自己的速度，否则速度改变 多个div速度同时改变
+    // 也使每个div有自己的中心坐标
+    var oDiv_box1 = {
+      att: oBox1,
+      speedX: 1,
+      speedY: 1,
+      width: parseInt(getComputedStyle(oBox1).width),
+      height: parseInt(getComputedStyle(oBox1).height)
+    }
+    var oDiv_box2 = {
+      att: oBox2,
+      speedX: -1,
+      speedY: 1,
+      width: parseInt(getComputedStyle(oBox2).width),
+      height: parseInt(getComputedStyle(oBox2).height)
+    }
+
+
+    //定义一个函数 让这个函数每执行一次使div的top和left都+1
+    function move(obj) {
+      fringe(obj)
+      obj.att.style.top = ((parseInt(getComputedStyle(obj.att).top)) + obj.speedY) + "px"
+      obj.att.style.left = ((parseInt(getComputedStyle(obj.att).left)) + obj.speedX) + "px"
+    }
+
+    //边缘检测
+    function fringe(obj) {
+      // 如果div的top大于了整个窗口的高减去div的高，那么就让纵向速度*-1
+      // 当然 如果div的top小于了0 也让他纵向速度*-1
+      // 横向同理
+      if (parseInt(getComputedStyle(obj.att).top) > (parseInt(innerHeight) - parseInt(getComputedStyle(obj.att).height)) || parseInt(getComputedStyle(obj.att).top) < 0) {
+        obj.speedY *= -1
+      }
+      if (parseInt(getComputedStyle(obj.att).left) > (parseInt(innerWidth) - parseInt(getComputedStyle(obj.att).width)) || parseInt(getComputedStyle(obj.att).left) < 0) {
+        obj.speedX *= -1
+      }
+    }
+
+    // 碰撞检测
+
+    function collide(obj1, obj2) {
+      // 实时获取物体的中心位置
+      var obj1_centreX = parseInt(getComputedStyle(oBox1).left) + (parseInt(getComputedStyle(oBox1).width) / 2);
+      var obj1_centreY = parseInt(getComputedStyle(oBox1).top) + (parseInt(getComputedStyle(oBox1).height) / 2);
+      var obj2_centreX = parseInt(getComputedStyle(oBox2).left) + (parseInt(getComputedStyle(oBox2).width) / 2);
+      var obj2_centreY = parseInt(getComputedStyle(oBox2).top) + (parseInt(getComputedStyle(oBox2).height) / 2);
+      // 一旦两中心X坐标的差小于两个物体宽度的一半且Y轴同样情况下 让两个速度*-1
+      if (Math.abs(obj1_centreX - obj2_centreX) < ((obj1.width + obj2.width) / 2)&&Math.abs(obj1_centreY - obj2_centreY) < ((obj1.height + obj2.height) / 2)){
+        obj1.speedX*=-1
+        obj2.speedX*=-1
+      }
+    }
+    //执行
+    setInterval('move(oDiv_box1)', 1)
+    setInterval('move(oDiv_box2)', 1)
+    setInterval('collide(oDiv_box1,oDiv_box2)',1)
+  </script>
+</body>
+
+</html>

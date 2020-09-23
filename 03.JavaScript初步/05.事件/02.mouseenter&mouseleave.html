@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .box1,.box3{
+            width: 400px;
+            height: 400px;
+            background: #99c4ff;
+            float: left;
+            margin: 20px 20px;
+        }
+        .box2,.box4{
+            width: 200px;
+            height: 200px;
+            background: #8A2BE2;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <div class="box2"></div>
+    </div>
+    <div class="box3">
+        <div class="box4"></div>
+    </div>
+    <script>
+        var oBox1 = document.getElementsByClassName('box1')[0]
+        var oBox3 = document.getElementsByClassName('box3')[0]
+        oBox1.onmouseover = function () {
+            console.log('onmouseover');
+        }
+        oBox1.onmouseout = function () {
+            console.log('onmouseout');
+        }
+        // 根据实践可看到在进入box1时并无异常
+        // 但进入box2的时候就执行了一次over与out事件
+        // 这是因为冒泡原理子元素中又触发了一次父亲的事件
+        // 如果使用enter与leave就不会有这种情况
+        oBox3.onmouseenter = function () {
+            console.log('onmouseenter');
+        }
+        oBox3.onmouseleave = function () {
+            console.log('onmouseleave');
+        }
+    </script>
+</body>
+</html>

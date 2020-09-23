@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <com1 :msg="msg"></com1>
+<!--        在这里要说的是 上一个案例说的明白 这里的属性名msg是com1组件里需要注册的属性-->
+<!--        而这里的属性值可以是该组件父亲的数据，也可以为一个字符串-->
+<!--        所以这里的属性名前面的冒号不是一定需要打的-->
+<!--        如果属性值是一个表达式或者是父组件中的数据 则需要输入冒号 如果仅仅为一个字符串则不需要打-->
+<!--        例如：上面输出的就是data中msg的数据 而下面输出的就是msg这个字符串-->
+<!--        但是需要注意的是 不论后面的属性值是否是字符串 是否是父组件中的数据-->
+<!--        既然在组件标签上以属性名的方式出现 就必须在组件props中注册 不然是不能显示的-->
+        <com1 msg="msg"></com1>
+
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                msg:"这是父组件的msg"
+            },
+            components:{
+                com1:{
+                    // 而在这里的{{msg}}指的是props中的属性名
+                    // 具体msg等于什么 就要看在组件标签上的属性等于什么
+                    template:`
+                        <div>{{msg}}</div>
+                    `,
+                    props:["msg"]
+                    // 这里的:msg 在组件中的props中注册 事实上 就相当与组件中的data
+                    // props与data是等价的
+                }
+            }
+        })
+    </script>
+</body>
+</html>

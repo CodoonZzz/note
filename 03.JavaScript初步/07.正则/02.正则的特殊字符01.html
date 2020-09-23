@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+    //.可以匹配换行符之外任意字符
+    console.log(/.b/gi.test('aabc'),'aabc'.match(/.b/));
+
+    //n+匹配至少一个 n 的字符串。
+    console.log(/g+/gi.test('good'),'good'.match(/g+/));
+
+    //n*匹配零个或多个 n 的字符串。
+    console.log(/g*/gi.test('good'),'good'.match(/g*/));
+
+    //n?匹配零个或一个 n 的字符串。
+    console.log(/g?/gi.test('good'),'good'.match(/g?/));
+  </script>
+</body>
+</html>

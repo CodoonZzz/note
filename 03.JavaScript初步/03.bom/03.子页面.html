@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button type="button" id="opener">按钮</button>
+		<script type="text/javascript">
+			var oPener = document.getElementById('opener')
+			oPener.onclick = function(){
+				//opener就是父窗口的window对象
+				opener.document.write("子窗口写出来的")
+			}
+		</script>
+	</body>
+</html>

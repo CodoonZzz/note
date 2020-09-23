@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//冒泡排序:依次两两比较,将较大者换在较小者之后,使得将最大者放在数组最后面,再使用此方法使得第二小放在倒数第二位,以此类推
+			var arr = [7,85,41,21,11,22336,1255,1,2,14,521,42]
+			for(var i=0;i<arr.length;i++){
+				for (var j=0;j<arr.length-i-1;j++) {
+						if (arr[j]>arr[j+1]) {
+							var x = arr[j+1]
+							arr[j+1] = arr[j]
+							arr[j] = x
+						}
+					}
+				}
+			console.log(arr)
+			
+			//选择排序:让第一位数字依次和所有数字比较若出现较小者与第一位换位置,再让新的第一位数接着和后面比较出现相同情况后将两者呼唤
+			//         使得将数组中最小的数字放在第一位,再让第二位用相同的方法比较出第二小的数字,以此类推
+			var arr1 = [7,85,41,21,11,2,66,12,1]
+			for(var i=0;i<arr1.length-1;i++){
+				for(var j=i+1;j<arr1.length;j++){
+					if(arr1[i]>arr1[j]){
+						var x = arr1[j]
+						arr1[j] = arr1[i]
+						arr1[i] = x
+					}
+				}
+			}
+			console.log(arr1)
+		</script>
+	</body>
+</html>

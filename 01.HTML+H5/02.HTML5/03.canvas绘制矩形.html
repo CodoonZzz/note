@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="canvas" width="500px" height="300px"></canvas>
+		
+		<script type="text/javascript">
+				var ocanvas = document.getElementById('canvas')
+				var ocontext = ocanvas.getContext('2d')
+				ocontext.fillStyle = 'black'
+				ocontext.strokeStyle = 'white'
+				ocontext.lineWidth = 5
+				ocontext.fillRect(0,0,500,300)
+				ocontext.strokeRect(100,100,200,100)
+				ocontext.strokeRect(150,150,200,100)
+		</script>
+	</body>
+</html>

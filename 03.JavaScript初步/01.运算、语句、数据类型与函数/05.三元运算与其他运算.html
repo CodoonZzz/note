@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			if (3>1) {
+				console.log('aa')
+			} else{
+				console.log('bb')
+			}
+
+			// 三元运算符： ?: 与if相类似
+			var x = 3>1?"aa":"bb";
+			console.log(x)
+			// 两个输出均一样 三元运算也可以用if语句写
+
+
+			// ，运算符
+			var a = (10,20)
+			console.log(a);	// 20
+			a = (a++,a++)
+			console.log(a);	// 21
+			// 逗号运算符就是依次运算
+			// 第一个赋值分别按顺序让赋值给a了10 20 所以在第一次输出a为20
+			// 而第二个赋值分别两次a++
+			// 虽然第一个式子本身为20不变 此时运算后赋值给a还为20 但在运算完成后a变为了21
+			// 然后再执行一次a++ 而这时算式结果为21 赋值给了a 虽然运算完成后a自加后变成了22 但并未赋值给变量a
+			// 所以a最后的结果为21
+		</script>
+	</body>
+</html>

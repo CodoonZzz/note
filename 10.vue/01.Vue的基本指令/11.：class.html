@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+    <style>
+        .red{
+            color: red;
+        }
+        .fontSize{
+            font-size: 50px;
+        }
+        .thin{
+            font-weight: 100;
+        }
+
+        .dv{
+            text-decoration: black overline;
+        }
+        .df{
+            text-decoration: black underline;
+        }
+        .active{
+            letter-spacing: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+<!--        使用vue绑定clss属性 值需要用中括号和引号来表示-->
+        <p :class="['red','fontSize','thin',flag?'dv':'df',{'active':flag}]">我是一个度拿了渔鸥</p>
+<!--        如果仅仅是这样 肯定不如原生写法简单，但是这样做的好处就是可以进行运算-->
+<!--        可以使用三元运算符来运算，这就体现了优势-->
+<!--        而在使用:class的时候我影响我们使用class -->
+<!--        :class在渲染时不会覆盖class 而是在class的值里使用空格追加了一个类名-->
+<!--        也可以嵌套对象-->
+
+<!--        也可以全部使用对象-->
+        <p :class="{active:true,red:true,fontSize:true}">我搜搜也可以</p>
+
+<!--        我们在为class绑定属性的时候 属性名也可以不写引号-->
+
+
+        <p :class="shuxing">这是第三段了</p>
+<!--        当然也可以把对象写在data里 然后直接引用-->
+
+
+
+        <p :style="[styleObj1,styleObj2]">这是第四段</p>
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                msg:'',
+                flag:true,
+                shuxing:{active:true,red:true,fontSize:true},
+                styleObj1:{color:'red','font-size':'60px'},
+                //除了和上述绑定类名的方法，使用style可以弄多个对象
+                //值得一说的是：如同font-size等带横线的键名，需要加上引号
+                styleObj2:{'text-decoration': 'black underline'}
+            }
+        })
+    </script>
+</body>
+</html>

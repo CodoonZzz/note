@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			console.log(location)
+			//location也是一个对象
+			//location可以看做浏览器上面的地址输入框
+			//location可以写作location或window.location或window.document.location这三者等效
+			
+			//location.hash 锚点 实现页内跳转
+			
+			console.log("端口号："+location.port)//port为端口号 浏览器默认的端口号为8080
+			console.log("ip："+location.hostname)
+			/*hostname是主机名 域名/IP 
+			域名相当于是给IP起了一个好记的名字,如果使用等同的ip打开的页面是相同的*/
+			console.log("ip+端口号："+location.host)//host是ip+端口
+			
+			console.log("url："+location.href)//href是整个URL
+			console.log("解码后url："+decodeURIComponent(location.href))//解码后看到自己加中文的URL
+			
+			console.log("路径："+location.pathname)//为路径
+			console.log("解码后路径："+decodeURIComponent(location.pathname))//解码后看到中文的路径
+			
+			console.log("协议："+location.protocol) //协议http为网络 file为本地
+			
+			console.log("search："+location.search) //查询字符串,正常下是没有的 代表URL中?后的部分
+
+		</script>
+	</body>
+</html>

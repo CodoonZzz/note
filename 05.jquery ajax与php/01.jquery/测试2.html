@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<template>
+    <div class='presentation'>
+        <div class="presentmain">
+            <div class="homepage">
+                <div class="homepage-img">
+                    <img src="../../assets/img/homePage1.png" />
+                </div>
+                <div class="homepage-content">
+                    <p class="homepage-content-name">{{patientInfo.name}} <span class="homepage-content-number">{{patientInfo.phone}}</span></p>
+                    <p class="homepage-content-date">{{patientInfo.surveyResultData}}</p>
+                </div>
+            </div>
+            <div style="page-break-before:right"></div>
+            <!--打印时的换行符-->
+            <div class="pr-cover">
+                <div class="pr-cover-title">
+                    <h1 class="pr-title-h1">
+                        <span class="pr-title-font">目录</span>
+                    </h1>
+                    <div class="pr-catalog-content">
+                        <p class="pr-catalog-piece">
+                            <span class="pr-catalog-piece-title">情况概论</span>
+                            <span class="pr-catalog-piece-pnumber pr-cover-catalog-number">001</span>
+                            <span class="pr-cover-catalog-line"></span>
+                        </p>
+                        <p class="pr-catalog-part">第一部分 错误排查</p>
+                        <div v-for="(errorScreenItem,index) in errorScreen"
+                             :key="index + 'errorScreenItem'">
+                            <p class="pr-catalog-section">第{{computedSection(index)}}章 {{errorScreenItem.errorCheckingCategoryName}}</p>
+                            <p class="pr-catalog-piece"
+                               v-for="(subCategories,childIndex) in errorScreenItem.subCategories"
+                               :key="childIndex+'subCategories'">
+                                <span class="pr-catalog-piece-title">{{(index+1)+'.'+(childIndex+1) +' ' +subCategories.name}}</span>
+                                <span class="pr-catalog-piece-pnumber pr-cover-catalog-number">003</span>
+                                <span class="pr-cover-catalog-line"></span>
+                            </p>
+                        </div>
+                        <p class="pr-catalog-part">第二部分 纠正任务</p>
+                        <div v-for="(correctTaskItem,index) in correctTask"
+                             :key="index + 'correctTaskItem'">
+                            <p class="pr-catalog-piece">
+                                <span class="pr-catalog-piece-title">任务{{index+1}} {{correctTaskItem.name}}</span>
+                                <span class="pr-catalog-piece-pnumber pr-cover-catalog-number">003</span>
+                                <span class="pr-cover-catalog-line"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div style="page-break-before:right"></div>
+                <!--打印时的换行符-->
+                <!--        情况概览-->
+                <div class="overview">
+                    <div class="overview-title">
+                        <p>情况概览</p>
+                    </div>
+                    <div class="overview-img">
+                        <img src="../../assets/img/overview-red.png"
+                             v-if="patientInfo.controlCancerGrade<60" />
+                        <img src="../../assets/img/overview-green.png"
+                             v-if="patientInfo.controlCancerGrade>=60" />
+                        <div class="overview-img-score">
+                            <p class="overview-score">{{patientInfo.controlCancerGrade}} <span class="score">分</span></p>
+                        </div>
+                    </div>
+                    <div class="overview-content">
+                        <p class="overview-content-title">控癌得分</p>
+                        <p class="overview-content-article">控癌得分是对您控癌能力的量化描述，满分为100分。该分值越高代表您平时省会中的行为正确性越高，反之则代表行为正确性越低。</p>
+                    </div>
+                    <div class="overview-error">
+                        <p class="overview-error-title">
+                            错误情况概览
+                        </p>
+                        <div class="overview-error-content"
+                             v-for="(overviewItem,overviewIndex) in errorScreen"
+                             :key="overviewIndex+'overviewItem'">
+                            <div class="overview-error-img">
+                                <img src="../../assets/img/life.png"
+                                     v-if="overviewItem.errorCheckingCategoryName === '生活基本行为'" />
+                                <img src="../../assets/img/everyday.png"
+                                     v-else-if="overviewItem.errorCheckingCategoryName === '日常活动行为'" />
+                                <img src="../../assets/img/environment.png"
+                                     v-else-if="overviewItem.errorCheckingCategoryName === '环境相关行为'" />
+                                <img src="../../assets/img/coordinate.png"
+                                     v-else-if="overviewItem.errorCheckingCategoryName === '配合治疗行为'" />
+                                <img src="../../assets/img/perceive.png"
+                                     v-else-if="overviewItem.errorCheckingCategoryName === '重要认知行为'" />
+                                <img src="../../assets/img/health.png"
+                                     v-else-if="overviewItem.errorCheckingCategoryName === '保健品服用行为'" />
+                                <img src="../../assets/img/default.png"
+                                     v-else />
+                            </div>
+                            <div class="overview-error-action">
+                                <p style="font-size: 16px;font-weight: bold;padding-bottom: 5px">{{overviewItem.errorCheckingCategoryName}}</p>
+                                <p style="color: #636071!important;font-size: 12px">错误比： <span>{{overviewItem.errorRatio}}%</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="page-break-before:right"></div>
+                    <!--打印时的换行符-->
+                    <div class="overview-content">
+                        <p style="font-size: 20px;font-weight: bold;letter-spacing: 4px">重要说明</p>
+                        <p>本手册根据您的肿瘤类型、病程、治疗阶段、身体状况、共病情况、个体偏好六大维度信息专门定制。在手册中基于您的各种行为进行了适用性判断。</p>
+                        <p>肿瘤个体间差异大，同样的纠正方法对您是正确的，但对其他病友可能是错误的，因此请勿依据此手册中的内容知道他人。</p>
+                    </div>
+                </div>
+            </div>
+            <div style="page-break-before:right"></div>
+            <!--打印时的换行符-->
+            <div class="firstPart">
+                <div class="firstPart-img">
+                    <img src="../../assets/img/firstPart.png" />
+                    <p>第一部分<br>
+                        错误排查</p>
+                </div>
+                <div style="page-break-before:right"></div>
+                <!--打印时的换行符-->
+                <div class="chapter-one"
+                     v-for="(partItem,partIndex) in errorScreen"
+                     :key="partIndex+ 'partItem'">
+                    <div style="page-break-before:right"></div>
+                    <!--打印时的换行符-->
+                    <div class="chapter-one-title">第{{computedSection(partIndex)}}章&nbsp;&nbsp;&nbsp;{{partItem.errorCheckingCategoryName}}</div>
+                    <div class="chapter-one-img">
+                        <ul>
+                            <li class="graphical graphical-title">图示说明</li>
+                            <li class="graphical">
+                                <img src="../../assets/img/right.png" />
+                                <p>代表 您当前的行为/认知适合您的情况，需要您继续保持。</p>
+                            </li>
+                            <li class="graphical">
+                                <img src="../../assets/img/exclamation.png" />
+                                <p>代表 您当前的行为/认知不完全适合您的情况，需要您纪实完善。</p>
+                            </li>
+                            <li class="graphical">
+                                <img src="../../assets/img/error.png" />
+                                <p>代表 您当前的行为/认知不适合您的情况，需要您及时纠正。</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 餐次安排-->
+                    <div class="meal"
+                         v-for="(subCategories,childIndex) in partItem.subCategories"
+                         :key="childIndex+'subCategories'">
+                        <div class="meal-title">
+                            {{(partIndex+1)+'.'+(childIndex+1) +' ' +subCategories.name}}
+                        </div>
+                        <div class="meal-content">
+                            <div class="meal-content-part"
+                                 v-for="(resultItem,resultIndex) in subCategories.errorCheckingResults"
+                                 :key="resultIndex+'resultItem'">
+                                <p class="part-title"
+                                   :class="{abnormal:resultItem.grade === 'abnormal',normal:resultItem.grade === 'normal',insufficient:resultItem.grade === 'insufficient'}">
+                                    <img src="../../assets/img/error.png"
+                                         v-if="resultItem.grade === 'abnormal'"
+                                         height="20"
+                                         width="20" />
+                                    <img src="../../assets/img/right.png"
+                                         v-if="resultItem.grade === 'normal'"
+                                         height="20"
+                                         width="20" />
+                                    <img src="../../assets/img/exclamation.png"
+                                         v-if="resultItem.grade === 'insufficient'"
+                                         height="20"
+                                         width="20" />
+                                    &nbsp;{{resultItem.name}}
+                                </p>
+                                <p class="part-content">
+                                    <span class="black">排查意义： </span> {{resultItem.checkingSignificance}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="page-break-before:right"></div>
+            <!--打印时的换行符-->
+            <!--      第二部分-->
+            <div class="secondPart">
+                <div class="secondPart-home">
+                    <img src="../../assets/img/second.png"
+                         width="100%" />
+                    <p>第二部分<br>
+                        纠正任务</p>
+                </div>
+                <div style="page-break-before:right"></div>
+                <!--打印时的换行符-->
+                <div class="secondPart-correct">
+                    <div class="secondPart-correct-title">
+                        纠正任务部分
+                    </div>
+                    <div class="plan"
+                         v-for="(correctTaskListItem,index) in correctTask"
+                         :key="index + 'correctTaskListItem'">
+                        <p class="plan-title"><span><img src="../../assets/img/arrow.png"
+                                                         height="39"
+                                                         width="39" /></span>任务{{index+1}}
+                            <span class="important">重要性 &nbsp;
+                <img class="star" src="../../assets/img/solidStar.png" v-for="(item,index) in (correctTaskListItem.taskImportance)" :key="index"><img class="star" src="../../assets/img/hollowStar.png" v-for="(item,index) in (5 - correctTaskListItem.taskImportance)" :key="index">
+                                <!--                <img v-if="correctTaskListItem.taskImportance===5"-->
+                                <!--                     src="../../assets/img/5star.png"-->
+                                <!--                     height="18" />-->
+                                <!--                <img v-if="correctTaskListItem.taskImportance===4"-->
+                                <!--                     src="../../assets/img/4star.png"-->
+                                <!--                     height="18" />-->
+                                <!--                <img v-if="correctTaskListItem.taskImportance===3"-->
+                                <!--                     src="../../assets/img/3star.png"-->
+                                <!--                     height="18" />-->
+                                <!--                <img v-if="correctTaskListItem.taskImportance===2"-->
+                                <!--                     src="../../assets/img/2star.png"-->
+                                <!--                     height="18" />-->
+                                <!--                <img v-if="correctTaskListItem.taskImportance===1"-->
+                                <!--                     src="../../assets/img/1star.png"-->
+                                <!--                     height="18" />-->
+              </span>
+                        </p>
+                        <div class="plan-part">
+                            <p class="plan-part-title"><span class="square"></span>&nbsp;&nbsp;{{correctTaskListItem.name}}</p>
+                            <div class="plan-content">
+                                <p class="plan-correct"><span class="black">改正意义：</span>{{correctTaskListItem.correctiveSignificance}}</p>
+                                <div class="plan-way">
+                                    <p class="plan-way-title"><span class="circle"></span>&nbsp;具体改正方法</p>
+                                    <div class="way-content"
+                                         v-for="(resultsItem,resultsIndex) in correctTaskListItem.correctivePlanResults"
+                                         :key="resultsIndex + 'resultsItem'">
+                                        <p class="plan-specific">
+                                            <span class="square1"></span>{{resultsItem.description}}
+                                            <span v-show="resultsItem.taskEnclosure.type === 'picture'"
+                                                  class="plan-specific-img"><img :src="resultsItem.taskEnclosure.url"
+                                                                                 width="491" /></span>
+                                            <span class="plan-specific-erweima"
+                                                  v-show="resultsItem.taskEnclosure.type === 'vedio'">
+                        <div :id="'qrcode'+index+resultsIndex"
+                             class="qrcode"></div>
+                      </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    import QRCode from 'qrcodejs2';
+    import comFun from '../../common/function';
+    import '../../assets/css/downloadReport.css';
+    export default {
+        data () {
+            return {
+                patientInfo: {
+                    id: '',
+                    name: '',
+                    phone: '',
+                    surveyResultData: '',
+                    controlCancerGrade: ''
+                },
+                errorScreen: [
+                    // {
+                    //   name: '',
+                    //   second: [
+                    //     {
+                    //       name: ''
+                    //     }
+                    //   ]
+                    // }
+                ],
+                correctTask: [
+                    // {
+                    //   name: '',
+                    //   second: [
+                    //     {
+                    //       name: ''
+                    //     }
+                    //   ]
+                    // }
+                ]
+            };
+        },
+        components: {
+            // 'prompt': prompt
+        },
+        created () {
+            var title = { 'onelevel': '患者档案', 'twolevel': '患者方案', 'threelevel': '打印店员版PDF文档' };
+            this.$emit('childByValue', title);
+            this.patientInfo.id = this.$route.query.id;
+            this.getReportData();
+        },
+        mounted () {
+            // this.useqrcode();
+        },
+        methods: {
+            useqrcode (id, url) {
+                let qrcode = new QRCode(id, {
+                    width: 132,
+                    height: 132,
+                    text: url, // 二维码地址
+                    colorDark: '#000',
+                    colorLight: '#fff'
+                });
+                console.log(qrcode);
+            },
+            preferredFoosd () {
+                let foods = {
+                    staple: ['甘薯','南瓜','杂豆类','赤小豆','绿豆'],
+                    beans: ['北豆腐','豆腐','豆腐脑'],
+                    aquatic: ['巴沙鱼','北极虾'],
+                    meat: ['鸽子肉','鸡翅','鸡肉']
+                };
+            },
+            // 中文章节计算
+            computedSection (num) {
+                switch (num) {
+                    case 0:
+                        return '一';
+                    case 1:
+                        return '二';
+                    case 2:
+                        return '三';
+                    case 3:
+                        return '四';
+                    case 4:
+                        return '五';
+                    case 5:
+                        return '六';
+                    case 6:
+                        return '七';
+                    case 7:
+                        return '八';
+                    case 8:
+                        return '九';
+                    case 9:
+                        return '十';
+                    default:
+                        return '十一';
+                }
+            },
+            // 获取报告信息
+            getReportData: async function () {
+                const data = await this.$api.programme.getClerkReportData({
+                    restParams: {
+                        patientSurveyResultId: this.patientInfo.id
+                    }
+                });
+                if (!comFun.errTip(data)) {
+                    return false;
+                }
+                if (data && data.errorCheckingCategories && data.correctivePlans) {
+                    this.renderPage(data);
+                }
+            },
+            renderPage (data) {
+                this.patientInfo['name'] = data.patientName;
+                this.patientInfo['phone'] = data.patientPhone;
+                this.patientInfo['surveyResultData'] = comFun.format(data.patientSurveyResultCompleteAt * 1000, 'yyyy-MM-dd');
+                this.patientInfo['controlCancerGrade'] = data.controlCancerGrade;
+                this.errorScreen = data.errorCheckingCategories;
+                this.errorScreen.forEach(item => {
+                    item['errorRatio'] = Math.round(item.errorCount / item.itemCount * 100);
+                });
+                this.correctTask = data.correctivePlans;
+                this.correctTask.sort((a, b) => {
+                    if (a.taskImportance === b.taskImportance) {
+                        if (a.taskDifficulty === b.taskDifficulty) {
+                            return a.taskScale - b.taskScale;
+                        } else {
+                            return a.taskDifficulty - b.taskDifficulty;
+                        }
+                    } else {
+                        return b.taskImportance - a.taskImportance;
+                    }
+                });
+                this.$nextTick(function () {
+                    this.correctTask.forEach((item, index) => {
+                        item.correctivePlanResults.forEach((childItem, childIndex) => {
+                            if (childItem.taskEnclosure.type === 'vedio') {
+                                this.useqrcode('qrcode' + index + childIndex, childItem.taskEnclosure.url);
+                            }
+                        });
+                    });
+                });
+            }
+        }
+    };
+</script>
+
+<style scoped>
+    .qrcode {
+        display: inline-block;
+    }
+    .qrcode img {
+        width: 132px;
+        height: 132px;
+        background-color: #fff;
+        padding: 6px;
+    }
+    .homepage {
+        width: 100%;
+        /*min-height: 1000px;*/
+        background-image: url('../../../src/assets/img/homePage1.png');
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        position: relative;
+    }
+    .homepage-img {
+        width: 100%;
+        height: auto;
+    }
+    .homepage-img img {
+        width: 100%;
+        height: auto;
+    }
+    .homepage-content {
+        position: absolute;
+        width: 70%;
+        height: 120px;
+        margin: 0 auto;
+        top: 560px;
+        left: 15%;
+        padding: 16px 18px;
+        border: 2px #ddd solid;
+        border-radius: 10px;
+        font-size: 23px;
+    }
+    .homepage-content-name {
+        display: block;
+        border-bottom: 2px #ddd solid;
+        line-height: 46px;
+        text-indent: 5px;
+        font-weight: bold;
+        letter-spacing: 3px;
+    }
+    .homepage-content-number {
+        float: right;
+        font-weight: normal;
+        letter-spacing: 0.5px;
+    }
+    .homepage-content-date {
+        float: right;
+        letter-spacing: 0px;
+        line-height: 46px;
+        font-size: 18px;
+        font-weight: normal;
+    }
+    .pr-catalog-content {
+        width: 100%;
+        height: auto;
+        text-align: left;
+        padding: 20px 0;
+    }
+    .pr-catalog-part {
+        font-size: 25px;
+        font-weight: bold;
+        margin: 10px 0 10px;
+        padding: 0 8px;
+    }
+    .pr-catalog-section {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 10px 0 10px;
+        padding: 0 8px;
+    }
+    .pr-catalog-piece {
+        position: relative;
+        width: 100%;
+        height: 20px;
+        font-size: 14px;
+        margin: 10px 0 10px;
+        display: inline-block;
+        background: #fff !important;
+        overflow: hidden;
+    }
+    .pr-catalog-piece-title {
+        display: inline-block;
+        padding: 0 8px;
+        background: #fff;
+    }
+    .pr-catalog-piece-pnumber {
+        float: right;
+    }
+    .pr-cover-catalog-line {
+    }
+    /*情况概览*/
+    .overview {
+        width: 100%;
+        height: auto;
+        padding: 0 8px;
+        margin: 10px auto 30px;
+    }
+    .overview-title {
+        width: 100%;
+        border-bottom: 1px solid #000000;
+        font-size: 30px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        font-family: SourceHanSerifSC-Heavy;
+    }
+    .overview-img {
+        width: 200px;
+        height: 200px;
+        margin: 40px auto;
+        position: relative;
+    }
+    .overview-img img {
+        width: 100%;
+    }
+    .overview-img-score {
+        color: #fff;
+        font-size: 70px;
+        float: left;
+        line-height: 80px;
+    }
+    .overview-score {
+        display: inline-block;
+        width: 120px;
+        height: 80px;
+        position: absolute;
+        top: 65px;
+        left: 40px;
+        text-align: center;
+        color: #fff !important;
+    }
+    .score {
+        position: absolute;
+        right: -20px;
+        bottom: -30px;
+        font-size: 20px;
+        color: #fff !important;
+    }
+    .overview-content {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .overview-content-title {
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin: 10px;
+    }
+    .overview-content-article {
+        font-size: 14px;
+        line-height: 20px;
+    }
+    .overview-error {
+        width: 100%;
+        height: auto;
+        margin: 30px 0;
+        overflow: hidden;
+    }
+    .overview-error-title {
+        font-size: 17px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        padding-top: 50px;
+    }
+    .overview-error-content {
+        width: 45%;
+        height: 80px;
+        float: left;
+        margin: 10px;
+        padding: 10px;
+        border: 2px solid #e4e3e3;
+        border-radius: 5px;
+    }
+    .overview-error-img {
+        width: 30%;
+        float: left;
+    }
+    .overview-error-img img {
+        width: 55px;
+    }
+    .overview-error-action {
+        float: left;
+        margin: 3% 0 3% 20px;
+        width: 60%;
+        height: 80%;
+    }
+    .overview-content {
+        width: 100%;
+        height: auto;
+        text-align: left;
+        padding-top: 50px;
+    }
+    .overview-content h3 {
+        font-weight: bold;
+        margin: 20px 0;
+    }
+    .overview-content p {
+        margin: 10px 0;
+    }
+    .firstPart {
+        width: 100%;
+        min-height: 500px;
+        height: auto;
+    }
+    .firstPart-img {
+        width: 100%;
+        position: relative;
+    }
+    .firstPart-img img {
+        width: 100%;
+    }
+    .firstPart-img p {
+        position: absolute;
+        display: block;
+        text-align: right;
+        top: 400px;
+        right: 40px;
+        font-size: 55px;
+        font-weight: bold;
+        letter-spacing: 5px;
+    }
+    .chapter-one {
+        width: 100%;
+    }
+    .chapter-one-title {
+        width: 100%;
+        height: 40px;
+        font-size: 25px;
+        border-bottom: 1px solid #000;
+        font-weight: bold;
+        letter-spacing: 3px;
+    }
+    .chapter-one-img {
+        width: 100%;
+    }
+    .chapter-one-img ul {
+        list-style: none;
+        padding: 0;
+    }
+    .graphical {
+        position: relative;
+        margin: 10px 0;
+    }
+    .graphical-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    .graphical img {
+        width: 30px;
+    }
+    .graphical p {
+        position: absolute;
+        width: 80%;
+        top: 10px;
+        left: 50px;
+        line-height: 10px;
+    }
+    .meal {
+        margin: 50px 0;
+        width: 100%;
+        height: auto;
+    }
+    .meal-title {
+        width: 100%;
+        height: 56px;
+        font-size: 25px;
+        font-weight: bold;
+        border-bottom: 3px #b9becf dashed;
+        line-height: 56px;
+    }
+    .meal-content {
+        width: 100%;
+        margin: 20px 0;
+    }
+    .abnormal {
+        color: #f39827 !important;
+    }
+    .normal {
+        color: #8bc22c !important;
+    }
+    .insufficient {
+        color: #5e86c3 !important;
+    }
+    .part-title {
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        font-size: 16px;
+        background: #f5f5f7;
+    }
+    .part-content {
+        width: 100%;
+        margin: 20px 0;
+    }
+    .black {
+        font-weight: bold;
+    }
+    .secondPart {
+        width: 100%;
+        min-height: 500px;
+        height: auto;
+    }
+    .secondPart-home {
+        width: 100%;
+        height: auto;
+        position: relative;
+        background: #f3f8ea !important;
+    }
+    .secondPart-home p {
+        position: absolute;
+        display: block;
+        text-align: right;
+        top: 45%;
+        right: 40px;
+        font-size: 55px;
+        font-weight: bold;
+        letter-spacing: 5px;
+    }
+    .secondPart-correct-title {
+        width: 100%;
+        height: 40px;
+        font-size: 25px;
+        border-bottom: 1px solid #000;
+        font-weight: bold;
+        letter-spacing: 3px;
+        margin: 30px 0;
+    }
+    .plan {
+        width: 100%;
+        height: auto;
+        margin: 20px 0;
+    }
+    .plan-part {
+        width: 100%;
+        height: auto;
+        margin: 20px 0;
+    }
+    .plan-title {
+        display: block;
+        width: 100%;
+        height: 56px;
+        font-size: 25px;
+        font-weight: bold;
+        border-bottom: 2px #f2f3f7 solid;
+        line-height: 56px;
+    }
+    .plan-part-title {
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: 3px;
+        line-height: 20px;
+        margin: 20px 0;
+    }
+    .square {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        border: 1px solid #000;
+    }
+    .plan-correct {
+        width: 100%;
+        height: auto;
+        background: #f1f2f7;
+        padding: 8px;
+        margin: 20px 0;
+    }
+    .important {
+        text-align: right;
+        display: inline-block;
+        width: 40%;
+        font-size: 16px;
+        float: right;
+    }
+    .plan-way-title {
+        font-size: 16px;
+        color: #8cc32d !important;
+        margin: 20px 0;
+        font-weight: bold;
+    }
+    .circle {
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        border: 4px solid #8cc32d;
+        border-radius: 50%;
+    }
+    .way-content {
+        width: 100%;
+        overflow: hidden;
+    }
+    .plan-specific {
+        position: relative;
+        width: 96%;
+        height: auto;
+        float: right;
+        margin: 10px 0;
+    }
+    .square1 {
+        position: absolute;
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border: 1px solid #000;
+        top: 2px;
+        left: -25px;
+    }
+    .plan-specific-img {
+        display: inline-block;
+        width: 100%;
+        height: auto;
+        margin: 10px 0;
+    }
+    .plan-specific-img img {
+        width: 100%;
+    }
+    .plan-specific-erweima {
+        display: block;
+        width: 100px;
+        height: 100px;
+        margin: 10px 0;
+    }
+    .star{
+        margin: 0 2px;
+    }
+</style>
+
+</body>
+</html>

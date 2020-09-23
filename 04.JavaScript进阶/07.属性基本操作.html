@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        var obj  = {
+            username:'sxy',
+            age:18,
+            sex:'男'
+        }
+        Object.defineProperties(obj,{
+            adress:{
+                value:{
+                    home:'home',
+                    office:'office'
+                },
+                writable:true,
+                enumerable:true
+            },
+            ID:{
+                get:function () {
+                    return 201896102004
+                }
+            }
+        })
+
+        //对于一个对象我们可以有一下方法遍历
+        for ( i in obj){
+            console.log(i)
+        }
+
+        console.log(Object.keys(obj))
+
+        //对于检查一个对象是否有某个属性有下列方法
+        console.log('username' in obj)
+        console.log(obj.hasOwnProperty('age'))
+
+
+
+        //删除某个属性
+
+        delete obj.sex
+        console.log('sex' in obj)
+
+
+        //查询对象的特性
+        console.log(
+            Object.getOwnPropertyDescriptor(obj,'adress')
+        )
+
+
+        //也可以使用typeof来检测类
+        console.log(
+            typeof (obj.username)
+        )
+    </script>
+</body>
+</html>

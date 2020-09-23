@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function get(search,key){
+				//找出key第一次出现的位置
+				var start = search.indexOf(key)
+				//若没找到 直接结束函数
+				if (start==-1) {
+					return
+				} else{
+					//找到键值对结束的位置
+					var end = search.indexOf("&",start)
+					if(end==-1){
+						end = search.lenght
+					}
+				}
+				// 将字符串提取出来
+				var string = search.substring(start,end)
+				//再以"="分割字符串
+				console.log((string.split("="))[1]) 
+			}
+				var oSearch = "?username=111&password=123456"
+				get(oSearch,"username")
+				get(oSearch,"password")
+				
+		</script>
+	</body>
+</html>

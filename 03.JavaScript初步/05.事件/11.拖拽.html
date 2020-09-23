@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+        }
+        .box1{
+            background: #ffece5;
+            top: 0;
+            left: 0;
+            z-index: 9;
+        }
+        .box2{
+            background: #99c4ff;
+            top: 400px;
+            left: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <script>
+        oDiv_box1 = document.getElementsByClassName('box1')[0]
+        oDiv_box2 = document.getElementsByClassName('box2')[0]
+        //给需要拖拽的元素设定鼠标按下事件
+        oDiv_box1.onmousedown = function (event) {
+            event = event || window.event;
+            var X = event.offsetX
+            var Y = event.offsetY
+            //一定要给document绑定事件，因为如果给元素绑定一旦离开元素 那么就会事件脱离
+            document.onmousemove = function(event){
+                event = event || window.event;
+                oDiv_box1.style.left = (event.pageX - X) + 'px'
+                oDiv_box1.style.top = (event.pageY - Y) + 'px'
+            }
+            //然后写鼠标松开的事件，使松开的时候停止鼠标移动事件
+            //也需要给document绑定，因为如果一旦元素被另一个元素遮住，则不会触发该事件，也可使用z-index，但此方法也是一个可行的方案
+            document.onmouseup = function () {
+                document.onmousemove = null
+                // 在松开时也将该事件也取消一下，不然在其他地方只要鼠标松开，就会触发该事件
+                document.onmouseup = null
+            }
+
+            // 如果在执行事件时按住ctrl+a全选，再进行拖拽，会让拖拽功能异常
+            // 这本来是浏览器为了方便用户的一个功能，但是如果使用拖拽功能，这两个功能就会冲突
+            // 所以只需要在onmousedown的事件下阻止一下浏览器的默认行为就行了
+
+            return false
+        }
+    </script>
+</body>
+</html>

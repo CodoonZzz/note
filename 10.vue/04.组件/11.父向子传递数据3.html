@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+<!--        我们知道了 属性名有没有冒号 是要看后边的属性值是表达式还是一个字符串-->
+<!--        比如-->
+        <com1 :msg="msg" a="10" :b="10"></com1>
+<!--        可以看到 在a和b都+10的情况下 里面的内容则是1010和20-->
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                msg:'我是父组件的元素'
+            },
+            components:{
+                com1:{
+                    // 这里的属性名则是孙组件中的props属性
+                    // 后边的属性值则是该组件中的props属性
+                    template:`
+                        <div>
+                            <p>{{msg}}</p>
+                            <p>{{a+10}}</p>
+                            <p>{{b+10}}</p>
+                            <com2 :msg="msg" :a="a" :b="b"></com2>
+                        </div>
+                    `,
+                    props:['msg','a','b'],
+                    // 为子组件再建立一个子组件
+                    components:{
+                        com2:{
+                            template:`
+                                <span>{{msg}}<br>{{a+10}}<br>{{b+10}}</span>
+                            `,
+                            // 同样 我们需要使用props注册还有在这个组件的父组件的架构上添加我们这个组件的标签
+                            // 并使用属性来获取数据
+                            props:['msg','a','b'],
+                        }
+                    }
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

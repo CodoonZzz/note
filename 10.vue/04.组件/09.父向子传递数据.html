@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="box">
+    <com :com-msg="msg"></com>
+</div>
+<script>
+
+    new Vue({
+        el:'#box',
+        data:{
+            msg:'我是父组件的msg'
+        },
+        components:{
+            com:{
+                template:`
+                    <div>
+                        <p>{{comMsg}}</p>
+                        <child :child-msg="comMsg"></child>
+                    </div>
+                `,
+                // 经过测试 template是无法直接访问到组件中的data值的
+                // 所以我们在这里面需要添加一个新的属性props
+                // 这个属性是一个数组，里面定义了可为组件标签上添加的属性
+                // 这样的属性时可以访问到父组件data内容的
+                props:['comMsg'],
+                // 如果需要修改propMsg 修改data
+                // data是可读可写的 而propMsg是只可读
+                components: {
+                    // 如果子组件中还有子组件 那么孙组件需要获取 只能获取子组件中的数据
+                    child:{
+                        template: `
+                            <p>{{childMsg}}</p>
+                        `,
+                        props:['childMsg'],
+                        // 这里在写入后 我们需要到他的父组件如同刚才那样绑定这个属性即可
+                        // 这里注意！！！只有属性名与标签名遇到驼峰命名要修改为-为连接 其他不用修改
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            text-align: center;
+            font-size: 30px;
+            line-height: 200px;
+        }
+    </style>
+    <script src="jquery-1.12.2.js"></script>
+</head>
+<body>
+    <input type="button" id="showbtn" value="show">
+    <input type="button" id="hidebtn" value="hide">
+    <br>
+    <input type="button" id="slideDownbtn" value="slideDown">
+    <input type="button" id="slideUpbtn" value="slideUp">
+    <input type="button" id="slideTogglebtn" value="slideToggle">
+    <br>
+    <input type="button" id="fadeInbtn" value="fadeIn">
+    <input type="button" id="fadeOutbtn" value="fadeOut">
+    <input type="button" id="fadeTogglebtn" value="fadeToggle">
+    <br>
+    <input type="text" id="fadeToText" placeholder="请输入一个0-1的数字">
+    <input type="button" id="fadeTobtn" value="fadeToggle" placeholder="请输入一个0-1的数字">
+
+
+
+    <div class="box"> 我是一个盒子 </div>
+    <script>
+        $('#showbtn').click(function () {
+            $('div').show('slow')
+            // 显示：从左上角变大显示（display改为原有，长宽从0变大，透明度也从0到1）
+            // 参数可以填数字也可填字符串
+            // 数字则为毫秒数，字符串有三个分别为慢：slow 中等：normal 快速：fast
+        })
+
+        $('#hidebtn').click(function () {
+            $('div').hide('fast',function () {})
+            // 隐藏：从左上角变小隐藏（长宽一直缩小到0，透明度也从1到0，最后更改display为none）
+            // 参数可以填数字也可填字符串
+            // 数字则为毫秒数，字符串有三个分别为慢：slow 中等：normal 快速：fast
+            // 后面可加一个函数 在动画完成后执行
+        })
+
+        $('#slideUpbtn').click(function () {
+            $('div').slideUp('normal')
+            // 滑入：高度逐渐变小为0 display最后为none
+            // 参数可以填数字也可填字符串
+            // 数字则为毫秒数，字符串有三个分别为慢：slow 中等：normal 快速：fast
+        })
+
+        $('#slideDownbtn').click(function () {
+            $('div').slideDown('fast')
+            // 滑出：display改回 高度逐渐变大到之前状态
+            // 参数可以填数字也可填字符串
+            // 数字则为毫秒数，字符串有三个分别为慢：slow 中等：normal 快速：fast
+        })
+
+        $('#slideTogglebtn').click(function () {
+            $('div').slideToggle('normal')
+            // 切换滑出滑入
+            // 参数可以填数字也可填字符串
+            // 数字则为毫秒数，字符串有三个分别为慢：slow 中等：normal 快速：fast
+        })
+
+        $('#fadeInbtn').click(function () {
+            $('div').fadeIn('normal')
+            // 淡入出现：display改回，透明度出现从0到1
+            // 参数可以填数字也可填字符串
+            // 数字则为毫秒数，字符串有三个分别为慢：slow 中等：normal 快速：fast
+        })
+
+        $('#fadeOutbtn').click(function () {
+            $('div').fadeOut('normal')
+            // 淡出消失：透明度出现从1到0，display变为none
+            // 参数可以填数字也可填字符串
+            // 数字则为毫秒数，字符串有三个分别为慢：slow 中等：normal 快速：fast
+        })
+
+        $('#fadeTogglebtn').click(function () {
+            $('div').fadeToggle('normal')
+            // 切换淡出淡入
+            // 参数可以填数字也可填字符串
+            // 数字则为毫秒数，字符串有三个分别为慢：slow 中等：normal 快速：fast
+        })
+
+        $('#fadeTobtn').click(function () {
+            var val = $('#fadeToText').val()
+            if (val<1&&val>0) {
+                $('div').fadeTo('normal',val)
+            }else {
+                alert('输入无效数字')
+            }
+
+            // 指定透明度，在速度参数后可以写指定的透明度
+            // 参数可以填数字也可填字符串
+            // 数字则为毫秒数，字符串有三个分别为慢：slow 中等：normal 快速：fast
+        })
+    </script>
+</body>
+</html>

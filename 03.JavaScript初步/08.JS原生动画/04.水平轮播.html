@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .bigBox{
+            width: 590px;
+            height: 470px;
+            border: 5px solid #8A2BE2;
+            margin: 0 auto;
+            position: relative;
+            /*overflow: hidden;*/
+        }
+        .imgBox{
+            position: absolute;
+            left: -590px;
+        }
+        img{
+            float: left;
+        }
+        input{
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 48%;
+            z-index: 9;
+            background: #ADFF2F;
+            border: none;
+        }
+        .left{
+            left: 2%;
+        }
+        .right{
+            right: 2%;
+        }
+        ul{
+            position: absolute;
+            bottom: 2%;
+            left: 34%;
+        }
+        li{
+            background: #ADFF2F;
+            opacity: 0.8;
+            list-style: none;
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border: 1px solid #ADFF2F;
+            border-radius: 100%;
+            margin-left: 5px;
+        }
+        .red{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div class="bigBox">
+    <div class="imgBox">
+        <img src="img/c5f8ff41.jpg">
+        <img src="img/83f09614c35a937e.jpg!q90!cc_590x470.webp">
+        <img src="img/a2b61720d8dca910.jpg!q90!cc_590x470.webp">
+        <img src="img/bf4bc9f43013cbc8.jpg!q90!cc_590x470.webp">
+        <img src="img/d801fb5a42356652.jpg!q90!cc_590x470.webp">
+    </div>
+
+    <input type="button" value="<" class="left">
+    <input type="button" value=">" class="right">
+    <ul>
+        <li class="red"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+
+<script>
+    //将上一个HTML中封装好的动画函数拿过来使用
+    function animation(obj, property, target) {
+        clearInterval(obj.timer)
+        //给目标设置一个属性，使每次执行函数，清楚上个目标的定时器
+        obj.timer = setInterval(function () {
+            // 判断是否为透明度
+            if (property == 'opacity') {
+                // 由于parseInt的效果会将小于1大于0的小数直接取成0
+                // 所以如果属性为透明度 我们将透明度*100处理
+                var oStyle = parseInt(getComputedStyle(obj)[property] * 100)
+                target *= 100
+            } else {
+                //如果不是透明度就直接获取样式就好
+                var oStyle = parseInt(getComputedStyle(obj)[property])
+            }
+
+
+            // 设置速度：使得每帧的速率都是目标减去现在样式的三十分之一
+            // 使得这个变化速率会逐渐变小
+            var speed = (target - oStyle) / 30
+            //小BUG：速度可能小于1 这样在计算时会忽略小数点后的数字导致整体不变
+            if (speed > 0) {
+                speed = Math.ceil(speed)
+            } else {
+                speed = Math.floor(speed)
+            }
+            // 再次判断是否为透明度
+            if (property == 'opacity') {
+                // 如果是，把数值全部除以100以便下次使用或设置属性
+                target /= 100
+                obj.style[property] = (oStyle + speed) / 100
+                // 最后再判断是否达到目标
+                //如果达到目标，就让计时器停止
+                if (getComputedStyle(obj)[property] == target) {
+                    clearInterval(obj.timer)
+                }
+            } else {
+                // 如果不是，直接增加就好
+                obj.style[property] = oStyle + speed + 'px'
+                //这个IF与上边相同
+                if (parseInt(getComputedStyle(obj)[property]) == target) {
+                    clearInterval(obj.timer)
+                }
+            }
+        }, 5)
+    }
+
+    //-----------------------------------------------------------------------------------------------------
+    //    以下为轮播js
+    var oImgBox = document.getElementsByClassName('imgBox')[0]
+    var oImg = document.getElementsByTagName('img')
+    var oImg_width = parseFloat(getComputedStyle(oImg[0]).width)
+    var oLis = document.getElementsByTagName('li')
+
+
+
+    // 首先让图片盒子的长度等于图片总长度
+    for (var i=0;i<oImg.length;i++) {
+        oImgBox.style.width = parseInt(getComputedStyle(oImg[i]).width)+parseInt(getComputedStyle(oImgBox).width) +'px'
+    }
+    var num_next = 1
+
+    //然后将最后一张图片复制放在第一张图片之前，第一张图片复制放在最后一张图片之前
+    var last_img =  oImg[0].cloneNode(true)
+    var first_img =  oImg[oImg.length-1].cloneNode(true)
+    oImgBox.appendChild(last_img)
+    oImgBox.insertBefore(first_img,oImg[0])
+
+
+    //再来就是水平轮播的核心函数与初始化函数
+    function carousel() {
+        if (num_next==0){
+            num_next = oImg.length-2
+            oImgBox.style.left = -(oImg.length-1)*oImg_width + 'px'
+        }
+        if (num_next==oImg.length-1){
+            num_next = 1
+            oImgBox.style.left = 0 + 'px'
+        }
+        var move_left = -num_next*oImg_width
+        animation(oImgBox,'left',move_left)
+
+        //让小圆点始终和图片对应
+        for (var i=0;i<oLis.length;i++){
+            oLis[i].className = ''
+        }
+        oLis[num_next-1].className = 'red'
+    }
+
+
+    //按钮函数
+    var button_left = document.getElementsByTagName('input')[0]
+    var button_right = document.getElementsByTagName('input')[1]
+    button_right.onclick = function () {
+        num_next++
+        carousel(num_next)
+    }
+    button_left.onclick = function () {
+        num_next--
+        carousel(num_next)
+    }
+
+
+    // 自动轮播
+    var idd;
+    function auto() {
+        clearInterval(idd)
+        idd = setInterval(function(){
+            num_next++
+            carousel(num_next)
+        },3000)
+    }
+    auto()
+
+
+    //鼠标指向圆点移动轮播图
+    for (var i=0;i<oLis.length;i++){
+        // 循环与事件异步，我们将数据保存起来
+        oLis[i].index = i
+        oLis[i].onmouseover = function () {
+            num_next = this.index+1
+            carousel(num_next)
+        }
+    }
+
+    //然后让鼠标指向轮播图时停止计时器
+    var oBigBox = document.getElementsByClassName('bigBox')[0]
+    oBigBox.onmouseover = function () {
+        clearInterval(idd)
+    }
+
+    //鼠标移出轮播图时开始计时器
+    oBigBox.onmouseout = function () {
+        auto()
+    }
+</script>
+</body>
+</html>

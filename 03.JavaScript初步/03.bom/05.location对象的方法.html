@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button type="button" onclick="assing()">assing跳转</button>
+		<button type="button" onclick="reload()">reload重新加载</button>
+		<button type="button" onclick="repalce()">repalce用百度替换当前页面</button>
+		<script type="text/javascript">
+			function assing(){
+				location.assign("http://www.baidu.com")//实现跳转,与href相同
+			}
+			function reload(){
+				location.reload()
+				/*最有效的重新加载页面有可能缓存加载
+				参数可填true,强制加载,从服务器源头重新加载*/
+			}
+			function repalce(){
+				location.replace("http://www.baidu.com")//替换页面,可避免产生跳转前的历史记录(无返回键)
+			}
+		</script>
+	</body>
+</html>

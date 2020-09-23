@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            border: 2px solid black;
+            padding: 4px;
+            width: 1000px;
+            margin: 0 auto;
+        }
+        header{
+            background: #84D1FF;
+            border: 2px solid black;
+            height: 100px;
+        }
+        .main{
+            margin-top: 4px;
+            display: flex;
+        }
+        aside{
+            float: left;
+            background: #FFCBFD;
+            border: 2px solid black;
+            box-sizing: border-box;
+            flex: 2;
+        }
+        section{
+            margin-left: 4px;
+            border: 2px solid black;
+            float: left;
+            background: #CCD0FE;
+            flex: 8;
+        }
+        .clear{
+            clear: both;
+        }
+        .content{
+            border: 2px solid black;
+            margin: 4px;
+            height: 300px;
+            background: #01D1CB;
+        }
+        footer{
+            border: 2px solid black;
+            margin: 0 4px 4px;
+            height: 100px;
+            background: #FFCAC2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>header</header>
+        <div class="main">
+            <aside>
+                <ul>
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Menu</a></li>
+                    <li><a href="">Directions</a></li>
+                    <li><a href="">Contact</a></li>
+                </ul>
+            </aside>
+            <section>
+                righttcolumn
+                <div class="content">
+                    content
+                </div>
+                <footer>
+                    footer
+                </footer>
+            </section>
+            <div class="clear"></div>
+        </div>
+    </div>
+</body>
+</html>

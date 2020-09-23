@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+				我们规定函数所传参数与CSS选择器一致
+				#id      通过id获取元素节点
+				.class   通过class获取元素节点
+				tagname  通过标签名获取元素节点
+				name=xxx 通过name获取元素节点  
+			*/
+        function $(vArg) {
+            //首先对所传参数进行区分
+            switch (vArg[0]) {
+                case "#":
+                    return document.getElementById(vArg.substring(1))
+                    break;
+                case ".":
+                    //由于classname在IE的兼容问题,我们直接安保01中封装的函数也拿来使用
+                    return elementsByClassName(document, vArg.substring(1))
+                    break;
+                default:
+                    //剩下两种情况要对前五个字符进行判断
+                    var str = vArg.substring(0, 5)
+                    if (str == "name=") {
+                        return document.getElementsByName(vArg.substring(5))
+                    } else {
+                        return document.getElementsByTagName(vArg)
+                    }
+                    break;
+            }
+        }
+
+        function elementsByClassName(node, classStr) {
+            var oNode = node.getElementsByTagName('*')
+            var arr = []
+            for (var i = 0; i < oNode.length; i++) {
+                if (oNode[i].className == classStr) {
+                    arr.push(oNode[i])
+                }
+            }
+            return arr
+        }
+    </script>
+</body>
+
+</html>

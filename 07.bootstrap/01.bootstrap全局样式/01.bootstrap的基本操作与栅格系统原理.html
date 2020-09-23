@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--    这句话定义了页面以移动设备优先 响应式布局 要写在最前面 其他的紧跟其后-->
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        .row div{
+            border: 1px solid black;
+        }
+        /*媒体查询：*/
+        @media (max-width: 768px) {
+            .row div{
+                background: red;
+            }
+        }
+        @media (min-width: 768px ) and (max-width: 992px) {
+            .row div{
+                background: #8A2BE2;
+            }
+        }
+        @media (min-width: 992px) and (max-width: 1200px) {
+            .row div{
+                background: #00FFFF;
+            }
+        }
+        @media (min-width: 1200px) {
+            .row div{
+                background: #ADFF2F;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+<!--        container是一个容器样式，可以让该容器实现响应式 会根据屏幕的大小自动设置div的width-->
+<!--        bootstrap把屏幕分为四种-->
+<!--        超小屏幕 手机(<768px) 小屏幕 平板(>=768px)-->
+<!--        中等屏幕 桌面显示器(>=992px) 大屏幕 大桌面显示器(>=1200px)-->
+<!--        而container的最大宽度分别为none(自动) 750px 970px 1170px-->
+<!--        这是bootstrap为我们设置的长度 并且居中了-->
+<!--        如果我们需要长度为100% 则只需要将container换为container-fluid-->
+        <div class="row">
+<!--            .row指定了这个div为行 只能存在于container容器内-->
+
+<!--            在每一行 bootstrap将内容分为12等分-->
+<!--            又将在不同屏幕命名为（以下有需要加一个col-前缀）-->
+<!--            xs = 超小屏幕    sm = 小屏幕 平板    md = 中等屏幕 桌面显示器    lg = 大屏幕 大桌面显示器-->
+<!--            每个类名需要有col-前缀再加上屏幕的命名再加上一个数字 最高为12-->
+<!--            代表而你希望把当前元素在某个屏幕的当前行占多少等分-->
+<!--            其中xs是始终纵向排列的 其他都为 开始堆叠在一起 当大于这些阈值时变为水平排列-->
+<!--            又比如该元素在中等屏幕想占8格 而在平板上想占6格 则需要添加两个类名col-md-8 col-sm-6-->
+<!--            而且 会发现如果光设置在某个屏幕下的占格比 在不设置其他屏幕的占格比时也适用-->
+<!--            bootstrap帮我们在不设置某个屏幕下的占格比时会适用已设置的占格比-->
+<!--            如果我们特地设置了 就优先适用设置的占格比-->
+            <div class="col-md-1">col-md-1</div>
+            <div class="col-md-1">col-md-1</div>
+            <div class="col-md-1">col-md-1</div>
+            <div class="col-md-1">col-md-1</div>
+            <div class="col-md-1">col-md-1</div>
+            <div class="col-md-1">col-md-1</div>
+            <div class="col-md-1">col-md-1</div>
+            <div class="col-md-1">col-md-1</div>
+            <div class="col-md-1">col-md-1</div>
+            <div class="col-md-1">col-md-1</div>
+            <div class="col-md-1">col-md-1</div>
+            <div class="col-md-1">col-md-1</div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-xs-6">col-md-8</div>
+            <div class="col-md-4 col-xs-6">col-md-4</div>
+
+        </div>
+    </div>
+</body>
+</html>

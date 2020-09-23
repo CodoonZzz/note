@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-1.12.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container">
+<!--        千万不要在一个模态框上重叠另一个模态框。要想同时支持多个模态框，需要自己写额外的代码来实现。-->
+        <div class="modal" id="myModal">
+<!--            模态框的构成从外到内分别是-->
+<!--            .modal>.modal-dialog>.modal-content-->
+<!--            到这一步就可以写入内容了-->
+<!--            内容又分为头部身体信息-->
+<!--            分别为.modal-header modar-body modar-footer-->
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times</button>
+                        模态框
+                    </div>
+                    <div class="modal-body">
+                        <p>这是内容</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">保存</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // 对于一个静态模态框 我们需要使用底下的代码来让他显示
+        // modal是一个方法 里面写入show就是显示
+        // 但实际不会这样操作 会通过事件让模态框显示
+        $('#myModal').modal('show')
+        // 详细的方法可以去中文文档找 有详细的罗列
+    </script>
+</body>
+</html>

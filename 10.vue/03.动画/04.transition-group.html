@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+    <style>
+        li{
+            list-style: none;
+            border: 1px solid grey ;
+            padding: 5px;
+            margin: 5px;
+            width: 80%;
+        }
+        .v-enter,.v-leave-to{
+            opacity: 0;
+            transform: translateX(150px);
+        }
+        .v-enter-active,.v-leave-active{
+            transition: all 1s ease;
+        }
+        li:hover{
+            background: #00FFFF;
+            transition: all 1s linear;
+        }
+
+        /*加入删除之后我们其他元素都在等待这个元素删除后才会移动到新的位置*/
+        /*所以vue中使用了，.v-move和.v-leave-active设置绝对定位的方法来实现其他元素动画移动新位置*/
+        /*这是个固定写法 记下就行*/
+        .v-move{
+            transition: all 1s ease;
+        }
+        .v-leave-active{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        id:<input type="text" v-model="id">
+        name:<input type="text" v-model="name">
+        <input type="button" value="添加" @click="plus">
+<!--        <ul>-->
+<!--            在之前需要使用动画的时候不但在style需要设置-->
+<!--            而且需要在html中把需要设置动画的元素使用transition标签包起来-->
+<!--            但是如果元素是使用v-for动态渲染在页面的话就不能使用transition了-->
+<!--            需要使用transition-group-->
+
+<!--            如果需要在页面载入时，循环渲染出list中的数据时也使用动画-->
+<!--            就在transition-group中添加一个appear的属性-->
+
+<!--            由于transition-group在渲染时 会渲染成span标签-->
+<!--            这是vue的默认方式-->
+<!--            但是如同这个例子 在页面中渲染时在ul和li中间就会形成一个span标签-->
+<!--            这样显然不符合w3c的规范，所以vue也提供了修改默认渲染标签的属性tag-->
+<!--            我们让transition-group设置渲染成ul 把我们之前写的ul删掉就行了-->
+            <transition-group appear tag="ul">
+                <li v-for="(item,index) in list" :key="item.id" @click="del(index)">{{item.id}}---{{item.name}}</li>
+            </transition-group>
+<!--        </ul>-->
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                id:'',
+                name:'',
+                msg:'',
+                list:[
+                    {id:1,name:'林俊杰'},
+                    {id:2,name:'周杰伦'},
+                ],
+
+            },
+            methods:{
+                plus(){
+                    this.list.push({id:this.id,name:this.name})
+                    this.id=this.name=""
+                },
+                del(index){
+                    this.list.splice(index,1)
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

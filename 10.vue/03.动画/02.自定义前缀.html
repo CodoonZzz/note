@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+    <style>
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform: translateX(150px);
+        }
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 1s ease;
+        }
+
+        .my-enter,
+        .my-leave-to{
+            opacity: 0;
+            transform: translateY(150px);
+        }
+        .my-enter-active,
+        .my-leave-active{
+            transition: all 1s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="按钮" @click="flag=!flag">
+        <transition>
+            <p v-if="flag">我是一个段落</p>
+        </transition>
+
+        <hr>
+
+        <input type="button" value="按钮" @click="flag2=!flag2">
+<!--        对于多个动画，如果这样写 就会只执行一套动画效果 我们不需要使用一套动画效果-->
+<!--        vue中提供了可用方法 就是使用name定义前缀，默认为v- -->
+        <transition name="my">
+            <h3 v-if="flag2">我是一个h3</h3>
+        </transition>
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                flag:false,
+                flag2:false
+            }
+        })
+    </script>
+</body>
+</html>

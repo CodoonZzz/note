@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .box1,.box2{
+            position: relative;
+            display: inline-block;
+            margin: 100px;
+        }
+        .box1 p{
+            background: rgba(0,0,0,0.5);
+            color: white;
+            position: absolute;
+            width: 130px ;
+            bottom: 4px;
+            padding: 4px 8px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .imgOne,.imgTwo{
+            position: absolute;
+        }
+        .imgOne{
+            left: 0;
+            top: 0;
+        }
+        .imgTwo{
+            right: 0;
+            bottom: 0;
+        }
+        .box2{
+            border: 1px solid #cccccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <img src="p.jpg">
+        <p>鲜果缤纷...￥50</p>
+    </div>
+    <div class="box2">
+        <img src="top_tu.gif" class="imgOne">
+        <img src="br.gif" class="imgTwo">
+        <img src="adv.jpg">
+    </div>
+</body>
+</html>

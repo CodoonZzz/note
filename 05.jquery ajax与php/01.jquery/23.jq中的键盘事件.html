@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+    <style>
+        div{
+            height: 2000px;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+    <script>
+
+        $(document).on('keydown mousedown',function (event) {
+            // alert(event.keyCode)
+            // 在之前的原生代码中是这样写的
+            // 但是在JQ中event.which将event.keyCode 和 event.charCode标准化了，所以，推荐使用event.which
+            console.log(event.which);
+        })
+    </script>
+</body>
+</html>

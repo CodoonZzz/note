@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 在我们想要创建对象内属性大多都一样的时候 ，我们可以制造一个函数来帮助我们
+        
+        function factory(name,num) {
+            return {
+                username:name,
+                age:num,
+                country:'China'
+            }
+        }
+
+        var obj = new factory('sxy',22)
+        var obj2 = new factory('hxy',23)
+        console.log(obj,obj2)
+        //在这样的对象在构造时，会以模板来创建独立的对象
+        //这样他们互相独立即是优点，也是缺点
+        //若每个对象都有相同的属性值，那么每次创建都要创建一个相同的属性值，而且还都是互相独立
+        //这样就占内存了，所以为了解决这个问题，我们可以使用prototype
+        function factory1(name,num) {
+            // return {
+            //     username: name,
+            //     age:num
+            // }
+            this.username = name
+            this.num = num
+        }
+        //对于prototype只有函数才会有，如果以return创建对象，那么返回的只是一个对象
+        //所以需要使用this创建属性，对于this后面有详解
+        factory1.prototype.country = 'China'
+        var obj3 = new factory1('sxy',22)
+        var obj4 = new factory1('hxy',23)
+        console.log(obj4.country)
+        console.log(obj3.country)
+        factory1.prototype.country = 'CChhiinnaa'
+        console.log(obj4.country)
+        console.log(obj3.country)
+        //这样对应相同的属性修改就非常方便
+
+    </script>
+</body>
+</html>

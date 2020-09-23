@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        // parseInt是讲字符串转化为数字的一个方法
+        // 他可以从第一个不是0的数字起一直到不是数字的字符止 返回这个数字
+        console.log(parseInt('123'));  //123
+
+        // 他会自动忽略前面是0的数字
+        console.log(parseInt('0123'))   //123
+
+        // 如果是小数 则只会保留整数部分
+        console.log(parseInt('0.123'))   //0
+
+        // 而如果数字前面有非数字 那么会返回NaN
+        console.log(parseInt('x0123'))   //NaN
+
+        // 而数字后面若有非数字 则会忽略掉
+        console.log(parseInt('0123xxx'))   //123
+
+        // 而这个方法可以写两个参数 而第二个参数则是进制 可以写入2-36
+        // 一般省略就以10为进制 代表这个数字为几进制的数
+        // 这里写2 代表这个字符串是二进制数字 返回的数字还是十进制
+        console.log(parseInt('111',2))   //7
+
+        console.log(parseInt('011',8))   //9
+
+
+        // parseFloat()与parseInt()的用法差不多
+        // 但是float是识别小数的 他会保留小数后的数字 其他与parseInt差不多
+        console.log("--------------------");
+        console.log(parseFloat('123'));  //123
+
+        console.log(parseFloat('0123'))   //123
+
+        console.log(parseFloat('0.123'))   //0.123
+
+        console.log(parseFloat('x0123'))   //NaN
+
+        console.log(parseFloat('0123xxx'))   //123
+
+
+        // 需要注意的是 parseFloat不存在进制问题 所以他只有一个参数
+        console.log(parseFloat('111',2))   //111
+
+        console.log(parseFloat('011',8))   //11
+
+        console.log("--------------------");
+
+        // Number也可以将字符串转化为数字
+        // 字符串不能包含数字小数点以外的字符 否则返回NaN
+        console.log(Number("123")) //123
+
+        console.log(Number("123ss")) //NaN
+
+        // 特别的(例外) 如果放入布尔 那么会让true转化为1  false转化为0
+        //              如果为""空字符串 转化为0
+        // 但是上面两种方法却为NaN
+        console.log(Number(true)) //1
+        console.log(Number(false)) //0
+        console.log(Number("")) //0
+
+        console.log("--------------------");
+
+        // Boolean()可以将内容转化为布尔类型
+        // 只要不为空或为0 都为true 如为其一 则为false
+        // 注意"0"算字符串 不算数字0 所以为true
+        // 特别的：空格也算一个字符串 不算空
+        console.log(Boolean(0)) //false
+
+    </script>
+</body>
+</html>

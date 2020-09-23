@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: #ADFF2F;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <p>我是一个P</p>
+    </div>
+    <input type="button" value="克隆">
+    <div class="box2"></div>
+    <script>
+        //清空元素内部的方法
+        // $('.box1').html('')    这种办法原理是让元素的html变为空
+        // $('.box1').empty()     这种方法是直接有一个empty的方法让内容变为空
+        // $('.box1').remove()     这个是移除目标对象，当然也可以让里面的P标签remove
+
+
+
+        $('input').click(function () {
+            $('.box1>p').clone().css({color:'red'}).text('我是克隆出来的P').appendTo('.box2')
+        })
+    </script>
+</body>
+</html>

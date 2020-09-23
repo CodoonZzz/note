@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+<!--        我们如果想对一个子组件的根标签绑定事件 并且用父组件中的函数-->
+<!--        自然是不能直接在template下的div上绑定的-->
+<!--        我们需要对com1这个标签绑定 但是常规的方式是不行的 他会认为是一个子组件的属性绑定在了这个标签上-->
+        <com1 @click="fun"></com1>
+<!--        所以我们需要使用修饰符.native来申明 让事件绑定在子组件标签下的根标签上-->
+        <com1 @click.native="fun"></com1>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            methods:{
+                fun(){
+                    console.log('fun被调用')
+                }
+            },
+            components:{
+                com1:{
+                    template:`
+                        <div>
+                            <p>{{msg}}</p>
+                        </div>
+                    `,
+                    data(){
+                        return{
+                            msg:"我是子组件"
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

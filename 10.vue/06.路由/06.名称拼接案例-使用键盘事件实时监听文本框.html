@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="firstName" @keyup="show"> +
+    <input type="text" v-model="secondName" @keyup="show"> =
+    <h3 v-text="name"></h3>
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            firstName:'',
+            secondName:'',
+            name:''
+        },
+        methods:{
+            show(){
+                this.name = this.firstName+this.secondName
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<!--index.wxml-->
+<view class="container">
+  <button type="primary" size="default" id="primary" disabled="{{disabled}}" loading="{{loading}}"> primary </button>
+  <button type="warn" id="warn" disabled="{{disabled}}" loading="{{loading}}"> warn </button>
+  <button id="buttonOne" bindtap="change">设置按钮是否禁止点击</button>
+  <button id="buttonTwo" bindtap="change">设置按钮是否loading</button>
+</view>

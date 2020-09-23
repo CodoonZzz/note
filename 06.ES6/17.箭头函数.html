@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 箭头函数的写法：
+    // var/let 函数名 = (形参) => {函数体}
+    // 特别的：如果形参或函数体只有一个或一行代码，则可以省略小括号或花括号，一般带上
+    //         如果是只需要返回一个值或者数据，只需要写该数据即可
+    // 比如：
+    var fn = v=> v
+    // 等同于：
+    // var fn = function(v){
+    //     return v
+    // }
+    console.log(fn(1)) // 1;
+
+
+    // 箭头函数中this指向问题
+    // 在es5中方法中的this 谁调用就指向谁
+    // 也就是说 this 会指向执行时的作用域而跟定义时无关
+    // 而在es6中 使用箭头函数 this会在定义时就确定好了作用域，与执行无关
+    // 如：
+    var name = 'window'
+    var obj = {
+        name:'sxy',
+        foo:()=>{console.log(this.name);}
+    }
+    obj.foo() // window
+    // 这里可以看到 用箭头函数此时this指向的是全局name
+    // 因为对象的写法实际上是这样的：
+    // var obj = {}
+    // obj.foo = ()=>{console.log(this.name)}
+    // 这样的话 显而易见，this是指向全局的
+
+    // 如果有这样的情况：
+    var oo = {
+        name:'sxy',
+        fn:function () {
+            setTimeout(()=>{console.log(this.name),1000})
+        }
+    }
+    oo.fn() // 'sxy'
+    // 因为如果我们在fn的函数内部打印this 那么很明显 此时oo调用fn 那么this就指向fn
+    // 所以settimeout内部的箭头函数受function的影响 this指向了对象
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .box{
+            width: 400px;
+            background: #00FFFF;
+        }
+        .child{
+            width: 200px;
+            height: 200px;
+            background: #8A2BE2;
+            float: left;
+        }
+        /*这里就不做演示 直接以下面的结构说明几种清除浮动的方法*/
+
+        .box{
+            /*一：父元素加入固定的高*/
+            /*缺点：一般做网页是不会给父元素加入固定的高度的*/
+            height: 400px;
+            /*二：为父元素加入超出隐藏*/
+            /*缺点：这个不能和定位一起使用 定位的元素被隐藏掉*/
+            overflow: hidden;
+        }
+        /*三：在父元素的末尾加入一个div div的样式如下写*/
+        .clear{
+            clear: both;
+            /*缺点：我们在父元素的结尾加入了一个新的div 这样会影响整体结构*/
+        }
+        /*四：使用伪类在父元素使用after加入清除浮动的样式代码*/
+        /*缺点：代码复杂 而且不兼容67ie 所以要再加上*zoom：1这样的样式来兼容ie67*/
+        /**表示只有ie67才识别的属性*/
+        .box:after{
+            content: "clear";
+            clear: both;
+            display: block;
+            height: 0;
+            visibility: hidden;
+        }
+        .box{
+            *zoom: 1;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="child"></div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

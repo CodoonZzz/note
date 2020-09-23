@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function person() {
+            this.name = name
+        }
+        person.prototype.head = 1
+
+        var p = new person('sxy')
+        console.log(p.hasOwnProperty('name'))
+        console.log(p.hasOwnProperty('head'))
+        // 在07中介绍了这个用法，但是有上面的代码可知
+        // 这个方法只能看该属性是否在对象本身，而不能在原型链上去查找
+
+        console.log(person.prototype.isPrototypeOf(p))
+        //这个方法是检测前面的原型对象是否为后面的原型
+
+        console.log(Object.getPrototypeOf(p))
+        //该方法就是得到某个对象的原型对象
+
+        function child() {
+            
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width: 350px;
+            height: 350px;
+            border: 1px solid #000;
+            margin: 200px;
+            position: relative;
+        }
+        #big{
+            width: 400px;
+            height: 400px;
+            border: 1px solid #000;
+            overflow: hidden;
+            position: absolute;
+            top:0;
+            left : 360px;
+            display: none;
+        }
+        #mask{
+            width: 175px;
+            height: 175px;
+            background: paleturquoise;
+            position: absolute;
+            left:0;
+            top: 0;
+            opacity: 0.3;
+            display: none;
+            cursor: move;
+        }
+        #small{
+            position: relative;
+        }
+        #bigImg{
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" >
+        <div id="small"><!--小图区-->
+            <img src="s.jpg" alt="" />
+            <div id="mask"></div><!--遮罩层-->
+        </div>
+        <div id="big"><!--大图区-->
+            <img src="big.jpg" width="800" height="800" alt="" id="bigImg"/>
+        </div>
+    </div>
+    <script>
+        var oSmall = document.getElementById('small')
+        var oMask = document.getElementById('mask')
+        var oBig = document.getElementById('big')
+        var oBox = document.getElementById('box')
+        // 首先在鼠标进出小图时 小透明图层与大图div显示与隐藏
+        oSmall.onmouseenter = function(){
+            oMask.style.display = "block"
+            oBig.style.display = "block"
+        }
+        oSmall.onmouseleave = function(){
+            oMask.style.display = "none"
+            oBig.style.display = "none"
+        }
+
+        oSmall.onmousemove = function (event) {
+            var event = event || window.event
+            // 设置小图：
+
+            // 这里有个问题 不能使用offsetX 因为onmousemove的时候
+            // 我们期望是相对于box的 结果在mask出现后 由于事件委托的机制
+            // 相当于我们在子元素上移动触发父亲元素的事件 而event也是指向子元素的
+            // 那么本来是相当于父元素的offsetX就会变成相对于子元素的offsetX
+            // offsetY同理
+            // 所以我们使用pageX
+            var X = event.pageX-oBox.offsetLeft-(oMask.offsetWidth/2)
+            var Y = event.pageY-oBox.offsetTop-(oMask.offsetHeight/2)
+            // 设置X与Y的最小最大值
+            if (X < 0){
+                X = 0
+            }else if (X>oSmall.offsetWidth-oMask.offsetWidth){
+                X = oSmall.offsetWidth-oMask.offsetWidth
+            }
+            if (Y < 0){
+                Y = 0
+            }else if(Y>oSmall.offsetHeight-oMask.offsetHeight){
+                Y = oSmall.offsetHeight-oMask.offsetHeight
+            }
+            oMask.style.left = X+"px"
+            oMask.style.top = Y+"px"
+
+            // 设置大图：
+            var oImg = document.getElementById('bigImg')
+            // 让小图移动的比例等于大图向反方向移动的比例
+            oImg.style.left = -oImg.offsetWidth*(X/oSmall.offsetWidth) +"px"
+            oImg.style.top = -oImg.offsetHeight*(Y/oSmall.offsetHeight) +"px"
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-1.12.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <style>
+        .badge-primary{
+            background-color: #007bff
+        }
+        .badge-success{
+            background-color: #28a745
+        }
+        .badge-danger{
+            background-color: #dc3545
+        }
+        .badge-warning{
+            color: #212529;
+            background-color: #ffc107
+        }
+        .badge-info{
+            color: #fff;
+            background-color: #17a2b8
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!--设置下boot4中的颜色-->
+        <span class="badge badge-primary">Primary</span>
+        <span class="badge badge-secondary">Secondary</span>
+        <span class="badge badge-success">Success</span>
+        <span class="badge badge-danger">Danger</span>
+        <span class="badge badge-warning">Warning</span>
+        <span class="badge badge-info">Info</span>
+        <span class="badge badge-light">Light</span>
+        <span class="badge badge-dark">Dark</span>
+        <h3>列表组</h3>
+<!--        列表组需要在ul上加上类名list-group-->
+<!--        每一个li加上list-group-item-->
+<!--        list-group-item会将徽章放在最右边-->
+        <ul class="list-group">
+            <li class="list-group-item">此情只应天上有 <span class=" badge badge-danger">Heads up!</span></li>
+            <li class="list-group-item">此情只应天上有 <span class="badge">奥巴马</span></li>
+            <li class="list-group-item">此情只应天上有 <span class="badge">奥巴马</span></li>
+        </ul>
+
+        <hr>
+
+        <h3>链接列表组</h3>
+<!--        我们可以使用a标签代替li 这样就能得到一个全是链接的列表组了 a标签的父元素不是ul 而是带有list-group的div即可-->
+        <div class="list-group">
+            <a href="" class="list-group-item">链接列表组</a>
+            <a href="" class="list-group-item">链接列表组</a>
+            <a href="" class="list-group-item">链接列表组</a>
+        </div>
+
+        <hr>
+
+        <h3>按钮列表组</h3>
+<!--        我们可以使用a标签代替li 这样就能得到一个全是链接的列表组了 a标签的父元素不是ul 而是带有list-group的div即可-->
+        <div class="list-group">
+<!--            如果需要激活 加入active即可-->
+            <button class="list-group-item active" type="button">按钮列表组</button>
+<!--            如果需要禁用 可以使用disabled类名-->
+            <button class="list-group-item disabled" type="button">按钮列表组</button>
+            <button class="list-group-item" type="button">按钮列表组</button>
+        </div>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h3>情景</h3>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-success">按钮列表组</li>
+                    <li class="list-group-item list-group-item-info">按钮列表组</li>
+                    <li class="list-group-item list-group-item-warning">按钮列表组</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h3>定制内容</h3>
+                <ul class="list-group">
+<!--                    可以在每一个list-group-item中放入其他元素-->
+                    <li class="list-group-item">
+                        <h4 class="list-group-item-heading" > List group item heading</h4>
+                        <p class="list-group-item-text">...</p>
+                    </li>
+                    <li class="list-group-item">
+                        <h4 class="list-group-item-heading" > List group item heading</h4>
+                        <p class="list-group-item-text">...</p></li>
+                    <li class="list-group-item">
+                        <h4 class="list-group-item-heading" > List group item heading</h4>
+                        <p class="list-group-item-text">...</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

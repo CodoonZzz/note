@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-1.12.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container">
+<!--        如果我们需要在点击的时候使按钮变成不可点击并改变其中的文字 可以加入data-loading-text-->
+<!--        而且 我们需要为button设置js-->
+<!--        注：在bootstrap3.3.5不建议使用这个方法了 4以上已经删除了-->
+        <button class="btn btn-default" type="button" data-loading-text="加载中。。。" id="js-button">加载</button>
+
+
+<!--        如果你想让一个按钮点激活一直处于激活状态就就使用data-toggle属性吧-->
+        <button class="btn btn-default" type="button" data-toggle="button">激活</button>
+
+        <br>
+
+<!--        如果有一个按钮组 那么可以实现radio一样的效果-->
+<!--        首先需要给按钮组的div加入data-tooggle="buttons"的属性让里面的radio不显示但是有radio的属性-->
+<!--        然后让btn中包裹radio就可以了-->
+        <div class="btn-group" data-toggle="buttons">
+            <button class="btn btn-default">
+                <input type="radio" name="option">按钮1
+            </button>
+            <button class="btn btn-default">
+                <input type="radio" name="option">按钮2
+            </button>
+            <button class="btn btn-default">
+                <input type="radio" name="option">按钮3
+            </button>
+        </div>
+
+    </div>
+    <script>
+        $('#js-button').on('click',function () {
+            // 使用button('loading')方法来使之激活
+            $(this).button('loading')
+            // 可以button('reset')方法来使之复原
+            setTimeout(function () {
+                $('#js-button').button('reset')
+            },1000)
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div><p>111</p></div>
+    <script>
+        $('div').on('click','p',function (event) {
+            console.log(event);
+            // event在js原生中也有了解，他囊括了事件触发的所有信息
+            // 在jq调用时有三个属性：
+            // event.delegateTarget:代码绑定的对象，也就是谁调用的这个代码
+            // event.currentTarget:事件的绑定对象，也就是是谁的事件
+            // event.target:事件真正触发的对象
+        })
+    </script>
+</body>
+</html>

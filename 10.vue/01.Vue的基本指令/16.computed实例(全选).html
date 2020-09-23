@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <form action="">
+            <label>全选<input type="checkbox" v-model="checkAll"></label>
+            <br>
+            <input type="checkbox" v-for="(item,index) in checks" v-model="item.value" :key="index">
+
+        </form>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                checks:[
+                    {value:true},
+                    {value:false},
+                    {value:true},
+                ]
+            },
+            computed:{
+                checkAll:{
+                    // checkAll的值依赖于遍历check中的每一项 所以在每一个check发生改变的时候 就会触发get函数
+                    get(){
+                        // 这里利用了every的返回值 一旦有一个为false 就会返回false 遍历完成则返回true
+                        return this.checks.every(item=>{return item.value})
+                    },
+                    set(val){
+                        // 这里因为计算属性的底层代码是使用了Object.defineProperty()
+                        // 所以在数据有更改时 将更改后的值传参 详情看进阶JS中的06
+                        this.checks.forEach(item=>{item.value = val})
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="box">
+        <input type="text" v-focus v-limit="msg" v-model="msg">
+        <p v-bgcolor="'red'">我是一个段落</p>
+        <p v-color="'red'" v-fontsize="'50'">我是第二个段落</p>
+
+<!--        由此可以看出 自定义指令和过滤器一旦也成私有的 ，那么都会优先私有-->
+    </div>
+    <script>
+        // 我们想让input在进入页面的时候就聚焦
+        // 但是vue并没有提供对应的方法，在JS原生代码中可以DOM对象.focus()来实现
+        // 但Vue不提倡我们使用DOM 所以Vue提供了一套自定义指令的方法
+        // Vue.directive就可以创建自定义指令，第一个参数为我们自定义命名的指令名
+        // 第二个参数为一个对象
+        Vue.directive('focus',{
+            // 所有函数第一个参数永远是el，表示被绑定指令的那个DOM对象，可以使用原生方法
+            bind:function (el) {
+                // bind是在指令绑定在元素上时就会执行，只执行一次
+                // 而我们需要的focus是必须将元素添加到DOM树里才可以执行的所以这个不适合
+            },
+            inserted:function (el) {
+                // inserted是在元素添加在DOM树中后执行，只执行一次
+                el.focus()
+            },
+            update:function (el) {
+                // update代表数据更新后执行 执行多次
+            }
+        })
+
+        // 我们重新再定义一个指令
+        Vue.directive('bgcolor',{
+            // 我们需要绑定这个属性，再输入想要的颜色，让元素的背景颜色设置成我们写入的颜色
+            bind:(el,binding)=>{
+                // 关于样式的方法我们一般就写入bind中
+
+                // 我们需要知道除了el参数，还有一个参数为binding
+                console.log(binding);
+                // binding是一个对象，包含了属性里的一些信息 其中有几个属性：
+                // name:不含V-的属性名，也就是我们在定义指令时directive方法的第一个参数
+                // value：是我们在标签中属性后的引号中写入的数据
+                // expression:也是我们在标签中属性后的引号中写入的数据
+                // 但是expression可以计算其中的式子 比如写入1+1，那么这个属性的值就是2
+                // 如果是value 那么值为'1+1'
+                el.style.background = binding.value
+            }
+        })
+
+        // 我们再建立一个指令 这个指令是让输入框限制输入5个字符
+        // 我们让输入框与data中的msg绑定 再让自定义指令绑定给msg
+        // 这样 输入框输入内容就会改变msg msg改变就会触发自定义指令的update钩子函数
+        // 所以 我们我们应该在bind与update中写入函数
+        Vue.directive('limit',{
+            bind(el,binding,vnode){
+                // 这里的vnode是第三个参数 这个参数也是一个对象 包含着该虚拟节点
+                // 而我们需要使用的是vnode中的context 这个属性就是当前组件 现在指向的是vue全局组件
+                // 我们需要直接控制msg 因为如果我们控制value 那么输入后 输入框内变化之后才会触发函数
+                // 而我们直接控制msg 就不会出现这种情况
+                vnode.context[binding.expression] = el.value.substring(0,5)
+            },
+            update(el,binding,vnode){
+                vnode.context[binding.expression] = el.value.substring(0,5)
+            }
+        })
+        // 然而 我们可以如下直接写入函数 就代表了bind与update
+        // Vue.directive('limit',function (el,binding,vnode) {
+        //     console.log(vnode);
+        //     vnode.context[binding.expression] = el.value.substring(0,5)
+        // })
+        new Vue({
+            el:'#box',
+            data:{
+                msg:''
+            },
+            directives:{
+                'color':{
+                    bind:(el,binding)=>{
+                        el.style.color = binding.value
+                    }
+                },
+                'fontsize':(el,binding)=>{
+                    el.style.fontSize = parseInt(binding.value)+'px'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    相对于移动端 PC端并没有很重视视口 因为不同的视口对PC端影响并不大-->
+<!--    但是移动端就不同了 移动端的屏幕很多 有大屏有小屏 如果没有视口的设置 会被系统强行缩放或者显示在屏幕上-->
+<!--    ios会出现缩放 安卓会出现滚动条 这明显不是我们想要的 出现的这一问题最主要的原因是视口不一样-->
+<!--    视口分为布局视口layout viewport与理想视口ideal viewport也就是我们的屏幕区域-->
+<!--    所以我们需要先让layout viewport等于ideal viewport-->
+<!--    所以我们如果在写移动端页面的时候需要在meta后面写入另一个meta标签-->
+<!--    <meta name="viewport" content="width=device-width">-->
+<!--    这个标签只会在移动端起作用 pc端无效 viewport就告诉了浏览器是移动端的设置了-->
+<!--    content里写入需要设置的属性值 写入width=device-width使layout viewport等于ideal viewport-->
+
+<!--    设置两种视口相等的方法二：-->
+<!--    我们可以在meta标签的content属性中写入initial-scale=1-->
+<!--    这个属性的值就等于ideal viewport/layout viewport 我们让这个值等于1 就意味着设置了这两个属性值一致-->
+<!--    而initial-scale=1与width=device-width有什么区别呢-->
+<!--    区别在于这两种写法可以兼容不一样的浏览器 所以我们在写入时需要将这两个写法一起写入meta标签中-->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<!--    写入快捷键：meta:vp tab-->
+<!--    除了现在写入的这两个属性 还有其他属性-->
+<!--    如height高 maximum-scale允许用户缩放的最大值  min~ 允许用户缩放的最小值 user-scalable是否允许用户缩放至为yes no-->
+<!--    这些并不常用-->
+
+    <title>Title</title>
+
+</head>
+<body>
+
+</body>
+</html>

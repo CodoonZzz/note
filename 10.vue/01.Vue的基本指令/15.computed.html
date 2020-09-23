@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="num">
+        <p>
+            {{info}}
+            {{num}}
+        </p>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                foo:'hello',
+                bar:'world',
+                num:0
+            },
+            // methods:{
+            //     info(){
+            //         console.log('方法被调用')
+            //         return this.foo+this.bar
+            //     }
+            // }
+            // 在这里p标签里面渲染了两个插值表达式
+            // 一个是info的返回值 一个是data中的num
+            // 而我们发现 一旦num被更改再次渲染到页面时 就会调用一次info
+            // 这是因为方法不会缓存 所以我们可以考虑使用计算属性computed
+            // 计算属性具有缓存效果，只有当其依赖的数据成员被更改 才会再次调用该方法
+            // 如果一个值依赖另外的值 那么就使用计算属性
+            computed:{  // computed也是使用了数据劫持Object.defineProperty(）
+                        // 所以我们也可以使用get() 与set() 实例演示
+                // 一般情况下 一个函数 就会被认为是get函数
+                info(){
+                    console.log('方法被调用')
+                    return this.foo+this.bar
+                }
+            }
+            // 注意 计算属性在使用的时候 在页面上的插值表达式方法后面是不加括号的
+
+            // 事实上 我们也可以使用watch来实现该效果
+            // 让watch对我们的foo与bar实施监听 只有这两个属性改变时 才出发函数
+            // 但是computed与watch的区别就在与 computed不支持异步 因为computed是使用return来输出数据的
+            // 比如使用延时器 延时器里的方法就返回给了延时器 所以如果需要使用异步 那么久得使用watch
+            // 而watch的强大主要是他能监听路由 详细看后面路由部分
+            // 但是computed代码比较简洁 如果没有特殊要求 优先使用computed
+        })
+    </script>
+</body>
+</html>

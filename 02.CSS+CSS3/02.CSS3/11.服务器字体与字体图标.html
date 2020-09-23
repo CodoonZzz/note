@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			/*对于电脑没有的字体 我们需要使用@font-face来声明*/
+			@font-face{
+				/*首先是声明字体的类型时什么还有字体的路径*/
+				font-family: gulugulu;
+				src: url(jpzk.otf);
+			}
+			/*接下来直接使用就行 这样我们在输入文字就会出现文件里的字体*/
+			/*我们也可通过伪类来设置指定的文字 这样可以让我们得到需要的图标而不用在标签内再写任何文本*/
+			/*只需要一个类名就可以实现 这点参考jq中的字体使用*/
+			p.English{
+				font-size: 20px;
+				font-family: gulugulu;
+			}
+			@font-face{
+				font-family: gululu;
+				src: url(qtgg.otf);
+			}
+			p.china{
+				font-family: gululu;
+				font-size: 20px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<p class="china">this is  the china</p>
+		<p class="English">This's a p</p>
+	</body>
+</html>

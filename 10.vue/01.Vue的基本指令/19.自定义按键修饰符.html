@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="box">
+<!--        在实现键盘事件时 也有键盘修饰符-->
+<!--        后面跟上键盘码所代表的的就是指定按键的键盘事件-->
+<!--        vue为我们提供了几个特殊的键盘修饰符-->
+<!--        如enter shift right delete等等-->
+<!--        如果想自定义键盘修饰符可以使用：config.keycodes-->
+        <input type="text" v-model="text" @keyup.f2="plus">
+        <p v-for="(item,index) in msg">{{item}}</p>
+    </div>
+    <script>
+        // 定义一个全局键盘修饰符：
+        Vue.config.keyCodes.f2 = 113
+
+        new Vue({
+            el:'#box',
+            data:{
+                msg:[],
+                text:''
+            },
+            methods:{
+                plus() {
+                    this.msg.push(this.text)
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>

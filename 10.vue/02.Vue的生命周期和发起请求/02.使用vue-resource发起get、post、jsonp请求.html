@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+<!--    vue-resource是依赖于vue的组件 所以需要先导入vue再导入vue-resource-->
+    <script src="vue-resource-1.3.4.js"></script>
+</head>
+<body>
+<div id="box">
+    <input type="button" value="get" @click="infoGet">
+    <input type="button" value="post" @click="infoPost">
+    <input type="button" value="jsonp" @click="infoJsonp">
+</div>
+<script>
+    new Vue({
+        el:'#box',
+        data:{},
+        methods:{
+            infoGet:function () {
+                // 使用resource发起请求，需要使用this.$http
+                // get请求有两个参数：第一个参数为url，第二个参数为可选项，为选填参数
+                // 再发起请求函数后面加上.then()
+                // 函数内两个参数，第一个为成功的回调函数，第二个为失败的回调函数
+                // 回调函数有一个参数为result 这个就是返回来的细节对象
+                // 在vue中回调函数返回来的值 是result.body 也可以使用data 但在vue中常用body
+                this.$http.get('http://localhost/study/07.vue/19.vue_get.php').then(result=>{
+                    // 为了可以跨域 在PHP那边已经写好可以跨域
+                    console.log(result.body);
+                })
+            },
+            infoPost:function () {
+                // post请求的第一个参数还是url，第二个参数是传送数据的 是一个对象
+                // 第三个也是可选参数，但是因为post请求的特殊性 在提交时需定义是使用表单提交
+                // 所以第三个参数需要写入如下：
+                this.$http.post('http://localhost/study/07.vue/19.vue_get.php',{},{emulateJSON:true}).then(result=>{
+                    console.log(result.body);
+                })
+            },
+            infoJsonp:function () {
+                this.$http.jsonp('http://localhost/study/07.vue/19.vue_jsonp.php').then(result=>{
+                    console.log(result.body);
+                    // console.log("'"+result.body+"'");
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

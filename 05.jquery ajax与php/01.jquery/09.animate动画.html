@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            text-align: center;
+            font-size: 30px;
+            line-height: 200px;
+            position: absolute;
+        }
+    </style>
+
+</head>
+<body>
+<div class="box"> 我是一个盒子 </div>
+    <script>
+        $('div').stop().animate({width:'400px',height:'300px',top:'100px',left:'600px',lineHeight: '300px',opacity:0.5},2000,function () {
+            $('div').stop().animate({width:'300px',height:'200px',top:'500px',left:'400px',lineHeight: '200px',opacity: 1},2000)
+        })
+        // animation()第一个参数是属性集合，第二个为时间，第三个为回调函数
+        // stop为停止动画，若需要执行某个函数前需要停止之前的动画需要这个方法
+    </script>
+</body>
+</html>

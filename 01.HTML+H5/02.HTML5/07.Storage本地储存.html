@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<p id="p"></p>
+		<input type="text" name="" id="input" value="" />
+		<br />
+		<input type="button" name="" id="" value="临时保存" onclick="save()"/>
+		<input type="button" name="" id="" value="读取临时数据" onclick="load()"/>
+		<br />
+		<input type="button" name="" id="" value="永久保存" onclick="yongsave()"/>
+		<input type="button" name="" id="" value="读取永久数据" onclick="loadyong()"/>
+		<script type="text/javascript">
+			function save() {
+				var oinput = document.getElementById('input')
+			    var otext = oinput.value
+				sessionStorage.setItem('message',otext)
+			}
+			function load() {
+				var op = document.getElementById('p')
+				var osave = sessionStorage.getItem('message')
+				op.innerText = osave
+			}
+			function yongsave() {
+				var oinput = document.getElementById('input')
+			    var otext = oinput.value
+				localStorage.setItem('message',otext)
+			}
+			function loadyong() {
+				var op = document.getElementById('p')
+				var osave = localStorage.getItem('message')
+				op.innerText = osave
+			}
+		</script>
+	</body>
+</html>

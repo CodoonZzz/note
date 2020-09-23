@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var i = 0
+			function time(string){
+				i++
+				var oDate = new Date()
+				document.write("我是"+string+(oDate.getMonth()+1)+"月"+oDate.getDate()+"日"+oDate.getHours()+"时"+oDate.getMinutes()+"分"+oDate.getSeconds()+"秒"+"<br/>")
+				if(i==5){
+					clearInterval(oInterval)
+				}
+			}
+			var oInterval =  setInterval('time("计时器")',1000) //setInterval为定时器,第一个参数为函数,第二个参数为毫秒数,使得每隔所传参数的毫秒数就执行一次所传参数的函数
+			var oTimeout =  setTimeout('time("延时器")',500) //setTimeout为延时器 与定时器参数类同
+
+			// 这里需要注意 如果定时器中的函数需要加入参数 那么函数需要使用引号括起来
+			// 如果不需要加入参数 那么直接写函数名不加括号也不加引号
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function fun1 (num1,num2) {
+				num1 = num1||1;
+				num2 = num2||2;
+				alert(num1+num2)
+			}
+			fun1(6,9)
+// 			// 也可以使用if语句判断是否为undefined
+// 			
+// 			
+// 			
+// 			// 使用arguments,arguments是实参的一个数组
+			function fun2 () {
+				arguments[0]=arguments[0]||0
+				arguments[1]=arguments[1]||0
+				alert(arguments[0]+arguments[1])
+			}
+			fun2(5,6)
+			//使用arguments来实现可变参数
+			//参数求和
+			function fun3 () {
+				var x = 0
+				for(var i=0;i<arguments.length;i++){
+					x+=arguments[i]
+				}
+				alert(x)
+			}
+			fun3(1,5,5,2,1,4,2,3,6,77,4562,1)
+
+			// 上面所说的arguments为函数的实参
+			// arguments对象有一个属性是callee 他指向函数本身
+			function fun4(a,b,c) {
+				console.log(arguments.callee); // fun4
+				// 而在这里需要提的是 如果需要输出函数的形参的个数
+				// 需要使用函数中的lenght属性
+				console.log(arguments.callee.length); // 3
+			}
+			fun4()
+		</script>
+	</body>
+</html>

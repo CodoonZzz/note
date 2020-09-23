@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="box">
+        <com></com>
+    </div>
+    <script>
+
+
+        new Vue({
+            el:'#box',
+            data:{
+                msg:''
+            },
+            components:{
+                com:{
+                    template: `
+                        <div>
+                            <h1>我是私有组件</h1>
+                            <h4>我是私有组件的跟班</h4>
+                        </div>
+                    `
+                }
+            }
+        })
+    </script>
+</body>
+</html>

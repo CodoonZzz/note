@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+<!--            提示语abbr 这是一个h5标签-->
+<!--            设置title后，在鼠标指向时 会出现提示语-->
+<!--            与原版的区别是bootstrap为abbr的底部显示了更好的双下划虚线-->
+            <abbr title="学习">bootstrap</abbr>
+<!--            使用.initialism可以让字体显示90%且字母大写-->
+            <p class="initialism">bootstrap</p>
+
+<!--            引用-->
+<!--            引用是H5的标签 bootstrap默认会在左边加一条竖线来表示引用-->
+<!--            另外的 如果你想将竖线放在右边 只需要加一个.pull-right的类名 而此时文字会右对齐-->
+<!--            blockquote中间最好别直接放文本，需要加一个P标签-->
+            <blockquote>
+                <p>Bootstrap - 简洁、直观、强悍、移动设备优先的前端开发框架,让web开发更迅速、简单。... Bootstrap 是最受欢迎的 HTML、CSS 和 JS 框架,用于开发响应式布局、移动...</p>
+            </blockquote>
+            <blockquote class="pull-right">
+                <p>Bootstrap - 简洁、直观、强悍、移动设备优先的前端开发框架,让web开发更迅速、简单。... Bootstrap 是最受欢迎的 HTML、CSS 和 JS 框架,用于开发响应式布局、移动...</p>
+            </blockquote>
+        </div>
+    </div>
+</body>
+</html>

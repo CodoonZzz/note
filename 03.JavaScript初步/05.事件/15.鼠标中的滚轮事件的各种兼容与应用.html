@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body style="height: 2000px">
+    <div>
+
+    </div>
+    <script>
+        //先将兼容写法的事件监听复制
+        function addEvent(obj,type,fun){
+            if (obj.addEventListener) {
+                obj.addEventListener(type,fun,true)
+            } else {
+                obj.attachEvent("on"+type,fun)
+            }
+        }
+        function removeEvent(obj,type,fun){
+            if (obj.removeEventListener) {
+                obj.removeEventListener(type,fun,true)
+            } else {
+                obj.detachEvent("on"+type,fun)
+            }
+        }
+
+        // ————————————————————————————————————————————
+
+
+
+        var oDiv = document.getElementsByTagName('div')[0]
+        //滚轮方法为onmousewheel，但此方法在火狐中无效
+        //火狐使用DOMMouseScroll来绑定，而且需要使用事件监听
+        function fun(event){
+            //需要在滚轮向下滚的时候让DIV变长，向下的时候变短，那么先获取滚轮滚动的方向
+            event = event || window.event
+            // event.wheelDelta为向下滚-120，向上滚120
+            console.log(event.wheelDelta)
+            //但在火狐中没用wheelDelta属性
+            //在火狐中使用event.detail
+            //向上滚-3， 向下滚3
+            // 兼容写法：
+            if(event.wheelDelta>0||event.detail<0){
+                // alert('向上滚')
+                oDiv.style.height = parseFloat(getComputedStyle(oDiv).height)-10 + 'px'
+            }else {
+                // alert('向下滚')
+                oDiv.style.height = parseFloat(getComputedStyle(oDiv).height)+10 + 'px'
+            }
+            //当页面有滚动条的时候，向下滚也会使页面向下滚动，会产生异常，所以需要阻止默认行为
+            //但火狐是使用事件监听来触发事件的 所以火狐不能使用return false
+            //可以使用event.preventDefault()但是直接使用 在IE8中又会报错，所以需要判断
+            if (event.preventDefault()){
+                event.preventDefault()
+            }else{
+                return false
+            }
+        }
+        addEvent(oDiv,'DOMMouseScroll',fun)
+        oDiv.onmousewheel = fun
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

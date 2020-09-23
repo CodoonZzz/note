@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-1.12.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h3>基础collapse</h3>
+<!--        这个js效果中的属性在之前的响应式导航条有使用过-->
+<!--        data-toggle="collapse"表示使用collapse 而data-target则是切换目标-->
+<!--        再让被切换的div加上collapse的类名让他隐藏并受到指令 再加入一个类名 让data-target等于他 使按钮能够对这个div发送指令-->
+        <button type="button" class="btn btn-default" data-toggle="collapse" data-target=".myCollapse">按钮</button>
+<!--        如果我们使用collapse in来作为div的类名 那么他会默认被显示-->
+        <div class="collapse myCollapse">
+<!--            我们可以在点击出现的内容里加入well类名的div使弹出内容有样式-->
+            <div class="well">
+                这是内容
+            </div>
+        </div>
+
+        <hr>
+
+        <h3>面板组collapse</h3>
+<!--        首先我们需要使用一个做面板组的容器。panel-group-->
+<!--        并设置一个id-->
+        <div class="panel-group" id="panel">
+            <div class="panel panel-default">
+<!--                在设置写好第一个面板之后需要为面板的头部加入属性-->
+<!--                这里是需要触发collapse的元素 这里写在了panel-heading 这样点击头部的div都可以触发 也可以写在a标签里-->
+<!--                首先我们需要设置collapse的基础data-toggle与data-target-->
+<!--                接下来我们需要设置一个data-parent 值为面板组的容器id 这样设置可以让容器控制这些加了这个属性的面板-->
+<!--                使得在点击当前面板显示时 其他面板都隐藏 如果不需要这个功能可不写-->
+                <div class="panel-heading" data-toggle="collapse" data-target=".myPanelCollapseOne" data-parent="#panel">
+                    <h4 class="panel-title">
+                        <a href="#">这是头部</a>
+                    </h4>
+                </div>
+<!--                接下来是面板的body panel-body需要放在一个panel-collapse的div中-->
+<!--                然后再为这个div设置其他的类名 collapse为隐藏 如果需要该面板默认显示类名加上in-->
+<!--                再接下来就是需要定义的id或者类名 与上面的data-target对应-->
+                <div class="collapse panel-collapse myPanelCollapseOne">
+                    <div class="panel-body">
+                        这是身体
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" data-toggle="collapse" data-target=".myPanelCollapseTwo"  data-parent="#panel">
+                    <h4 class="panel-title">
+                        <a href="#">这是头部</a>
+                    </h4>
+                </div>
+                <div class="collapse panel-collapse myPanelCollapseTwo">
+<!--                    也可以让list-group代替panel-body-->
+<!--                    body的大体样式是加了些内边距 并不是必须要的-->
+<!--                    如果你的list-group的内部需要一些内边距可以让list-group与panel-body齐名-->
+<!--                    <ul class="panel-body list-group">-->
+                     <ul class="list-group">
+                         <li class="list-group-item"><a href="">item</a></li>
+                         <li class="list-group-item"><a href="">item</a></li>
+                         <li class="list-group-item"><a href="">item</a></li>
+                         <li class="list-group-item"><a href="">item</a></li>
+                     </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" data-toggle="collapse" data-target=".myPanelCollapseThree"  data-parent="#panel">
+                    <h4 class="panel-title">
+                        <a href="#">这是头部</a>
+                    </h4>
+                </div>
+                <div class="collapse panel-collapse myPanelCollapseThree">
+                    <ul class="list-group">
+                        <li class="list-group-item"><a href="">item</a></li>
+                        <li class="list-group-item"><a href="">item</a></li>
+                        <li class="list-group-item"><a href="">item</a></li>
+                        <li class="list-group-item"><a href="">item</a></li>
+                    </ul>
+<!--                    如果你需要还可以加上脚页 由于脚页也需要折叠 所以和list-group放在一起-->
+                    <div class="panel-footer">
+                        这里是脚页
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <hr>
+
+
+        <h3>加入一般元素的collapse</h3>
+<!--        如果需要直接加入一些自己元素只需要使用data-toggle与data-target或者a标签的herf-->
+        <a href="#myList" data-toggle="collapse">出现</a>
+        <ul id="myList" class="collapse" style="border: 1px solid black">
+            <li><a href="">1</a></li>
+            <li><a href="">2</a></li>
+            <li><a href="">3</a></li>
+        </ul>
+    </div>
+</body>
+</html>

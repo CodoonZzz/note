@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+    <script src="vue-router-3.0.1.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+
+        }
+        .header{
+            width: 100%;
+            height: 200px;
+            line-height: 200px;
+            border: 1px solid black;
+            text-align: center;
+        }
+        .bottom{
+            width: 100%;
+            display: flex;
+        }
+        .left{
+            flex: 3;
+            border: 1px solid black;
+            text-align: center;
+            height: 500px;
+            line-height: 500px;
+            margin-top: -1px;
+        }
+        .main{
+            flex: 7;
+            border: 1px solid black;
+            text-align: center;
+            height: 500px;
+            line-height: 500px;
+            margin: -1px 0 0 -1px
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <router-view name="header"></router-view>
+        <div class="bottom">
+            <router-view name="left"></router-view>
+            <router-view name="main"></router-view>
+        </div>
+
+    </div>
+    <script>
+        // 我们需要设置三个板块 比如头部 侧边栏 主体
+        // 而让三个组件同时放入就需要在路由的规则设置使用components来写入三个组件
+        // 再在html上的router-view中写入name来对应实现
+        var header = {
+            template:`
+                <h1 class="header">我是header</h1>
+            `
+        }
+        var left = {
+            template:`
+                <h3 class="left">我是left</h3>
+            `
+        }
+        var main = {
+            template:`
+                <p class="main">我是main</p>
+            `
+        }
+
+        var router = new VueRouter({
+            routes:[
+                {path:'/',components:{
+                        header:header,
+                        left:left,
+                        main:main,
+                    }}
+            ]
+        })
+
+        new Vue({
+            el:'#app',
+            router
+        })
+    </script>
+</body>
+</html>

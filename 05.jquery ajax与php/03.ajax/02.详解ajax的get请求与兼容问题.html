@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="">
+        用户名<input type="text" placeholder="请输入用户名" id="username">
+        <br>
+        密码<input type="password" placeholder="请输入密码" id="password">
+        <br>
+        <span id="information"></span>
+        <br>
+        <input type="button" id="login_btn" value="登录">
+
+    </form>
+    <script>
+        // 把上一个例子拿过来
+        var oBtn = document.getElementById('login_btn')
+        oBtn.onclick = function () {
+            // 1.创建xhr文件
+            // var xhr = new XMLHttpRequest()
+            // XMLHttpRequest()在IE6是不支持的
+            // IE6使用:
+            // var xhr = new ActiveXObject('Microsoft')
+            // 所以：
+            if(window.XMLHttpRequest){
+                var xhr = new XMLHttpRequest()
+            }else{
+                var xhr = new ActiveXObject('Microsoft')
+            }
+            // 2.准备发送
+            // 参数：
+            // 1.请求方式 对于http的请求方式常用的有两个一个是get，另一个是post
+            // 2.请求地址 get方式需要把数据放在url中传递
+            // 3.同步与异步 默认为true为异步，false为同步
+            // 防止需要在input中输入中文且使用get请求在IE中会出错，所以需要先进行编码
+            var oUsername = document.getElementById('username').value
+            var oPassword = document.getElementById('password').value
+            var param = encodeURI('username='+oUsername+'&password='+oPassword)
+            xhr.open('get','http://localhost/study/03.ajax-php/01.php?'+param,true)
+            // 3.执行发送
+            // 括号中不写或者get请求要写null，主要是有一些浏览器会限制，所以写null
+            xhr.send(null)
+            // 3.指定回调函数
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4){
+                    if (xhr.status === 200){
+                        alert(xhr.responseText)
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

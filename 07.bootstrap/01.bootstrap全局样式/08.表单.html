@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<!--    在boot中默认的也会修改input的一些样式 比如输入框会高度会变高点 会让输入内容与上下边有个距离-->
+<!--    总之比原版是会好看些 在这基础上 可以加上一个form-control的类名-->
+<!--    input会占父元素100%长度 还有一些其他的变化 以下是不加与加的对比-->
+<!--    官方提示：-->
+<!--    单独的表单控件会被自动赋予一些全局样式。
+        所有设置了 .form-control 类的 <input>、<textarea> 和 <select> 元素都将被默认设置宽度属性为 width: 100%;。
+        将 label 元素和前面提到的控件包裹在 .form-group 中可以获得最好的排列。-->
+    <div class="container">
+        <form>
+<!--            fieldset是H5的新标签 他语意是讲某一模块的表单打包-->
+            <fieldset>
+<!--                legent是为fieldset定义一个标题-->
+<!--                原版是用了一个黑色的边框框起来 boot中去掉了这个边框且为这个标签下面加了一条100%长度的灰色底线-->
+                <legend>用户界面</legend>
+                <div class="form-group">
+                    登陆：<input type="text">
+                    密码：<input type="text">
+                    <input type="checkbox"> 同意
+                </div>
+            </fieldset>
+        </form>
+
+        <br>
+
+        <form>
+            <fieldset>
+                <legend>表单</legend>
+                <div class="form-group">
+                    登录：<input type="text" class="form-control">
+                    密码：<input type="text" class="form-control">
+                    <input type="checkbox"> 同意
+                </div>
+            </fieldset>
+        </form>
+
+        <br>
+
+<!--        如果你想让input全部水平排列 可以在form上加入form-inline的类名 输入框也会变成适宜的长度-->
+        <form class="form-inline">
+            <fieldset>
+                <legend>内联表单</legend>
+<!--                如果你不想让登陆或者密码两个字显示 可以使用sr-only-->
+<!--                官方提示lable是必须要加的 可以使用sr-only隐藏 如果不加可能导致屏幕阅读器的某些错误-->
+                <div class="form-group">
+                    <label class="sr-only">登录：</label><input type="text" class="form-control">
+                    <lable>密码：</lable><input type="text" class="form-control">
+                    <input type="checkbox"> <lable>同意</lable>
+                </div>
+            </fieldset>
+        </form>
+
+        <br>
+
+        <form class="form-horizontal">
+<!--            <legend>水平排列的表单</legend>-->
+<!--            如果为表格添加了form-horizontal类名 那么这个表单中的form-group就替代了.row-->
+<!--            这样的表格赋予了form-group栅格系统 我们可以为label input设置占格-->
+<!--            input一定要放在div内 不然会收100%的影响沾满父元素的宽-->
+            <div class="form-group">
+<!--                在这里需要加上conntrol-label类名 这样label就会贴input-->
+<!--                下面的label没有加 看下对比-->
+                <label class="col-md-4 control-label">登录：</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2">密码：</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-2">
+                    <input type="checkbox">
+                </div>
+                <label class="col-md-10">同意</label>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

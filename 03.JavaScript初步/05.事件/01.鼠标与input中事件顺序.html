@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            border: 1px solid black
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+    </div>
+    <br>
+    <form action="">
+        <input type="text">
+        <input type="submit" value="提交">
+    </form>
+    
+    <script>
+        var oDiv = document.getElementsByTagName('div')[0]
+
+        //鼠标按下
+        oDiv.onmousedown = function(){
+            console.log("onmousedown")
+        }
+        //鼠标抬起
+        oDiv.onmouseup = function () {
+            console.log('onmouseup')
+        }
+        //鼠标点击
+        oDiv.onclick = function(){
+            console.log('onclick')
+        }
+        //鼠标移入
+        oDiv.onmouseover = function(){
+            console.log('onmouseover')
+        }
+        //鼠标移出
+        oDiv.onmouseout = function(){
+            console.log('onmouseout')
+        }
+
+
+        var oText = document.getElementsByTagName('input')[0]
+        //元素获得焦点
+        oText.onfocus = function(){
+            console.log('onfocus')
+        }
+        //元素失去焦点
+        oText.onblur = function(){
+            console.log('onblur')
+        }
+        //输入框点击系列事件
+        oText.onmousedown = function(){
+            console.log('onmousedown')
+        }
+        oText.onmouseup = function(){
+            console.log('onmouseup')
+        }
+        oText.onclick = function(){
+            console.log('onclick')
+        }
+        //元素内容实时监听
+        oText.oninput = function(){
+            console.log('oninput')
+        }
+        //元素内容改变
+        oText.onchange = function(){
+            console.log('onchange')
+        }
+
+
+        var oForm = document.getElementsByTagName('form')[0]
+        //点击提交
+        oForm.onsubmit = function(){
+            console.log('onsubmit');
+            // return false;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .red{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <hr>
+    <section>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+    </section>
+    <hr>
+    <h6>
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+    </h6>
+    <script>
+        var oLis = document.getElementsByTagName("li")
+        // 方法一：使用this
+        for (var i=0;i<oLis.length;i++){
+            oLis[i].onmouseover = function () {
+                this.className = "red"
+            }
+            oLis[i].onmouseout = function () {
+                this.className = ""
+            }
+        }
+
+        //方法二：给每个元素加入一个index属性记录自己的索引值
+        var oDivs = document.getElementsByTagName("div")
+        for (var i=0;i<oDivs.length;i++){
+            oDivs[i].index = i
+            oDivs[i].onmouseover = function () {
+                oDivs[this.index].className = "red"
+            }
+            oDivs[i].onmouseout = function () {
+                oDivs[this.index].className = ""
+            }
+        }
+
+        //方法三：闭包
+        var oPs = document.getElementsByTagName("p")
+        for (var i=0;i<oPs.length;i++){
+            (function (i) {
+                oPs[i].onmouseover = function () {
+                    oPs[i].className = "red"
+                }
+                oPs[i].onmouseout = function () {
+                    oPs[i].className = ""
+                }
+            })(i)
+        }
+    </script>
+</body>
+</html>

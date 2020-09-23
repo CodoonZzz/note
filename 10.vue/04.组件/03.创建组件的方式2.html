@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="box">
+        <com></com>
+    </div>
+<!--    然后我们在控制el外部写出这个#tam-->
+    <template id="tam">
+        <div>
+            <h1>这是在外部创建的组件</h1>
+            <h3>可以有提示不会出错</h3>
+        </div>
+    </template>
+    <script>
+        // 1.创建时让template等于一个id名
+        Vue.component('com', {
+            template: '#tam'
+        })
+
+
+        new Vue({
+            el: '#box',
+            data: {
+                msg: ''
+            }
+        })
+    </script>
+</body>
+</html>

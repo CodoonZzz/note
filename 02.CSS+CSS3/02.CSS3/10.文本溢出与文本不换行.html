@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 120px;
+            height: 60px;
+            border: 1px solid black;
+            /*这个是属性强制了文本在一行显示，默认值也是normal*/
+            white-space: nowrap;
+        }
+
+        div:nth-child(2){
+            /*文本溢出首先需要溢出 所以我们先使用white-space：nowrap让文本一行显示*/
+            /*而text-overflow必须与overflow一起使用 只有当文本被溢出隐藏不能正常显示的时候 这个属性才能发挥作用*/
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        这是一个div，里面是一些内容
+    </div>
+    <div>
+        这是一个div，里面是一些内容
+    </div>
+</body>
+</html>

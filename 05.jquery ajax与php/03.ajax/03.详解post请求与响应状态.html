@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="">
+        用户名<input type="text" placeholder="请输入用户名" id="username" name="username">
+        <br>
+        密码<input type="password" placeholder="请输入密码" id="password" name="password">
+        <br>
+        <span id="information"></span>
+        <br>
+        <input type="button" id="login_btn" value="登录">
+
+    </form>
+    <script>
+        // 把上一个例子拿过来
+        var oBtn = document.getElementById('login_btn')
+        oBtn.onclick = function () {
+            // 1.创建xhr文件
+            if(window.XMLHttpRequest){
+                var xhr = new XMLHttpRequest()
+            }else{
+                var xhr = new ActiveXObject('Microsoft')
+            }
+            // xhr.readyState=0 表示这里表示初始化已完成，xhr对象创建完成
+
+            // 2.准备发送
+            // post请求在open方法的第一个参数应改为post
+            // 第二个参数就只写请求文件的url了
+            xhr.open('post','http://localhost/study/03.ajax-php/03.php',true)
+
+            // 3.执行发送
+            // post参数需要在send方法中传递,并且不需要编码
+            var oUsername = document.getElementById('username').value
+            var oPassword = document.getElementById('password').value
+            // 而且post必须在这里加一个方法
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
+            xhr.send('username='+oUsername+'&password='+oPassword)
+            // xhr.readyState=1 表示已发送请求
+
+            // 3.指定回调函数
+            // 这也是个事件，是xhr.readyState发生改变时执行函数
+            xhr.onreadystatechange = function () {
+                // xhr.readyState=2表示浏览器已接收到服务器返回数据
+                // xhr.readyState=3表示正在解析返回的数据
+                // xhr.readyState=4表示解析已完成，可以使用
+                // 所以我们在写ajax时一般只关心xhr.readyState=4的情况，其他一般不管
+                if (xhr.readyState === 4){
+                    // 尖酸返回来的数据成功解析，也可能数据会异常，
+                    // 所以在数据解析完成后我们需要再判断一下数据是否正常
+                    // http常见的状态码：
+                    // 200：响应成功
+                    // 404：没有找到请求的资源
+                    // 500：服务器端错误
+                    if (xhr.status === 200){
+                        var data = xhr.responseText
+                        var oSpan = document.getElementById('information')
+                        if (data === '0'){
+                            oSpan.innerText = "登录成功"
+                        }else if (data === '1'){
+                            oSpan.innerText = '用户名密码不正确'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

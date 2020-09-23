@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        // 链式编程原理很简单，是在一个对象中加入方法
+        function F() {
+            this.name = 'xxx'
+            this.na = function (name) {
+                // 如这个Set方法，调用的时候首先会进行判断，是否传了参数
+                if (name){
+                    this.name = name
+                    // 如果传了参数，则就返回当前对象
+                    return this
+                }else{
+                    // 如果没传参，就返回需要获取的值
+                    // 类比JQ中，一般传参则为设置，不传参为获取
+                    return this.name
+                }
+            }
+            this.eat = function () {
+                console.log('我爱吃'+this.name);
+            }
+
+        }
+        var obj = new F()
+        // 当传参返回出的为对象，则就可以继续执行下面的函数
+        obj.na('eee').eat()
+        // 而不传参，返回的是需要获取的值，本质是一个字符串，而字符串再进行调用方法就会报错，也就是断链
+        obj.Set().eat()
+    </script>
+</body>
+</html>

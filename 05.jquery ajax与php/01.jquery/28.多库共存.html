@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+</head>
+<body>
+    <p>123</p>
+    <script>
+        var sxy = $.noConflict()
+        var $ = 100
+        // 在页面中如果$被重新赋值，$不再是一个对象，而是一个变量，jq就会失效
+        // 解决方法一：一开始有提到，jq是可以使用$也可以使用jQuery的
+        jQuery('p').on('click',function () {
+            alert(jQuery(this).text())
+        })
+        // 解决方法二：使用noConflict(),让$释放转移到自己所声明的变量上
+        sxy('p').on('click',function () {
+            sxy(this).css({color:'red'})
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			//写出一个5x5的一个二位数组(一个五位数组，每一位数组里又有五位数组)
+			var x = 0
+			var arr = []
+			for (var i=0;i<5;i++) {
+				var newArr = []
+				for (var j=0;j<5;j++) {
+					newArr.push(++x)
+					document.write(x)
+				}
+				arr.push(newArr)
+				document.write("<br/>")
+			}
+			
+			
+			//写出数组左下三角的数
+			for (var i=0;i<arr.length;i++) {
+				for (var j=0;j<=i;j++) {
+					document.write(arr[i][j])
+					
+				}
+				document.write("<br/>")
+			}
+		</script>
+	</body>
+</html>

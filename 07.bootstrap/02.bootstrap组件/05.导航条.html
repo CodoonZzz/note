@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-1.12.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <style>
+        body{
+            padding-top: 70px;
+        }
+    </style>
+</head>
+<body>
+    <h3>基础导航</h3>
+<!--    如果需要写一个导航条则必须使用nav标签 如果不使用-->
+<!--    也必须加上role="navigation"属性 以免出错-->
+<!--    首先第一步需要创建nav标签 并加上navbar的基础类名 和navbar-default这样的附加样式类名-->
+    <nav class="navbar navbar-default">
+<!--        第二步 如果你需要一个标题则需要加一个navbar-header的类名-->
+<!--        再在里面加入一个类名为navbar-brand的a标签-->
+        <div class="navbar-header"><a href="" class="navbar-brand">导航</a></div>
+<!--        第三步在导航标题后加入导航-->
+<!--        在导航条中选项卡与胶囊显得不是很好用 所以讲选项卡或胶囊的类名换为navbar-nav-->
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="">首页</a></li>
+            <li><a href="">首页</a></li>
+            <li class="disabled"><a href="">首页</a></li>
+            <li><a href="">首页</a></li>
+        </ul>
+    </nav>
+
+    <hr>
+
+    <h3>反色导航条</h3>
+    <!--    反色也很简单 就是再nav上加入了navbar-inverse类名 也是基础导航条的一种-->
+    <nav class="navbar navbar-inverse">
+        <div class="navbar-header"><a href="" class="navbar-brand">导航</a></div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="">首页</a></li>
+            <li><a href="">首页</a></li>
+            <li class="disabled"><a href="">首页</a></li>
+            <li><a href="">首页</a></li>
+        </ul>
+    </nav>
+
+    <hr>
+
+    <h3>加入form</h3>
+    <nav class="navbar navbar-default">
+        <div class="navbar-header"><a href="" class="navbar-brand">导航</a></div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="">首页</a></li>
+            <li><a href="">首页</a></li>
+            <li><a href="">首页</a></li>
+            <li><a href="">首页</a></li>
+        </ul>
+<!--        如果需要加入表单 需要先加入form 并为他加上类名navbar-form 以让里面的表单可以水平排列-->
+<!--        如果你想让这个表单放在右边 可以加入navbar-right-->
+        <form class="navbar-form navbar-right">
+            <div class="form-group input-group">
+                <input type="text" class="form-control">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-primary">搜索</button>
+                </span>
+            </div>
+        </form>
+    </nav>
+
+    <hr>
+
+
+    <h3>加入文本按钮链接下拉菜单</h3>
+    <nav class="navbar navbar-default">
+        <div class="navbar-header"><a href="" class="navbar-brand">导航</a></div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="">首页</a></li>
+            <li><a href="">首页</a></li>
+            <li><a href="">首页</a></li>
+            <li class="dropup">
+<!--                在导航条中加入下拉菜单直接让li当做最外层div-->
+<!--                让a标签当做按钮 但是不让a标签变成一个按钮-->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" >上拉菜单 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="">one</a></li>
+                    <li><a href="">two</a></li>
+                    <li><a href="">three</a></li>
+                </ul>
+            </li>
+        </ul>
+<!--        如果你想加入文本链接或按钮-->
+<!--        需要对加入的元素分别加入类名navbar-text navbar-link navbar-btn-->
+        <p class="navbar-text">文本</p>
+        <a href="" class="navbar-link">链接</a>
+        <button type="button" class="navbar-btn btn btn-default">按钮</button>
+    </nav>
+
+
+    <hr>
+
+<!--    如果你想让你的nav在顶部或底部固定 那么你需要为nav再加上一个类名-->
+<!--    但是需要在给body加上一个padding-top值 不让固定在顶部的nav遮挡网页内容-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar-header"><a href="" class="navbar-brand">顶部固定</a></div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="">首页</a></li>
+            <li><a href="">首页</a></li>
+            <li><a href="">首页</a></li>
+            <li><a href="">首页</a></li>
+        </ul>
+    </nav>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="navbar-header"><a href="" class="navbar-brand">底部固定</a></div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="">首页</a></li>
+            <li><a href="">首页</a></li>
+            <li><a href="">首页</a></li>
+            <li><a href="">首页</a></li>
+        </ul>
+    </nav>
+
+<!--    nav本来的样式是带圆角的 如果需要方角占满全屏 加入navbar-static-top-->
+<!--    个人觉得 区别并不是很大 只是把上边框去掉了还有一些小东西做了调整-->
+    <h3>方角占满全屏</h3>
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="navbar-header"><a href="" class="navbar-brand">导航</a></div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="">首页</a></li>
+            <li><a href="">首页</a></li>
+            <li><a href="">首页</a></li>
+            <li><a href="">首页</a></li>
+        </ul>
+    </nav>
+
+    <hr>
+
+
+</body>
+</html>

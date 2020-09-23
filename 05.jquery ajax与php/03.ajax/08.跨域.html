@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--在上面出现过的问题，如果当url不同（包括协议，域名不一样就不能直接获取数据）-->
+    <!--对于这样的情况有我们通常使用jsonp-->
+    <!--首先是jsonp的原理：生成一个scropt标签，使用src属性指向请求文件url-->
+    <!--如果直接在PHP文件输入一个数据，JS这边是不好操作的-->
+    <!--所以要在PHP中输出声明-->
+    <!--这就是jsonp的一个雏形-->
+    <script src="http://localhost/study/03.ajax-php/08.php"></script>
+    <script>
+        console.log(data);
+    </script>
+</body>
+</html>

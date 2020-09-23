@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            border: 1px solid #c0c0c0;
+        }
+        .box{
+            display: table;
+            margin: 0 auto;
+        }
+        td {
+            border: 1px solid #d0d0d0;
+            color: #404060;
+            padding: 20px 30px ;
+            font: 14px "微软雅黑";
+        }
+        tbody a{
+            color: red;
+            text-decoration: none;
+        }
+        .mask {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            opacity: 0.15;
+            display: none;
+        }
+        .data {
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            margin-left: -152px;
+            background: #fff;
+            display: none;
+        }
+        .information{
+            padding: 20px;
+        }
+        .form-add-title {
+            background-color: #f7f7f7;
+            border-bottom: 0;
+            position: relative;
+        }
+        .form-add-title span {
+            font-size: 16px;
+            color: rgb(102, 102, 102);
+            text-indent: 12px;
+            padding: 8px 0px 10px;
+            display: block;
+        }
+
+        .form-add-title div {
+            width: 16px;
+            height: 20px;
+            position: absolute;
+            right: 10px;
+            top: 6px;
+            font-size: 20px;
+            line-height: 16px;
+            cursor: pointer;
+        }
+
+        .form-submit {
+            text-align: center;
+        }
+
+        .form-submit input {
+            width: 100%;
+            height: 32px;
+        }
+        .form-item{
+            margin: 0 0 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <input type="button" value="添加属性">
+        <table>
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>姓名</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>01</td>
+                <td>sss</td>
+                <td><a href="">删除</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="mask">
+
+    </div>
+    <div class="data">
+        <div class="form-add-title">
+            <span>添加数据</span>
+
+            <div id="j_hideFormAdd">x</div>
+        </div>
+        <div class="information">
+            <div class="form-item">
+                <label class="lb" for="j_txtLesson">课程名称：</label>
+                <input class="txt" type="text" id="j_txtLesson" placeholder="请输入ID">
+            </div>
+            <div class="form-item">
+                <label class="lb" for="j_txtBelSch">所属学院：</label>
+                <input class="txt" type="text" id="j_txtBelSch" placeholder="请输入姓名">
+            </div>
+            <div class="form-submit">
+                <input type="button" value="添加" id="j_btnAdd">
+            </div>
+        </div>
+
+
+    </div>
+    <script>
+        $('.box input').on('click',function () {
+            $('.mask').css({display:'block'})
+            $('.data').css({display:'block'})
+        })
+        $('#j_hideFormAdd').click(function () {
+            $('.mask').css({display:'none'})
+            $('.data').css({display:'none'})
+        })
+        $('#j_btnAdd').click(function () {
+            $('<tr><td>'+$('#j_txtLesson').val()+'</td><td>'+$('#j_txtBelSch').val()+'</td><td><a href="">删除</a></td></tr>').appendTo($('tbody'))
+            $('.mask').css({display:'none'})
+            $('.data').css({display:'none'})
+        })
+        $('tbody a').click(function () {
+            var index = $(this).index()
+            $('tbody tr:eq('+index+')').remove()
+            return false
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+    <script src="vue-router-3.0.1.js"></script>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/content">用户界面</router-link>
+        <router-view>
+
+        </router-view>
+    </div>
+    <script>
+        var content = {
+            template:`
+                <div>
+                    <h1>用户界面</h1>
+                    <router-link to="/content/login">登录</router-link>
+                    <router-link to="/content/register">注册</router-link>
+                    <router-view></router-view>
+                </div>
+            `
+        }
+
+        var login = {
+            template: `
+                <h3>登录组件</h3>
+            `
+        }
+        var register = {
+            template:`
+                <h3>注册组件</h3>
+            `
+        }
+
+        var router = new VueRouter({
+            routes:[
+                // 在我们的用户页面组件上面再需要显示登录和注册组件
+                // 如果我们再写一个{path：}就相当于与用户界面的组件平级
+                // 这样在渲染时只能渲染一个 在当监听到login或register时 就会将content替代掉
+                // 所以需要在content路由设置里再设置一个子路由
+                {
+                    path:'/content',
+                    component:content,
+                    children:[
+                        // 子路由是不需要写斜线的
+                        // 如果带上/ 那么则认为是从根目录上请求
+                        {path:'login',component: login},
+                        {path:'register',component: register}
+                    ]
+                },
+            ]
+        }) 
+
+        new Vue({
+            el:'#app',
+            router
+        })
+    </script>
+</body>
+</html>

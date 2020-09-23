@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			//回调函数的简单例子
+			function fun1(){
+				return 2
+			}
+			function fun2(){
+				return 3
+			}
+			function fun3(x,y){
+				return x()*y()
+			}
+			document.write(fun3(fun1,fun2))
+			document.write("<br/>")
+			document.write(fun3(function (){return 8},function () {return 9}))//也可是使用匿名函数
+			document.write("<br/>")
+
+			
+			//回调函数的一个普通例子
+			function aaa (a,b,c,num) {
+				var arr = [];
+				for (var i=0;i<3;i++) {
+					arr[i] = num(arguments[i]*2)
+				}
+
+				return arr
+			}
+			function AddOne (x) {
+				return x+1
+			}
+			document.write(aaa(4,5,6,AddOne))
+			document.write("<br/>")
+			document.write(aaa(4,5,6,function(x){return x+1}))
+			document.write("<br/>")
+
+			function s () {}//忽略这个函数 上下文出现BUG必须隔开
+			//自调函数
+			(function (a,b,c) {
+				document.write(a*b*c)
+			})(9,6,12)
+		</script>
+	</body>
+</html>

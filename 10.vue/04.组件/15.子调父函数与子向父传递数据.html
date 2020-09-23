@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vue-2.4.0.js"></script>
+</head>
+<body>
+<div id="app">
+<!--    将上一个案例拿过来使用：-->
+<!--    如果我们需要为组件的根目录设置事件 上一个方法会具有局限性-->
+<!--    我们想使用父亲的函数 但上一个方法只能为根元素绑定 如果我们为其他元素绑定-->
+<!--    我们需要在组件中的template中的标签写入@事件 但是又无法直接调用父亲函数-->
+    <com1 @click="fun"></com1>
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+          msg:""
+        },
+        methods:{
+            fun(msg){
+                console.log('fun被调用并传来了信息：'+msg)
+                this.msg = msg
+            },
+        },
+        components:{
+            com1:{
+                // 我们先如同如下操作,发现我们写入的@click会出现在$listeners中
+                // 不过这里确实只是把它当做了一个属性，属性名为click 属性值为父组件的fun函数
+                // $listeners包含了父作用域中的 (不含 .native 修饰器的) v-on 事件监听器。
+                // 它可以通过 v-on=”$listeners” 传入内部组件——在创建更高层次的组件时非常有用。
+                mounted(){
+                    console.log(this.$listeners);
+                },
+                // 我们这里突然就发现 我们在子组件中访问到了父组件的函数
+                // 那么 我们就自然可以使用事件绑定来为元素绑定父组件的函数
+                // 我们还可以通过这种方式用参数来向父组件传递数据
+                // 注意 如同$attrs一样 在标签上是不需要写this的
+                template:`
+                        <div>
+                            <p @click="$listeners.click(msg)">{{msg}}</p>
+                        </div>
+                    `,
+                data(){
+                    return{
+                        msg:"我是子组件"
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

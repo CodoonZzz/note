@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //如果在继承的时候 父函数有和子函数一样的方法名，在继承的时候会出现重名的现象
+        // 解决办法
+        function F() {
+
+        }
+        F.prototype.run = function () {
+            console.log('ff')
+        }
+        var f = new F()
+        // f.run()
+        //进行方法重写
+        // f.run = function () {
+        //     console.log('f')
+        // }
+        // f.run()
+        //此时他会在对象本身创建属性
+        // console.log(f)
+
+
+        // 但我们想在调用本身的函数时，也调用父函数原型中的函数
+        // 所以我们的方法重写：
+        f.run = function () {
+            console.log('f')
+            this.__proto__.run()
+        }
+        f.run()
+
+
+
+        // 还有种情况方法是写在函数本身的：
+        function person() {
+            this.get = function () {
+                console.log('get')
+            }
+        }
+        //如果直接继承过来那么 在自己的函数中就不能再写get函数了，可以重新命名
+        function child() {
+            person.call(this)
+            var person_get = this.get
+
+            this.get = function() {
+                console.log('Cget')
+                person_get()
+            }
+        }
+        var C = new child()
+        C.get()
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        p{
+            width: 120px;
+            height: 60px;
+            border: 1px solid black;
+        }
+        /*默认的单词换行是保留了单词的完整性 如果我们想改变这种换行方式 我们可以使用work-break属性*/
+        /*这个属性的默认值为normal*/
+        p:nth-child(2){
+            word-break: break-all;
+        }p:nth-child(3){
+             word-break: keep-all;
+         }
+
+    </style>
+</head>
+<body>
+    <p>
+        This is a long,what is your name
+    </p>
+    <p>
+        This is a long,what is your name
+    </p>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+<!--        先使用ref为需要获取的元素绑定一个名字-->
+        <p ref="oP">我是一个段落</p>
+
+        <template v-for="i in 3">
+            <div ref="oDiv">我是一个div</div>
+        </template>
+
+        <com ref="oCom">
+
+        </com>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{},
+            methods:{
+                getelement(){
+                    // 然后我们就可以通过$refs访问到该元素，可以是一个组件
+                    console.log(this.$refs.oP);
+                    console.log(this.$refs.oCom);
+                    // 这是vue提供给我们操作dom的方式 这里要注意，如果重名 后面的会覆盖之前的
+                    // 但是这里有特殊情况 如果元素是通过v-for创建的 那么refs就是一个包含这些元素的数组
+                    console.log(this.$refs.oDiv);
+                },
+            },
+            mounted(){
+                this.getelement()
+            },
+            components:{
+                com:{
+                    template:`
+                        <div>
+                            <p>我是一个子组件</p>
+                            <com1></com1>
+                        </div>
+                    `,
+                    methods:{
+                        call(data){
+                            alert("孙组件调用了我，并传来信息："+data)
+                        }
+                    },
+                    components:{
+                        com1:{
+                            template:`<p @click="fun">我是孙组件</p>`,
+                            methods: {
+                                fun(){
+                                    // 通过刚才的实践可知 ref是可以访问到其他组件的 那我们就可以实现数据通信
+                                    console.log(this.$parent.$parent.$refs.oCom.call("call!"));
+                                    // 父传子将会更简单 在全局vue中使用this.$refs就可以直接访问到这些组件
+                                    // 也可以直接将组件里的data赋值给父组件
+                                }
+                            }
+                        },
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

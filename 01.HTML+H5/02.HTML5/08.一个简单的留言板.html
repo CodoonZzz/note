@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<textarea id="text" name="" rows="20" cols="50"></textarea>
+		<input type="button" id="" value="保存" onclick="saveStorage()" />
+		<input type="button" name="" id="" value="清空" onclick="clearStorage()" />
+		<table border="" cellspacing="" cellpadding="" id="table">
+			<tr>
+				<th>序列</th>
+				<th>留言文字</th>
+				<th>时间</th>
+			</tr>
+		</table>
+		<script type="text/javascript">
+			function saveStorage() {
+				var otext = document.getElementById('text').value
+				localStorage.setItem(localStorage.length + 1, otext)
+				var otable = document.getElementById('table')
+				var time = new Date()
+				var otr = document.createElement('tr')
+				otr.innerHTML = "<td>"+localStorage.length+"</td><td>"+otext+"</td><td>"+time+"</td>"
+				otable.appendChild(otr)
+			}
+			function clearStorage() {
+				localStorage.clear()
+				var otable = document.getElementById('table')
+				otable.innerHTML = "<tr><th>序列</th><th>留言文字</th><th>时间</th></tr>"
+			}
+			window.onload = function () {
+				for (var i=0;i<localStorage.length;i++) {
+					var otr = document.createElement('tr')
+					var time = new Date()
+					otr.innerHTML = "<td>"+(i+1)+"</td><td>"+localStorage.getItem(i+1)+"</td><td>"+time+"</td>"
+					var otable = document.getElementById('table')
+					
+					otable.appendChild(otr)
+				}
+			}
+		</script>
+
+	</body>
+
+</html>

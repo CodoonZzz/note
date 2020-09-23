@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="登录"  @click="comName='login'">
+        <input type="button" value="注册" @click="comName='register'">
+<!--        使用component来渲染组件 属性:is的值是哪个组件的名字 就渲染哪个组件-->
+<!--        可以实现多个组件的切换-->
+        <component :is="comName"></component>
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                comName:'login'
+            },
+            components:{
+                login:{
+                    template:`
+                    <div>
+                        <input type="text" placeholder="请输入账号">
+                        <input type="text" placeholder="请输入密码">
+                    </div>
+                `
+                },
+                register:{
+                    template:`
+                    <div>
+                        <input type="text" placeholder="请输入账号">
+                        <input type="text" placeholder="请输入密码">
+                        <input type="text" placeholder="请确认密码">
+                    </div>
+                `
+                }
+            }
+        })
+    </script>
+</body>
+</html>

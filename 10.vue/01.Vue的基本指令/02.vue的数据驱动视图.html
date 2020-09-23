@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">{{msg}}</div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '我是msg'
+            }
+        })
+        // vue中 数据是改变后会实时渲染在页面上的
+        // 这个技术叫做数据驱动视图
+        // 他的实现原理则是使用了Object.defineProperties() 详情可以看js进阶中的06
+        //  原理是对象在访问或者发生改变后执行相应的函数
+        var obj = {
+            name: 'sxy',
+            info:{
+                age:22
+            }
+        }
+
+        function define(obj, key, value) {
+            // 这里我们需要再将value作为参数 重新调用下observer
+            // 因为如果对象中的key属性值又是一个对象
+            // 那么在改变属性中的对象值时是不会触发set函数的
+            // 如果不是key不是一个对象也没事 因为observer在执行前会判断是否为对象的
+            observer(value)
+            Object.defineProperty(obj, key, {
+                get() {
+                    console.log('数据被访问了');
+                    return value
+                    // 这里需要使用返回值 因为一旦使用defineProperty方法来管理对象
+                    // 访问对象该属性时只能接收到这里的返回值
+                },
+                set(val) {
+                    // 在这里我们应该对新值也需要执行一次observer
+                    // 因为如果不执行 那么val是对象的话 这个对象中的属性不会被监听 因为没有对他实行遍历
+                    // 后面一旦对这个对象产生修改 是不会触发set函数的
+                    observer(val)
+
+                    // 因为在defineProperty中是不可写的
+                    // 所以在改变值的时候使用set中的参数修改 可以是val也可以是别的名字
+                    value = val
+                    console.log('数据被修改了');
+                }
+            })
+        }
+
+        function observer(obj) {
+            if (typeof obj === 'object'){
+                for (var key in obj) {
+                    define(obj, key, obj[key])
+                }
+            }
+        }
+
+        observer(obj)
+
+
+        obj.name = 'hhh'
+        console.log(obj.name);
+        obj.info = {b:23}
+        obj.info.b = 30
+
+        // 而vue的源码也并没有这么简单 就数据类型而言 我们只列举了一个对象
+        // 如果是数组还需要兼容 这里只是着重强调使用defineProperty来做数据拦截
+
+    </script>
+</body>
+</html>

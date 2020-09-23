@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        // Set方法是es6新增的数据方法，类似于数组
+        // Set有一大特点就是不能重复，所以我们可以使用Set去重
+
+        var set = new Set([1,2,3,4,1,5])
+        console.log(set);
+
+        // Set也有很多自己的方法：
+        // 1.检测数组长度
+        console.log(set.size); // 5
+
+        // 2.判断是否有某个数据
+        console.log(set.has(1)); // true
+
+        // 3.添加数据
+        set.add(6) //如果添加的数据与原数组有重复 则不会被添加
+        console.log(set); // 1,2,3,4,5,6
+
+        // 4.删除数据
+        set.delete(1)
+        console.log(set); // 2,3,4,5,6
+
+        // 5.清空数据
+        set.clear()
+        console.log(set); // 空数组
+    </script>
+</body>
+</html>

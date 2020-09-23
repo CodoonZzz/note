@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function p() {
+            
+        }
+        function c() {
+            
+        }
+        // 第一步在父函数原型中添加需要继承的属性
+        p.prototype.eat = 'eat'
+        p.prototype.head = 1
+        // 第二步继承
+        c.prototype = Object.create(p.prototype)
+        // 第三步修正constructor
+        c.prototype.constructor = p
+        //第四步再给子对象的原型添加属性，必须先继承再添加，不然第二步的“=”会覆盖所有
+    </script>
+</body>
+</html>

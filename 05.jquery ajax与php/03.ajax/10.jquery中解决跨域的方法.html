@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+</head>
+<body>
+<input type="button" value="按钮">
+
+
+<script>
+$('input').on('click',function () {
+    $.ajax({
+        type:'get',
+        url:'http://localhost/study/03.ajax-php/10.php',
+        dataType:'jsonp',  // 这里使用jsonp就可以进行跨域了，默认是传输一个callback的参数
+        // jsonp:'abc', // jsonp是修改约定的callback这个属性名
+        // jsonpCallback:'dfe' // 这里是修改默认的callback名
+        success:function (data) {
+            console.log(data.username);
+        }
+
+    })
+})
+</script>
+</body>
+</html>

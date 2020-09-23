@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+<!--        对于这样的一个页面 我们在传入msg后 是想让页面渲染出的数据为msg+4的一个算式-->
+<!--        而变更msg后 只会通过字符串拼接的方法渲染-->
+<!--        原理是因为{{msg+4}}一开始是会当成一个数字来算-->
+<!--        但一旦算式完成 渲染到页面上 整个{{msg+4}}就是一个字符串-->
+<!--        而我们这个时候修改msg再让他+4 那就是字符串+4了 -->
+        <input type="text" v-model="msg">
+        <p>{{msg+4}}</p>
+
+<!--        vue又想到这种情况发生 为我们提供了一些修饰符 可以强制更改msg的数据类型-->
+<!--        在v-model后面使用.数据类型来达到效果 比如：-->
+<!--        还有一个.trim可以去除input中的空格-->
+<!--        两个可以一起使用-->
+        <input type="text" v-model.number.trim="msg2">
+        <p>{{msg2+4}}</p>
+    </div>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                msg:123,
+                msg2:456
+            }
+        })
+    </script>
+</body>
+</html>

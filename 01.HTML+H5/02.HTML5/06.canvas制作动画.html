@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<canvas id="Mycanvas" width="500" height="500"></canvas>
+		<script type="text/javascript">
+			var ocanvas = document.getElementById('Mycanvas')
+			var ocontext = ocanvas.getContext('2d')
+			ocontext.fillStyle = "aqua"
+			var i=0
+			setInterval(donghua,10)
+			function donghua(){
+				ocontext.fillRect(i*2,0,10,10)
+				ocontext.clearRect((i-250)*2,0,10,10)
+				i++
+				if (i>500) {
+					i=0
+				}
+			}
+			
+		</script>
+	</body>
+</html>

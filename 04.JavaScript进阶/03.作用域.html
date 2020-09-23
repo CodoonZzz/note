@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+
+        // 对于一个函数，访问数据会先在自己的函数体内寻找，如果没有会在外层寻找
+        //函数在预处理阶段，函数除了自己体内会创建一个磁盘，也会对他的外层关联
+        //对于这两个函数的外层在预处理阶段已经确定为window，也就是全局
+        //那么就算是在f3内部执行的f2，f2也只会在自己函数内部寻找，未果后在他的外层window寻找
+        //所以是不会访问到f3内部的
+        //所以f2执行结果为100而非10
+        var y = 100
+        function f3() {
+            var y= 10
+            f2()
+        }
+        function f2() {
+            console.log(y)
+        }
+        f3()
+
+
+
+        //对于这样关系的函数，在预处理阶段，f和f1的外层分别为window与f
+        //而在执行时f1会先访问自己内部，未果会访问他的外层也就是f的内部，再未果会访问f的外层，也就是widow全局
+        //从而形成一个链条，从内到外
+        //如果在f内部找到了，则会赋值输出，就不会再访问下去了
+
+        var x = 3
+        function f() {
+            function f1() {
+                console.log(x)
+            }
+            f1()
+        }
+        f()
+    </script>
+</body>
+</html>

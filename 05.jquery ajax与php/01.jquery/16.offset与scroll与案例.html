@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            margin: 6px;
+        }
+        .box{
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            background: red;
+        }
+        body{
+            width: 2000px;
+            height: 2000px;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+
+    <div>
+        <div class="box"></div>
+    </div>
+
+    <div></div>
+    <script>
+        // 之前的width()与height()方法都便于我们获取数值
+        // 而位置也有封装函数
+        // offset是将top与left值获取成一个对象
+        console.log($('.box').offset());
+
+        // 而scroll方法是获取滚动条的距离
+        $(window).click(function () {
+            console.log($(this).scrollTop());
+            console.log($('.box').offset().top);
+
+        })
+
+        // 案例：我们要让红色div碰到浏览器上方的时候就固定在上方 当div位置到达原本的位置后就又恢复原位
+        // 先获取本来div的top
+        var oBoxTop = $('.box').offset().top
+        console.log($('.box').css('top'));
+        console.log(oBoxTop);
+        // 然后给浏览器滚动滚轮绑定事件
+        $(window).scroll(function () {
+            // 判定是否滚轮滚出的距离大于之前本来的高度，如果大于就跟这走，如果小于 回归原样
+            if ($(this).scrollTop()>oBoxTop){
+                $('.box').css({position:'fixed',top:'0'})
+            }else{
+                // 由于之前有maring值所以要减去
+                $('.box').css({position:'absolute',top:oBoxTop-6})
+            }
+        })
+
+
+    </script>
+</body>
+</html>

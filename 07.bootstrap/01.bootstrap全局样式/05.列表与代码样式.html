@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+    <div class="container">
+<!--        列表在原有的基础上做的更细腻了没有较大的改动-->
+        <ul>
+            <li>林俊杰</li>
+            <li>林宥嘉</li>
+            <li>周杰伦</li>
+        </ul>
+        <hr>
+        <ol>
+            <li>林俊杰</li>
+            <li>林宥嘉</li>
+            <li>周杰伦</li>
+        </ol>
+        <hr>
+<!--        如果想要去掉list-style 加上类名list-unstyled-->
+<!--        如果想要做菜单 加上类名list-inline就可以 这样会给元素加上display：inline-block 除此之外还有一些其他的细腻改动-->
+        <ul class="list-unstyled list-inline">
+            <li>那英</li>
+            <li>薛之谦</li>
+            <li>许嵩</li>
+        </ul>
+
+
+
+
+        <hr>
+<!--        在dl中bootstrap把dt加粗了 而且dd原本有一个缩进 在boot中取消了-->
+        <dl>
+            <dt>林俊杰</dt>
+            <dd>我最喜欢的歌手</dd>
+        </dl>
+<!--        如果你想水平显示 那么加上dl-horizontal的类名-->
+        <dl class="dl-horizontal">
+            <dt>林俊杰</dt>
+            <dd>我最喜欢的歌手</dd>
+
+        </dl>
+<!--        代码样式：-->
+<!--        如果你想展示一段代码或者写出需要的快捷键或者保留回车空格等用这些标签 在boot中也为他们做了很多样式改变-->
+<!--        code会在页面上将字体颜色变为红色 然后会再加一个灰色背景-->
+        <p>如果你想在js中获取某个元素 可以使用id来获取 <code>document.getElementById()</code></p>
+<!--        kbd会让输入内容有一个黑色的背景 模仿键盘的样式-->
+        <p>如果你想保存当前文件可以使用快捷键<kbd>ctrl+s</kbd></p>
+<!--        pre会让背景变为灰色并加上一个边框 一般展示代码可用-->
+        <pre>又如果
+            你想在html这种对缩进符不敏感的文档中
+            写入多个缩进并显示在页面上
+                                        那就使用pre吧</pre>
+    </div>
+    <script>
+        // var oDiv = document.getElementById()
+    </script>
+</body>
+</html>

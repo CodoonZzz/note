@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            /*先给容器写上让display写上box值*/
+            display: -moz-box;
+            display: -webkit-box;
+
+        }
+        div{
+            height: 300px;
+            /*display: inline-block;*/
+            /*vertical-align: top;*/
+        }
+        /*然后再给需要弹性布局的子盒子写上box-flex的属性*/
+        .leftBox{
+            width: 300px;
+            background: #00FFFF;
+            -webkit-box-flex: 1;
+            -moz-box-flex: 1;
+        }
+        .rightBox{
+            width: 300px;
+            background: #8A2BE2;
+            -webkit-box-flex: 1;
+            -moz-box-flex: 1;
+        }
+        .middleBox{
+            width: 400px;
+            /*-webkit-box-flex: 1;*/
+            /*-moz-box-flex: 1;*/
+            background: #99c4ff;
+        }
+
+        /*弹性布局如同上面也可实现*/
+        /*也可在父元素写入display：flex*/
+        /*子元素使用flex：数字*/
+        /*数字写入的是计算成：数字/10*100%*/
+    </style>
+</head>
+<body>
+
+    <div class="leftBox"></div>
+    <div class="middleBox"></div>
+    <div class="rightBox"></div>
+</body>
+</html>

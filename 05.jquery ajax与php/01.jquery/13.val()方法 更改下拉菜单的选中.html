@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+</head>
+<body>
+    <input type="button" value="按钮">
+    <input type="radio" value="0">
+    <input type="checkbox" value="1">
+    <textarea>123456789</textarea>
+    <select name="" id="">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+    <script>
+        // 对于val()方法很简单 如果括号里面什么都不写则是获取，如果里面写值，则是修改value为括号里的内容
+        console.log($('input:eq(0)').val());
+        console.log($('input:eq(1)').val());
+        console.log($('input:eq(2)').val());
+
+        //而值的提的是radio这种或者checkbox的val值是给后台使用的
+
+        console.log($('textarea').val());
+        //而还有就是文本域里的文本可以使用val方法也可以使用text方法，推荐使用val
+
+        // 下拉菜单不设置的时候是默认第一个
+        // 而设置val会让默认值变成对应option
+        $('select').val(4)
+    </script>
+</body>
+</html>

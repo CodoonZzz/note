@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+    <style>
+        div{
+            border: 1px solid black;
+            margin: 0 0 100px 0;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="按钮">
+    <div></div>
+
+    <input type="button" value="按钮">
+    <div></div>
+
+    <input type="button" value="按钮">
+    <div></div>
+    <script>
+        //我们要点击按钮让div变色然后再让里面出现一个p：我是一个段落
+
+        $('input:eq(0)').click(function () {
+            $('div:eq(0)').css({background:'red'})
+            $('div:eq(0)').html('<p>我是一个段落</p>')
+        })
+
+        //对于普通的操作是这样的，但是我们可以使用链式编程:
+
+        $('input:eq(1)').click(function () {
+            $('div:eq(1)').css({background:'red'}).html('<p>我是一个段落</p>')
+        })
+
+        // 链式编程的写法：对象.方法().方法()……
+        // 规则：对象在执行前一个方法之后返回来的必须是一个对象，如果不是就会断链，比如：
+
+        $('input:eq(2)').click(function () {
+            $('div:eq(2)').html().css({background:'red'})
+        })
+
+        // html()中什么都不写则是获取该对象的html，获取出来是字符串，字符串无法再进行下面的方法，则会报错
+
+        // 如果获取了其他的兄弟元素不在是当前元素的时候可用end()恢复到当前元素
+        // end()可以恢复到最近一次的破坏性操作之前，在07有实例
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-1.12.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <ul class="nav nav-tabs">
+<!--                我们需要在选项卡的a标签上加入data-toggle="tab"使之可以切换-->
+                <li class="active"><a href="#one" data-toggle="tab">首页</a></li>
+                <li><a href="#two" data-toggle="tab">首页</a></li>
+                <li class="dropdown">
+                    <a href="" class="" data-toggle="dropdown">下拉菜单 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#ooo" data-toggle="tab">ooo</a></li>
+                        <li><a href="#ppp" data-toggle="tab">ppp</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+<!--        需要切换的内容写在tab-content的元素中-->
+        <div class="tab-content">
+<!--            而每一个被切换的元素都需要加上tab-pane-->
+<!--            如果需要一进来就切换到哪一个div 除了需要在导航上激活-->
+<!--            这里也需要激活 in active即可-->
+<!--            如果切换时需要过渡效果 可以使用fade-->
+            <div class="tab-pane fade in active" id="one">
+                这里是one
+            </div>
+            <div class="tab-pane fade" id="two">
+                这里是two
+            </div>
+            <div class="tab-pane fade" id="ooo">
+                这里是ooo
+            </div>
+            <div class="tab-pane fade" id="ppp">
+                这里是ppp
+            </div>
+        </div>
+    </div>
+    <script>
+        // 关于js可以参考文档
+    </script>
+</body>
+</html>

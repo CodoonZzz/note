@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-1.12.2.js"></script>
+    <style>
+        .add{
+            border: 5px solid black;
+        }
+        .remove{
+            border-radius: 25%;
+        }
+    </style>
+</head>
+<body>
+    <p class="remove">123</p>
+    <p class="add">00</p>
+    <script>
+        // 事实上这些都很简单，所以只写个写法不写实例了
+        // 设置样式有三种写法：
+        $('p:eq(0)').css('background','red')
+
+        $('p:eq(0)').css({
+            color:'yellow',
+            fontSize:'40px'
+        })
+
+        $('p:eq(0)').css('margin','20px').css('padding','20px')
+
+        //如果需要获取某个元素的样式，只需要写样式属性就行，不应写值，就会返回出有效的样式
+
+        // 需要一提的就是我们在获取一个元素的宽高的时候，用css()来获取是带有单位px的
+        // 不便于我们的操作，如果我们要对宽高要进行操作就要先使用parseInt()来获取
+        // 在jq中写出了width()与height()方法来使用，这样获取的宽高是没有单位的
+        console.log($('p:eq(0)').width());
+        //也可以直接在括号中设置新的数值来设置宽高，而数值也可以直接写数字就行
+
+
+        //类名的添加与移除
+        $('p:eq(0)').addClass('add')
+        $('p:eq(0)').removeClass('remove')
+        //如果要移除或添加多个类名，在引号里用空格隔开每一个类名就好
+        //如果移除类名里面什么也不写，那就代表移除该元素所有类名
+
+        // 而需要检查某个标签是否有某类名：
+        console.log($('p:eq(1)').hasClass('add')) //返回true
+
+        //切换某个类名：（有该类名则移除，没有则添加）
+        //我们设置个点击事件
+        $('p:eq(1)').click(function () {
+            $(this).toggleClass('add')
+        })
+
+    </script>
+</body>
+</html>

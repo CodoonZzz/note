@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			/*第一个元素*/
+			ul li:first-child{
+				color: red;
+			}
+
+			/*最后一个元素*/
+			ul li:last-child{
+				color: green;
+			}
+
+			/*正数第N个元素*/
+			/*如果单独写入数字 数字则为1开始计数*/
+			ul li:nth-child(5){
+				color: peru;
+			}
+
+			/*odd为正数奇数个元素*/
+			ul li:nth-child(odd){
+				background: blueviolet;
+			}
+
+
+			/*even为正数偶数个元素*/
+			ul li:nth-child(even){
+				background: cadetblue;
+			}
+
+			/*nth-last-child为倒数*/
+			ul li:nth-last-child(odd){
+				font-size: 32px;
+			}
+
+			/*nth-child在计算时 将所有兄弟元素放入一个集合内计算 
+			 比如使用p：nth-child（odd）时，如果第奇数个中某个标签不是元素不是p 那么不会产生任何改变
+			 这时使用p：nth-of-type(odd)会解决问题，这个伪类选择器是将这里的P元素组成一个集合来计算的*/
+			div p:nth-of-type(2n-1){
+				color: red;
+			}
+			/*括号中也能使用代数式来表示规律*/
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+			<li>7</li>
+			<li>8</li>
+			<li>9</li>
+			<li>10</li>
+		</ul>
+		<div>
+			<p>1</p>
+			<p>2</p>
+			<p>3</p>
+			<p>4</p>
+			<p>5</p>
+			<p>6</p>
+			<p>7</p>
+			<p>8</p>
+			<p>9</p>
+			<p>10</p>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="iid" class="cclass" name="nname"></div>
+		<script type="text/javascript">
+			var oDiv = document.getElementsByTagName("div")[0]
+			// 使用Attribute来获取和设置节点的属性值
+			// 在通常方法是获取节点之后使用.来设置或获取节点属性
+			// 但是,如果属性值是自定义的,那么用.就不能获取和设置了
+			// 还有一点可以使用removeAttribute来移除属性值
+			
+			oDiv.setAttribute("xxx","yyy")
+			oDiv.removeAttribute("name")
+			console.log(oDiv)
+		</script>
+	</body>
+</html>

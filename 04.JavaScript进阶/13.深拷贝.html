@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        // 之前浅拷贝有一些问题，根本在与浅拷贝只把“门牌号”复制过来了
+        // 所以解决这个的问题，核心思想是需要让把里面的数据复制过来
+
+        // 深拷贝方法一
+        var person = {
+            name:'sxy',
+            adress:{
+                home:'home'
+            },
+            num:[1,2,3,4]
+        }
+        var child = {
+            age:22
+        }
+        //使用同样的方法 但是在使用之前判断一下是否为数组或者对象
+        // console.log(typeof person.adress,typeof person.num)
+        // console.log(person.adress.constructor,person.num.constructor)
+
+        function f(p,s) {
+            var s = s||{}
+
+            for (var i in p){
+                //我们这里把数组也考虑进去，首先判断是否为对象，对象与数组typeof都会输出object
+                if(typeof p[i]==='object'){
+                    //如果是对象，则在儿子的该属性上面放一个空的对象或者数组以便往里面放东西
+                    p[i].constructor===Array?s[i]=[]:s[i]={}
+                    //然后用递归函数，再调用这个函数
+                    f(p[i],s[i])
+                }else{
+                    s[i] = p[i]
+                }
+            }
+        }
+        // f(person,child)
+        // hild.adress.home = 'xixi'
+        // child.num = [22,123]
+        // console.log(person)
+        // console.log(child)
+
+
+
+        //深拷贝方法二：
+        // 可以写两个构造器，使用this直接指向子函数，在添加的时候就往子函数添加
+        function oPerson(){
+            this.name = 'sxy'
+            this.adress = {
+                home:'home'
+            }
+        }
+        function oChild() {
+            //让父亲的this指向儿子构造器就行了
+            oPerson.call(this)
+            this.age = 22
+        }
+        var ccc = new oPerson()
+        var bbb = new oChild()
+        ccc.adress.home = 'xixi'
+        console.log(ccc)
+        console.log(bbb)
+
+    </script>
+</body>
+</html>

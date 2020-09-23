@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+    <style>
+        div{
+            background: grey;
+            width: 100%;
+            height: 50px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" @click="fun1">
+        <!--修饰符在@事件后面使用.来表示-->
+        <input type="button" @click.stop="fun2" value="按钮">
+        <!--修饰符stop阻止冒泡-->
+        <a href="https://www.baidu.com" @click.prevent.stop="fun3">我要跳转到百度</a>
+        <!--修饰符prebent阻止默认行为-->
+    </div>
+
+    <div id="box2" @click.capture="fun1">
+        <!--使用.capture来实现捕获机制，默认是冒泡-->
+        <input type="button" @click="fun2" value="按钮">
+    </div>
+
+    <div id="box3" @click.self.once="fun1">
+        <!--.self表示只有当自己事件触发条件满足时，才会触发事件函数-->
+        <!--.once表示该事件函数值执行一次-->
+        <input type="button" @click="fun2" value="按钮">
+    </div>
+
+
+
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                msg:'sss'
+            },
+            methods:{
+                fun1(){
+                    console.log('我是div' );
+                },
+                fun2(){
+                    console.log('我是input' );
+                },
+                fun3(){
+                    console.log('不让跳转');
+                }
+            }
+        })
+        new Vue({
+            el:'#box2',
+            data:{
+                msg:'sss'
+            },
+            methods:{
+                fun1(){
+                    console.log('我是div' );
+                },
+                fun2(){
+                    console.log('我是input' );
+                },
+            }
+        })
+
+        new Vue({
+            el:'#box3',
+            data:{
+                msg:'sss'
+            },
+            methods:{
+                fun1(){
+                    console.log('我是div' );
+                },
+                fun2(){
+                    console.log('我是input' );
+                },
+            }
+        })
+    </script>
+</body>
+</html>

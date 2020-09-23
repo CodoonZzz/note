@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="按钮" @click="fun">
+        <p v-if="msg">我是被if控制的</p>
+        <p v-show="msg">我是被show控制的</p>
+<!--        if与show的区别在于-->
+<!--        if的原理是让整个元素添加或移除-->
+<!--        而show的原理是在元素上添加一个display：none的样式-->
+        <template v-if="msg">
+<!--            如果是需要将两或多个元素进行隐藏 又不想为他们添加盒子破坏html结构-->
+<!--            那就在外边加上一个template的标签 这个标签是vue提供给我们的-->
+<!--            浏览器渲染时是不会将这个标签渲染在页面上的 -->
+<!--            这个标签实际上是组件中的标签 详细可以看组件内容 这里只是引用 -->
+<!--            我们可以直接在template标签上加入我们的指令-->
+            <h3>我是h3</h3>
+            <h3>我是h3</h3>
+<!--            !!但是 v-show不支持template 所以只能使用v-if-->
+        </template>
+
+    </div>
+    <script>
+        new Vue({
+            el:'#box',
+            data:{
+                msg:true
+            },
+            methods:{
+                fun(){
+                    this.msg = !this.msg
+                }
+            }
+        })
+    </script>
+</body>
+</html>

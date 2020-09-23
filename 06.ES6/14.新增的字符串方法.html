@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // includes是判断字符串中是否包括特定的字符串
+    // 这个方法可以有两个参数，第一个填子串，第二个填数字，表示从第几个字符串开始匹配
+    console.log('hello word'.includes('word')); // true
+
+    // starsWith判断是否以特定字符串开始
+    console.log('hello word'.startsWith('he')); // true
+    // endsWith判断是否以特定字符串结尾
+    console.log('hello word'.endsWith('rd')); // true
+
+    // String.padStart()方法可以在开头填充字符串
+    // 第一个参数是填充到多少个字符串位置，第二个参数是填充什么字符串
+    console.log('123'.padStart(5, '0'));
+    // String.padEnd()方法可以在结尾填充字符串
+    // 第一个参数是填充到多少个字符串位置，第二个参数是填充什么字符串
+    console.log('123'.padEnd(5, '0'));
+
+
+    var obj = {
+        name:'sxy',
+        age:22,
+        adress:'陕西汉中'
+    }
+    // 如果想拼接这些字符串显示在页面上我们需要使用字符串与标签的拼接
+    // document.write(
+    //     '<p>姓名：<span>'+obj.name+'</span><span>年龄：'+obj.age+'</span><span>地址：'+obj.adress+'</span></p>'
+    // ) // 姓名：sxy年龄：22地址：陕西汉中、
+    // 这样不美格式，很乱， 很容易错误 所以es6添加了新的方法可以同时使用字符串与表达式
+    // 使用``反引号来写入内容，表达式使用${}来表示
+    // 而且可以在表达式里写其他的东西比如方法，算法等等
+    function fun(num){
+        return num
+    }
+    document.write(`
+        <p>
+            <span>姓名：${obj.name}</span>
+            <span>年龄：${obj.age}</span>
+            <span>地址：${obj.adress}</span>
+            <span>${fun('还有我')}</span>
+        </p>
+    `)
+
+</script>
+</body>
+</html>

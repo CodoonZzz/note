@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //闭包就是使用了函数的访问方式，最内层函数从自己开始逐个向外访问，一直到widow
+        //所以函数执行时，在父函数或者爷函数中的数据不会对全局造成影响，从而达到需要的效果又可以不污染全局
+
+        function f() {
+            var a = 3
+            function f1() {
+                a++
+                console.log(a)
+            }
+            f1()
+        }
+        f()
+        //console.log(a)  此时为报错，因为找不到a
+
+
+        // 闭包的使用例如：
+        function f1(base) {
+            return function (num) {
+                for (var i=0;i>=0;i++){
+                    num++
+                    if (num>base){
+                        break
+                    }
+                }
+                return num+base
+            }
+        }
+        var bi = f1(20)
+        console.log(bi(3))
+
+        //
+        // (function (){
+        //     var x = 10
+        //     function f4() {
+        //         return x
+        //     }
+        //     window.ff = f4
+        // })()
+        // console.log(ff())
+    </script>
+</body>
+</html>

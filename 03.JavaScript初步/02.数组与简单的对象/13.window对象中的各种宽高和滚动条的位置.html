@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body{
+      width: 2000px;
+      height: 3000px;
+    }
+  </style>
+</head>
+
+<body>
+  <script type="text/javascript">
+    // inner：浏览器的内部窗口宽度
+    console.log(window.innerWidth);
+    console.log(window.innerHeight);
+
+    // 屏幕的可用（可工作）宽度：
+    console.log(window.screen.availWidth);
+    // 屏幕的可用（可工作）高度：
+    console.log(window.screen.availHeight);
+
+    // 网页可见区域宽度：（包括边线的宽）
+    console.log(document.body.offsetWidth);
+    // 网页可见区域高度：（包括边线的高）
+    console.log(document.body.offsetHeight);
+
+    //滚动条的位置
+    console.log(document.documentElement.scrollTop)
+    console.log(document.documentElement.scrollLeft)
+
+    // 这里主要说明了window对象中的宽高等
+    // 也涉及到了DOM中的宽高 详情进入dom文件夹中08
+  </script>
+</body>
+
+</html>

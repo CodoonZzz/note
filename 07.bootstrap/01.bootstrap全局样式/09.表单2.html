@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+    <div class="container">
+        <form action="" class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-md-2">文本域:</label>
+                <div class="col-md-10">
+<!--                    对于文本域 因为宽度是100%父元素的 所以设置列无效 可以设置行-->
+                    <textarea class="form-control" rows="10">
+                     </textarea>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="control-label col-md-2">下拉菜单:</label>
+                <div class="col-md-2">
+                    <select class="form-control">
+                        <option>林俊杰</option>
+                        <option>周杰伦</option>
+                        <option>林宥嘉</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+<!--                    如果需要多个选项可以使用h5新属性-->
+                    <select class="form-control" multiple>
+                        <option>林俊杰</option>
+                        <option>周杰伦</option>
+                        <option>林宥嘉</option>
+                    </select>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+<!--                单选框与复选框比较特殊 因为在boot中设置了特别的代码格式-->
+<!--                在单选框外面需要给一个rado类名的div 这样会更好的排列我们的单选框与文字-->
+<!--                在写入input的过程中 让input与文本一起写入label中 这样点击文字也能触发input-->
+                <div class="radio">
+                    <label><input type="radio" name="sex">男</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" name="sex">女</label>
+                </div>
+<!--                如果禁止点击除需要在input上加上disabled之外 再div上也可以加上相同的类名
+                    boot会赋予它禁止的样式-->
+                <div class="radio disabled">
+                    <label><input type="radio" name="sex" disabled>外星人</label>
+                </div>
+            </div>
+            <div class="form-group">
+<!--                复选框与单选框类似-->
+                <div class="checkbox">
+                    <label><input type="checkbox">游泳</label>
+                </div>
+                <div class="checkbox disabled">
+                    <label><input type="checkbox">乒乓球</label>
+                </div>
+                <div class="checkbox disabled">
+                    <label><input type="checkbox" disabled>食屎</label>
+                </div>
+            </div>
+
+<!--            如果你想使用内联的样式 则需要在label上添加radio-inline或checkbox-inline并且不需要外边的div-->
+            <div class="form-group">
+                <label class="radio-inline"><input type="radio" name="sex">男</label>
+                <label class="radio-inline"><input type="radio" name="sex">女</label>
+                <label class="radio-inline disabled"><input type="radio" name="sex" disabled>外星人</label>
+            </div>
+            <div class="form-group">
+                <label class="checkbox-inline"><input type="checkbox">游泳</label>
+                <label class="checkbox-inline"><input type="checkbox">乒乓球</label>
+                <label class="checkbox-inline disabled"><input type="checkbox" disabled>食屎</label>
+            </div>
+<!--            如果需要 <label> 内没有文字，输入框（input）正是你所期望的。 -->
+<!--            目前只适用于非内联的 checkbox 和 radio。 -->
+
+
+
+<!--            如果你想在label后放置一段纯文本并且想与label放置同一行 就给p标签加入form-control-static类-->
+            <div class="form-group">
+                <label class="col-md-2 control-label">邮箱：</label>
+                <div class="col-md-10">
+                    <p class="form-control-static">email@example.com</p>
+                </div>
+            </div>
+
+            <div>
+
+            </div>
+        </form>
+    </div>
+</body>
+</html>

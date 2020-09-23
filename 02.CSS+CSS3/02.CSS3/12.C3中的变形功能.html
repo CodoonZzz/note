@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{
+				width: 100px;
+				height: 100px;
+				background: #00FFFF;
+				margin: 20px 40px; 
+			}
+			.box1:hover{
+				transform: rotate(45deg);
+			}
+			/* rotate旋转 单位是deg */
+			.box2:hover{
+				transform: scale(2,0.5);
+			}
+			/* scale缩放 单位是倍 
+			可能的值：一个数值则是X与Y轴同时缩放，若两个值第一个为X第二个为Y
+			也可以设置scaleX或scaleY单独设置倾斜*/
+			.box3:hover{
+				transform: skew(30deg);
+			}
+			/* skew倾斜 单位是deg 
+			可能的值：一个数值则是X轴倾斜，若两个值第一个为X第二个为Y
+			也可以设置skewX或skewY单独设置倾斜*/
+			.box4:hover{
+				transform: translate(300px);
+			}
+			/* translate为移动 */
+			.box5:hover{
+				transform: translate(80px) rotate(45deg) ;
+			}
+			/* 可以为一个元素设置多个变形：translate：方式1 方式2 方式3 */
+			/* transform-origin属性可以设置变形的元素基点:top,top left,left,bottom left,bottom,bottom right,right,right top */
+		</style>
+	</head>
+	<body>
+		<div class="box1"></div>
+		<div class="box2"></div>
+		<div class="box3"></div>
+		<div class="box4"></div>
+		<div class="box5"></div>
+	</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app">
+        <collapse>
+            <collapse-item title="我的大学同学">大学同学1</collapse-item>
+            <collapse-item title="我的高中同学">大学同学2</collapse-item>
+            <collapse-item title="我的初中同学">大学同学3</collapse-item>
+        </collapse>
+    </div>
+    <script>
+        // 达到一个点击某一个item就会展开 其他全部关闭 如果该item是展开 则关闭即可
+        Vue.component('collapse-item',{
+            props:['title'],
+            data(){
+                return{
+                    flag:false
+                }
+            },
+            mounted(){
+                // 这里我们使用this.$parent也可以访问到父组件
+                // 这也是调用父组件函数的一个方式 这个方式不限于标签
+                // 因为之前的方式如果有多个组件模板 那么每个标签都要使用v-on来绑定是一件很麻烦的事
+                console.log(this.$parent);
+            },
+            template:`
+                <div>
+                    <div @click="show">{{title}}</div>
+                    <div v-show="flag">
+                        <slot></slot>
+                    </div>
+                </div>
+            `,
+            methods:{
+                show(){
+                    // 目前无法直接访问兄弟组件 只能通过父组件来控制子组件
+                    // 在点击某一个item时 就会触发这个函数 让自己的父组件执行fun函数
+                    // 并传值给父亲自己的id再让自己显示或隐藏
+                    // 这里要说下就是这个_uid 这是每一个组件在生成后唯一的数字
+
+                    this.$parent.fun(this._uid)
+                    this.flag = !this.flag
+
+                }
+            }
+        })
+        Vue.component('collapse',{
+            template:`
+                <div>
+                    <slot></slot>
+                </div>
+            `,
+            methods: {
+                fun(childId){
+                    // 父组件里的这个函数通过点击子组件
+                    // 子组件调用父组件的fun函数并接收到被点击组件的id
+                    // 这时遍历该父组件下边的子组件 如果id不相同就让他们都不显示
+                    this.$children.forEach((item)=>{
+                        if (item._uid != childId){
+                            item.flag = false
+                        }
+                    })
+                    // 这里$parent 与$children是一组 可以访问到父亲或儿子的实例
+                }
+            }
+        })
+
+        new Vue({
+            el:'#app',
+
+        })
+    </script>
+</body>
+</html>

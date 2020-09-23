@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function p() {
+
+        }
+        function c() {
+
+        }
+        // 继承的方法：
+        // 1.让c原型直接等于p的原型：c.prototype=p.prototype
+        // 这样有个缺点 我们在实例化c之后，在c.prototype上写上属性时
+        // p实例化出来的对象也可以查找，这样有违背继承的理念
+
+        // 2.让c的原型等于p的实例化：
+        // c.prototype = new p()
+        // 这样就相当于之前的例子 形成链条
+        // new c().__proto__ = new p()
+        // 但是如果p里面有很多属性，这样把p实例出来里面的属性会毫无用处，只会占内存
+        // 所以这个方法也不好
+
+        // 3.根据上面两个方法可以想到我们继承需要将父亲复制一份出来
+        // 但是不能复制里面的属性，所以这样的话，那么我们只把父亲的原型复制一份出来就好
+        // 让子对象的__proto__指向他
+        // 那么就要创建一个中间函数来实现
+        // function f() {}
+        // f.prototype = p.prototype
+        // c.prototype = new f()
+        // 事实上 这个方法可以直接写出来 也就是creat
+        c.prototype = Object.create(p.prototype)
+
+    </script>
+</body>
+</html>

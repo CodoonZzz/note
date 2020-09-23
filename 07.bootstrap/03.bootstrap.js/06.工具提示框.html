@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-1.12.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <style>
+        /*如果我们需要对提示框修改样式 那么可以使用底下的类名*/
+        .tooltip{
+            background: white;
+        }
+        /*箭头：*/
+        .tooltip-arrow{
+            border-bottom-color: white; ;
+        }
+        /*文字*/
+        .tooltip-inner{
+            background: white;
+            color: black;
+        }
+        /*如果需要进一步修改样式可以下载jq插件*/
+    </style>
+</head>
+<body>
+    <div class="container" style="margin-top: 200px">
+<!--        工具属性除了需要加入title来设置弹出提示的文本-->
+<!--        还需要两个属性 data-toggle="tooltip" 和 data-placement="left"-->
+<!--        这两个属性前者确定了工具提示框 后者确定了提示在左侧-->
+<!--        但是这个js插件和其他的插件不一样是需要我们加入一段js代码来激活-->
+        <button type="button" class="btn btn-default" title="工具提示" data-toggle="tooltip" data-placement="left">提示</button>
+<!--        如果要设置提示框的触发条件 那需要设置data-trigger="" 默认值为hover-->
+        <button type="button" class="btn btn-default" title="工具提示" data-toggle="tooltip" data-placement="top" data-trigger="click">
+            提示
+        </button>
+        <br>
+        <button  id="myTooltip">按钮</button>
+    </div>
+    <script>
+        $('[data-toggle="tooltip"]').tooltip()
+        // 默认是mouseover的事件
+        // 我们可以在tooltip方法内加入一些参数
+        $('#myTooltip').on('click',function () {
+            $('[data-toggle="tooltip"]').tooltip('toggle')
+        })
+        // toggle是开关 show是显示 hide是隐藏
+        // 而其他的事件参考文档
+    </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="box">
+        <p>{{msg}}</p>
+    </div>
+    <script>
+        // 在我们把vue文件导入之后就会有一个vue的构造函数了，所以我们在使用时先实例化一个vue函数
+        var vm = new Vue({
+            // el:'#box',
+            // 这里表示要控制那个区域   在这需要提一下 我们的el也可以写在实例的后边
+            // 使用实例对象中的一个$mount属性
+
+            data:{// data属性存放的是el中需要的数据
+                msg:'我是一个段落'// 通过vue指令很方便的把数据渲染在页面上
+                // 对于vue之类的前端框架是不提倡我们手动dom操作的
+            }
+        }).$mount('#box') // 这样也是可以的 但是现在都一样 作为了解 这个后边单元测试可能会使用
+
+        // 对于实例化出来的vue对象 他包含了许多属性 一般是$开头的
+        console.log(vm);
+
+        // 从控制台的信息可以看出
+        // $el就是vue中的el
+        // 而data在对象中是$data属性
+        console.log(vm.$el, vm.$data);
+
+        // 但是我们需要使用data里的数据时 我们一般不这么干
+        // 其实我们的data也是直接在这个对象中
+        // 所以后面需要使用data里面的数据可以直接vm. 或者在里面使用this.
+        console.log(vm.msg);
+    </script>
+</body>
+</html>

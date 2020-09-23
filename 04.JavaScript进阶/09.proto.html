@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        function factory(name,num) {
+            this.username = name
+            this.num = num
+        }
+        factory.prototype.country = 'China'
+        var obj = new factory('sxy',22)
+        //对于一个对象总是有一个隐藏的属性proto，他指向构造他的构造器函数的prototype属性
+        //之前也说到了protottype只有函数才有
+        //__proto__的一个属性就是constructor,他是对象的构造器，在这个对象中会指向factory函数
+        //08已经初步的呈现了原型的好处
+        //对于一个对象在查找一个属性的时候会先在对象本身寻找，若找到，则停止寻找，并返回
+        //而未果则会在对象的原型中寻找，所以会有以下特性：
+        obj.country = 'CChhiinnaa'
+        console.log(obj.country) //输出'CChhiinnaa'
+        console.log(factory.prototype.country) //输出‘china’
+
+        //而对于一个原型我们现在完全更改后，只会影响之后的对象：
+
+        factory.prototype = {
+            adress:'shannxi'
+        }
+        var obj2 = new factory('hxy',23)
+        console.log(obj)    //对与已经创建好的对象原型不改变
+        console.log(obj2)   //但对于新创建的会发生改变
+
+    </script>
+</body>
+</html>

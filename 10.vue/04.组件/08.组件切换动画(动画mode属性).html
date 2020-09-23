@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-2.4.0.js"></script>
+    <style>
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform: translateX(150px);
+        }
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input type="button" value="登录"  @click="comName='login'">
+    <input type="button" value="注册" @click="comName='register'">
+    <transition mode="out-in">
+        <component :is="comName"></component>
+    </transition>
+</div>
+<script>
+    new Vue({
+        el:'#box',
+        data:{
+            flag:true,
+            comName:'login'
+        },
+        components:{
+            login:{
+                template:`
+                    <div>
+                        <input type="text" placeholder="请输入账号">
+                        <input type="text" placeholder="请输入密码">
+                    </div>
+                `
+            },
+            register:{
+                template:`
+                    <div>
+                        <input type="text" placeholder="请输入账号">
+                        <input type="text" placeholder="请输入密码">
+                        <input type="text" placeholder="请确认密码">
+                    </div>
+                `
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="box">
+			
+		</div>
+		<script type="text/javascript">
+			var box1 = document.getElementsByClassName("box")[0]
+			//classname在低版本的IE中不支持,为了解决兼容问题,我们封装一个函数
+			function elementsByClassName(node,classStr){
+				//找到node下所有元素节点
+				var oNode = node.getElementsByTagName('*')
+				var arr = []
+				for(var i=0;i<oNode.length;i++){
+					// 如果符合我们需要的类名,就将该元素扔进事先创建的数组里
+					if (oNode[i].className==classStr) {
+						arr.push(oNode[i])
+					}
+				}
+				// 最后返回符合我们需要类名的数组
+				return arr
+			}
+			// 这样调用这个函数即可,函数的两个参数为指定节点下和类名
+			console.log(elementsByClassName(document,"box")[0]) 
+		</script>
+	</body>
+</html>

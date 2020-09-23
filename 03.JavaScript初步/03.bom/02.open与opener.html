@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button type="button" id="open">有一个参数的按钮</button>
+		<button type="button" id="open2">有两个参数的按钮</button>
+		<button type="button" id="open3">有三个参数的按钮</button>
+		<br/>
+		<button type="button" id="opener">打开子页面</button>
+		<script type="text/javascript">
+			
+			var oPen = document.getElementById("open")
+			oPen.onclick = function(){
+				open("https://www.baidu.com/")
+				//若参数为一个的时候,会创建一个窗口打开该页面
+			}
+			
+			var oPen2 = document.getElementById("open2")
+			oPen2.onclick = function(){
+				open("https://www.baidu.com/","百度")
+				/*若参数为两个参数的时候,浏览器会给创建的窗口取个名字,
+				然后再执行相同的open时,就在该窗口打开新的窗口,不会再打开新的窗口*/
+				
+			}
+			
+			var oPen3 = document.getElementById("open3")
+			oPen3.onclick = function(){
+				open("https://www.baidu.com/","百度","width=400,height=200,top=200,left=200")
+				//第三个参数会设置新窗口的大小与位置
+			}
+
+
+			// 打开子页面：
+			var oPener = document.getElementById('opener')
+			var Open
+			oPener.onclick = function(){
+				Open = open("03.子页面.html","百度","width=400,height=200,top=200,left=200")
+			}
+
+			// 我们可以在关闭父窗口时判断一下子窗口是否打开 如果打开 则一起关闭（用的不多）
+			window.onunload = function () {
+				if (!Open.closed){
+					Open.close()
+				}
+			}
+		</script>
+	</body>
+</html>

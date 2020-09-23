@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 400px;
+            height: 400px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <input type="text">
+    ctrl+回车添加信息
+    <script>
+        //键盘任意键按下
+        document.onkeydown = function(event){
+            console.log('onkeydown')
+
+             //查询按下的键对应的code值
+            console.log(event.keyCode)
+
+            //监听是否按下特殊的这三个键
+            console.log(event.ctrlKey)
+            console.log(event.altKey)
+            console.log(event.shiftKey)
+        }
+        //键盘任意键松开
+        document.onkeyup = function(){
+            console.log('onkeyup')
+        }
+        //键盘非特殊键有效按下
+        document.onkeypress = function(){
+            console.log('onkeypress')
+        }
+        
+        // 使用ctrl+回车添加信息
+        var oDiv = document.getElementsByTagName('div')[0]
+        var oInput_Text = document.getElementsByTagName('input')[0]
+        oInput_Text.onkeydown = function (event) {
+            if(event.ctrlKey&&event.keyCode==13){
+                oDiv.innerHTML+=oInput_Text.value+"<br/>"
+            }
+        }
+    </script>
+</body>
+</html>

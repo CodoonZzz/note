@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-1.12.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+<!--    下拉菜单需要使用js 所以我们导入jq与bootstrap的js文件-->
+<!--    boot的js文件是依赖于jq的 所以需要先导入jq-->
+</head>
+<body>
+    <div class="container">
+<!--        我们需要给下拉菜单一个容器 类名为dropdown-->
+<!--        通过设置dropdown来设置下拉菜单是向上弹出还是向下弹出-->
+<!--        如果向上弹出则是dropup-->
+        <div class="dropdown">
+<!--            步骤是先写一个按钮 一般是带箭头的按钮-->
+<!--            定义好类名后 需要在该按钮加入一个属性 data-toggle=“dropdown”-->
+<!--            这样才能通过点击让菜单出现-->
+            <button type="button" class="btn btn-default" data-toggle="dropdown">
+                菜单 <span class="caret"></span>
+            </button>
+<!--            然后在button下放一个无序列表-->
+<!--            并为ul加入一个class-->
+            <ul class="dropdown-menu">
+<!--                每一个li内部使用一个a标签 这样下拉菜单会有样式-->
+                <li><a href="">林俊杰</a></li>
+                <li><a href="">周杰伦</a></li>
+                <li><a href="">林宥嘉</a></li>
+                <li><a href="">薛之谦</a></li>
+                <li><a href="">许嵩</a></li>
+            </ul>
+        </div>
+
+        <hr>
+        在这我们设置向上的下拉菜单
+        <div class="row">
+            <div class="dropup col-md-2 col-md-offset-2">
+                <button type="button" class="btn btn-default" data-toggle="dropdown">
+                    菜单
+<!--                    值得一提的是 这个caret可以随着是上拉还是下拉菜单改变-->
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="">林俊杰</a></li>
+                    <li><a href="">周杰伦</a></li>
+                    <li><a href="">林宥嘉</a></li>
+                    <li><a href="">薛之谦</a></li>
+                    <li><a href="">许嵩</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <hr>
+
+        对齐方式：
+<!--        对齐方式默认就是左对齐-->
+        <div class="row">
+            <div class="dropdown col-md-2 col-md-offset-2">
+                <button type="button" class="btn btn-default" data-toggle="dropdown">
+                    菜单
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="">林俊杰</a></li>
+                    <li><a href="">周杰伦</a></li>
+                    <li><a href="">林宥嘉</a></li>
+                    <li><a href="">薛之谦</a></li>
+                    <li><a href="">许嵩</a></li>
+                </ul>
+            </div>
+            <div class="dropdown col-md-2 col-md-offset-2">
+                <button type="button" class="btn btn-default" data-toggle="dropdown">
+                    菜单
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="">林俊杰</a></li>
+                    <li><a href="">周杰伦</a></li>
+                    <li><a href="">林宥嘉</a></li>
+                    <li><a href="">薛之谦</a></li>
+                    <li><a href="">许嵩</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+
+        <hr>
+
+        设置标题
+        <div class="row">
+            <div class="dropdown col-md-2 col-md-offset-2">
+                <button type="button" class="btn btn-default" data-toggle="dropdown">
+                    菜单
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+<!--                    我们可以为任意一个li设置dropdown-header来让他样式成为标题-->
+<!--                    标题里不用设置a标签-->
+                    <li class="dropdown-header">华语歌手</li>
+                    <li><a href="">林俊杰</a></li>
+                    <li><a href="">周杰伦</a></li>
+                    <li><a href="">林宥嘉</a></li>
+                    <li class="dropdown-header">粤语歌手</li>
+                    <li><a href="">李克勤</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <hr>
+
+
+        设置分割线
+        <div class="row">
+            <div class="dropdown col-md-2 col-md-offset-2">
+                <button type="button" class="btn btn-default" data-toggle="dropdown">
+                    菜单
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="">林俊杰</a></li>
+                    <li><a href="">周杰伦</a></li>
+                    <li><a href="">林宥嘉</a></li>
+                    <li class="divider"></li>
+                    <li><a href="">李克勤</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <hr>
+
+        设置禁用与激活
+        <div class="row">
+            <div class="dropdown col-md-2 col-md-offset-2">
+                <button type="button" class="btn btn-default" data-toggle="dropdown">
+                    菜单
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="">林俊杰</a></li>
+                    <li><a href="">周杰伦</a></li>
+                    <li><a href="">林宥嘉</a></li>
+                    <li class="disabled"><a href="">李克勤</a></li>
+                </ul>
+            </div>
+            <div class="dropdown col-md-2 col-md-offset-2">
+                <button type="button" class="btn btn-default" data-toggle="dropdown">
+                    菜单
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="">林俊杰</a></li>
+                    <li><a href="">周杰伦</a></li>
+                    <li><a href="">林宥嘉</a></li>
+                    <li class="active"><a href="">李克勤</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <hr>
+
+        分裂式按钮下拉菜单
+<!--        注意： 分裂式不支持垂直排列-->
+        <div class="row">
+            <div class="btn-group dropdown col-md-3 col-md-offset-2">
+                <button type="button" class="btn btn-default">菜单</button>
+                <button type="button" class="btn btn-default" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="">1</a></li>
+                    <li><a href="">2</a></li>
+                    <li><a href="">3</a></li>
+                    <li><a href="">4</a></li>
+                </ul>
+            </div>
+            <div class="btn-group dropup col-md-3 col-md-offset-2">
+                <button type="button" class="btn btn-default">菜单</button>
+                <button type="button" class="btn btn-default" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="">1</a></li>
+                    <li><a href="">2</a></li>
+                    <li><a href="">3</a></li>
+                    <li><a href="">4</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

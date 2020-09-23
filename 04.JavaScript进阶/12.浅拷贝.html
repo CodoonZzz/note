@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //创建两个对象
+        var person = {
+            name:'sxy',
+            age:22,
+            adress:{
+                home_adress:'hanzhong'
+            }
+        }
+        var son = {
+            language:'script'
+        }
+        //然后做一个把父对象全部继承给子对象的一个操作
+        function f(p,s) {
+            s = s||{}
+            for (i in p){
+                s[i] = p[i]
+            }
+        }
+        f(person,son)
+        console.log(son)
+        console.log(person)
+        //这样输出了一个对象，该对象继承了父亲所有的属性
+        //这就是浅拷贝，但是浅拷贝有一个问题：
+        son.adress.home_adress = "xi'an"
+        console.log(son)
+        console.log(person)
+        //更改普通属性值的时候，不会发生问题，但是更改对象属性值的时候就会发生一个全部改变的问题
+        //这是因为对象中的属性值如果是一个对象，那么他的存储方式不是存储在该对象中
+        //而是重新创建一个对象，然后指向他
+        //儿子在继承了父亲的所有属性的时候，这种对象属性，继承的时候相当于之继承了一个门牌号
+        //儿子只拿着门牌号去找这个对象，事实上这个对象还是那一个
+        //所以在发生更改的时候，会出现子变父也变的情况
+        //所以在属性值中有对象的对象拷贝中，浅拷贝就会出现问题，需要使用深拷贝
+
+    </script>
+</body>
+</html>

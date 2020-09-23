@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            /*这个效果是3D的核心属性*/
+            /*没有这个属性 动画是在2d上完成的 也就是X与Y轴*/
+            /*比如门的打开效果 打开时门的边框在移动的过程中不会发生任何改变*/
+            /*而正常的3d效果 在开门时 门在2d上的投影会变化*/
+            /*这个值的大小指定了观察者距离Z=0这个平面的距离*/
+            /*也就是景深 越远感受到的变化越小 越近 感受到的变化越大*/
+            perspective: 1000px;
+        }
+        .box{
+            position: absolute;
+            left: 50%;
+            top: 200px;
+            margin-left: -200px;
+        }
+        .doorLeft,.doorRight{
+            background: #8A2BE2;
+            width: 200px;
+            height: 225px;
+            display: block;
+            position: absolute;
+            transition: all 1s;
+            /*这个属性为背面是否可见，加上这个属性后 一旦背面面向我们 就会被隐藏*/
+            /*backface-visibility: hidden;*/
+        }
+        .doorLeft{
+            top: 0;
+            left: 0;
+            transform-origin: left;
+        }
+        .doorRight{
+            right: 0;
+            top: 0;
+            transform-origin: right;
+        }
+
+        /*除了rotate还有translate也可以设置3d属性*/
+        div:hover .doorLeft{
+            transform: rotateY(-135deg) ;
+        }
+        div:hover .doorRight{
+            transform: rotateY(135deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="doorLeft"></div>
+        <img src="2016_01_11_18_41_16_九阴真经_燕子坞_一定要坚强.JPG" width="400px">
+        <div class="doorRight"></div>
+    </div>
+
+</body>
+</html>

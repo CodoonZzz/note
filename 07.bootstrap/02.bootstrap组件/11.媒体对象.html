@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery-1.12.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+<!--                媒体对象一般是图片配文字的一个小组件 对于文章类的-->
+<!--                首先放入一个媒体对象的容器-->
+                <div class="media">
+<!--                    再放入媒体对象的媒体文件-->
+<!--                    可以写入media-left也可以写入media-right 这决定了媒体文件在左边还是右边-->
+<!--                    如果需要将媒体文件放在右边 需要将媒体文件最后写入-->
+<!--                    如果你有相当长的文字 你可以再加入类名media-middle 甚至media-bottom设置媒体文件的对齐方式 默认是顶部对齐-->
+                    <div class="media-left media-middle">
+                        <img src="img/9885883_210838271000_2.jpg" class="media-object" width="80"/>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">标题</h4>
+                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="media">
+
+                    <div class="media-body">
+                        <h4 class="media-heading">标题</h4>
+                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                    </div>
+                    <div class="media-right media-middle">
+                        <img src="img/9885883_210838271000_2.jpg" class="media-object" width="80"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+
+        <div class="row">
+            <div class="col-md-6">
+<!--                可以使用列表实现多个媒体对象-->
+                <ul class="media-list">
+<!--                    每个li即是一个媒体对象的容器-->
+                    <li class="media">
+                        <div class="media-left">
+                            <img src="img/9885883_210838271000_2.jpg" class="media-object" width="80"/>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">标题</h4>
+                            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                        </div>
+                    </li>
+                    <li class="media">
+                        <div class="media-left">
+                            <img src="img/9885883_210838271000_2.jpg" class="media-object" width="80"/>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">标题</h4>
+                            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+<!--                            也可以嵌套-->
+                            <div class="media">
+                                <div class="media-left media-middle">
+                                    <img src="img/9885883_210838271000_2.jpg" class="media-object" width="80"/>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">标题</h4>
+                                    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

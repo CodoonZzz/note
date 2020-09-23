@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        console.log("--------------------- &&");
+
+        // 对于&& || 的用法不再说明 这里要说的是有一些特殊情况
+        console.log(0 && 20)    //0
+        console.log(10 && 20)    //20
+
+        // 如果在表达式1&&表达式2中 表达式1转化的布尔为false就直接返回表达式1的值
+        //                          如果表达式1位true 就直接返回表达式2的值
+        // 如果后面有多个表达式 那么会逐个再判断表达式二的布尔值 然后依据表达式二的布尔值 来看输出哪个
+
+        // 下面的例子：
+        var x = 10
+        console.log(0 && x++);  //0
+        console.log(x);         //10
+        // 因为在 && 的含义是并且 如果表达式1不成立 就不会进行后面的表达式 所以x值不变
+        var y = 10
+        console.log(5 && x++);  //10
+        console.log(x);         //11
+
+        console.log("--------------------- ||");
+
+        // 而||只要第一个表达式为true 就不会执行后面的表达式 返回第一个值
+        // 第一个为false的话 就会返回第二个表达式
+        console.log(0||20)  //20
+        console.log(10||20)  //10
+
+        console.log("--------------------- !");
+
+        // 对于！需要说明的是：为否定 但有以下需要注意的
+        console.log(!true)      // false
+        console.log(!5 > 6);    // false
+        // 对于第一个很好理解 第二个需要注意的是 优先级不同 ！需要优先运算
+        // 所以首先是!5的运算
+        console.log(!5);    // false 因为5为非0非空 所以会转化为true 而!true就为false
+        console.log(false>6);   // false 在这里false与数字相比较会转化为0 所以0>6的结果就为false
+
+        console.log("--------------------- !");
+    </script>
+</body>
+</html>
