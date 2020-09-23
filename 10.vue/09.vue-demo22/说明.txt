@@ -1,0 +1,55 @@
+这里使用了Mint ui组件库 是基于vue的一个移动端组件库
+安装： npm install mint-ui -S
+
+// 引入全部组件
+import Vue from 'vue';
+import Mint from 'mint-ui';
+Vue.use(Mint);
+
+// 按需引入
+npm install babel-plugin-component -D
+然后，将 .babelrc 添加为：
+{
+  "presets": [
+    ["es2015", { "modules": false }]
+  ],
+  "plugins": [["component", [
+    {
+      "libraryName": "mint-ui",
+      "style": true
+    }
+  ]]]
+}
+
+如果你只希望引入部分组件，比如 Button 和 Cell，那么需要在 main.js 中写入以下内容：
+
+import Vue from 'vue'
+import { Button, Cell } from 'mint-ui'
+import App from './App.vue'
+
+Vue.component(Button.name, Button)
+Vue.component(Cell.name, Cell)
+/* 或写为
+ * Vue.use(Button)
+ * Vue.use(Cell)
+ */
+
+上传码云仓库：
+强烈建议有README, LICENSE, .gitignore这三个文件
+提交本地.git
+git init 创建.git文件夹
+git status 展示文件状态 红色未被跟踪
+git add. 放入
+git status 展示文件状态 绿色新文件
+git commit -m "init my project" 提交
+
+与码云关联
+git config --global user.name "CodoonZzz"
+git config --global user.email "5325799+CodoonZzz@user.noreply.gitee.com"
+
+上传
+git remote add origin https://gitee.com/CodoonZzz/vue-demo.git
+git push -u origin master
+
+
+这个项目使用vue-resource发送ajax 安装：npm i vue-resource -S
